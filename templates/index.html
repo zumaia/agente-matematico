@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agente Matemático ESO+</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="icon" href="/static/favicon.ico">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🧮 Agente Matemático ESO+</h1>
+            <p>Resuelve problemas de matemáticas con inteligencia artificial</p>
+        </header>
+
+        <main>
+            <form method="post" action="/resolver-web" class="problem-form">
+                <div class="input-group">
+                    <label for="problema">Escribe tu problema matemático:</label>
+                    <textarea 
+                        id="problema" 
+                        name="problema" 
+                        placeholder="Ej: Calcula el área de un triángulo de base 8 y altura 5, o: media de 5, 10, 15"
+                        rows="3"
+                        required>{{ problema or '' }}</textarea>
+                </div>
+                
+                <button type="submit" class="btn-resolver">
+                    <span>Resolver Problema</span>
+                    <div class="loading" id="loading" style="display: none;">⏳</div>
+                </button>
+            </form>
+
+            {% if solucion %}
+            <div class="solution-container">
+                <div class="solution-header">
+                    <h3>✅ Solución</h3>
+                    <span class="method-badge">
+                        {% if metodo == 'algoritmo' %}
+                        🧮 Algoritmo
+                        {% else %}
+                        🤖 IA
+                        {% endif %}
+                    </span>
+                </div>
+                
+                <div class="problem-statement">
+                    <strong>Problema:</strong> {{ problema }}
+                </div>
+
+                <div class="solution-result">
+                    <strong>Solución:</strong> {{ solucion.solucion }}
+                </div>
+
+                <div class="solution-steps">
+                    <strong>Pasos detallados:</strong>
+                    <ol>
+                        {% for paso in solucion.pasos %}
+                        <li>{{ paso }}</li>
+                        {% endfor %}
+                    </ol>
+                </div>
+            </div>
+            {% endif %}
+
+            {% if error %}
+            <div class="error-container">
+                <h3>❌ Error</h3>
+                <p>{{ error }}</p>
+            </div>
+            {% endif %}
+
+            <div class="examples">
+                <h3>📚 Ejemplos para probar:</h3>
+                <div class="example-grid">
+                    <button class="example-btn" onclick="setExample(this)">3x + 5 = 20</button>
+                    <button class="example-btn" onclick="setExample(this)">Área de triángulo base 6 altura 4</button>
+                    <button class="example-btn" onclick="setExample(this)">1/2 + 1/3</button>
+                    <button class="example-btn" onclick="setExample(this)">20% de 150</button>
+                    <button class="example-btn" onclick="setExample(this)">media de 5, 10, 15</button>
+                    <button class="example-btn" onclick="setExample(this)">Explica ecuaciones de segundo grado</button>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>Powered by FastAPI + Groq AI | v4.0</p>
+        </footer>
+    </div>
+
+    <script>
+        function setExample(button) {
+            document.getElementById('problema').value = button.textContent;
+        }
+
+        // Mostrar loading al enviar formulario
+        document.querySelector('form').addEventListener('submit', function() {
+            document.getElementById('loading').style.display = 'inline';
+        });
+    </script>
+</body>
+</html>

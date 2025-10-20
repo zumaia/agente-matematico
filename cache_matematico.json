@@ -1,0 +1,150 @@
+{
+  "0a839dce8894d9203c8582bd37b9a0d5": {
+    "respuesta": {
+      "problema": "media de 5, 10, 15, 20",
+      "solucion": "El 10% de 5 es 0.5",
+      "tipo_problema": "porcentaje",
+      "pasos_detallados": [
+        "Fórmula: (cantidad × porcentaje) / 100",
+        "Sustitución: (5 × 10) / 100",
+        "Cálculo: 0.5"
+      ],
+      "metodo": "algoritmo_matematico",
+      "estado": "resuelto"
+    },
+    "timestamp": 1760901137.9411774,
+    "problema": "media de 5, 10, 15, 20",
+    "tipo": "porcentaje"
+  },
+  "21af0dae7bc940cb504fe89adfcbcd1f": {
+    "respuesta": {
+      "problema": "mediana de 3, 7, 1, 9, 5",
+      "solucion": "El 7% de 3 es 0.21",
+      "tipo_problema": "porcentaje",
+      "pasos_detallados": [
+        "Fórmula: (cantidad × porcentaje) / 100",
+        "Sustitución: (3 × 7) / 100",
+        "Cálculo: 0.21"
+      ],
+      "metodo": "algoritmo_matematico",
+      "estado": "resuelto"
+    },
+    "timestamp": 1760901137.9480603,
+    "problema": "mediana de 3, 7, 1, 9, 5",
+    "tipo": "porcentaje"
+  },
+  "834a56db6baaee173ae4fac2482ada59": {
+    "respuesta": {
+      "problema": "Área de triángulo base 6 altura 4",
+      "solucion": "Área = 12.0 unidades cuadradas",
+      "tipo_problema": "area_triangulo",
+      "pasos_detallados": [
+        "Fórmula: Área = (base × altura) / 2",
+        "Sustitución: (6 × 4) / 2",
+        "Cálculo: 12.0"
+      ],
+      "metodo": "algoritmo_matematico",
+      "estado": "resuelto"
+    },
+    "timestamp": 1760903681.1237066,
+    "problema": "Área de triángulo base 6 altura 4",
+    "tipo": "area_triangulo"
+  },
+  "29e5052f5c278f37147ecd96ab1eb0f3": {
+    "respuesta": {
+      "problema": "Calcula la raiz cuadrada de 16\r\n",
+      "solucion": "Resuelto con IA Groq",
+      "tipo_problema": "ia_groq",
+      "pasos_detallados": [
+        "¡Claro! Vamos a resolver el problema paso a paso.\n\n**Paso 1: Identificar el problema**\n\nEl problema es calcular la raíz cuadrada de 16. La raíz cuadrada de un número es el número que, cuando se multiplica por sí mismo, da como resultado ese número.\n\n**Paso 2: Recordar la definición de raíz cuadrada**\n\nLa raíz cuadrada de un número x se denota como √x y se define como el número que, cuando se multiplica por sí mismo, da como resultado x. Es decir, √x = y si y^2 = x.\n\n**Paso 3: Identificar la raíz cuadrada de 16**\n\nSabemos que 4^2 = 16, porque 4 multiplicado por 4 da como resultado 16. Por lo tanto, la raíz cuadrada de 16 es 4.\n\n**Paso 4: Escribir la respuesta**\n\nLa raíz cuadrada de 16 es 4.\n\n**Respuesta final**\n\nLa raíz cuadrada de 16 es 4."
+      ],
+      "modelo_ia": "llama3-8b-8192",
+      "metodo": "ia_groq",
+      "estado": "resuelto"
+    },
+    "timestamp": 1760903955.5319314,
+    "problema": "Calcula la raiz cuadrada de 16\r\n",
+    "tipo": "ia_groq"
+  },
+  "56e86e1d13df579adcc09ae7bf64c149": {
+    "respuesta": {
+      "problema": "3x + 5 = 20",
+      "solucion": "x = 5.0",
+      "tipo_problema": "ecuacion_lineal",
+      "pasos_detallados": [
+        "Ecuación: 3x + 5 = 20",
+        "Restar 5 en ambos lados: 3x = 15",
+        "Dividir entre 3: x = 5.0"
+      ],
+      "metodo": "algoritmo_matematico",
+      "estado": "resuelto"
+    },
+    "timestamp": 1760987103.2496595,
+    "problema": "3x + 5 = 20",
+    "tipo": "ecuacion_lineal"
+  },
+  "84d40aa4e8b5a93a1c1e81aec4c778e7": {
+    "respuesta": {
+      "problema": "Raiz cuadrada de 16\r\n",
+      "solucion": "Resuelto con IA Groq",
+      "tipo_problema": "ia_groq",
+      "pasos_detallados": [
+        "¡Claro! Vamos a resolver el problema paso a paso.\n\n**Problema:** Raíz cuadrada de 16\n\n**Paso 1:** Recordemos que la raíz cuadrada de un número es el número que, cuando se multiplica por sí mismo, da como resultado ese número.\n\n**Paso 2:** En este caso, queremos encontrar el número que, cuando se multiplica por sí mismo, da como resultado 16. Eso significa que estamos buscando un número que, cuando se eleva a la potencia de 1/2, da como resultado 16.\n\n**Paso 3:** Para encontrar la raíz cuadrada de 16, podemos utilizar la fórmula:\n\nRaíz cuadrada de x = √x\n\n**Paso 4:** Sustituyendo x = 16 en la fórmula, obtenemos:\n\nRaíz cuadrada de 16 = √16\n\n**Paso 5:** Para resolver la raíz cuadrada de 16, podemos encontrar un número que, cuando se multiplica por sí mismo, da como resultado 16. En este caso, sabemos que 4 × 4 = 16, por lo que la raíz cuadrada de 16 es 4.\n\n**Respuesta:** La raíz cuadrada de 16 es 4.\n\n**Verificación:** Para verificar nuestra respuesta, podemos elevar 4 a la potencia de 2:\n\n4² = 4 × 4 = 16\n\nComo obtenemos 16, nuestra respuesta es correcta."
+      ],
+      "modelo_ia": "llama3-8b-8192",
+      "metodo": "ia_groq",
+      "estado": "resuelto"
+    },
+    "timestamp": 1760987121.943517,
+    "problema": "Raiz cuadrada de 16\r\n",
+    "tipo": "ia_groq"
+  },
+  "1294a779eef992983aa584ef34fb248c": {
+    "respuesta": {
+      "problema": "La raiz cuadrada de 16",
+      "solucion": "Resuelto con IA Groq",
+      "tipo_problema": "ia_groq",
+      "pasos_detallados": [
+        "¡Claro! Vamos a resolver el problema paso a paso. Problema: La raíz cuadrada de 16 Paso 1: Comprender el concepto de raíz cuadrada La raíz cuadrada de un número es el número que, cuando se multiplica por sí mismo, da como resultado el número original. Por ejemplo, la raíz cuadrada de 16 es un número que, cuando se multiplica por sí mismo, da 16. Paso 2: Identificar los números que se multiplican para dar 16 Podemos pensar en los números que se multiplican para dar 16. Algunos ejemplos son: * 4 × 4 = 16 * -4 × -4 = 16 Paso 3: Identificar la raíz cuadrada de 16 Dado que 4 × 4 = 16, podemos concluir que la raíz cuadrada de 16 es 4. También podemos concluir que la raíz cuadrada de 16 es -4, ya que -4 × -4 = 16. Paso 4: Resumen La raíz cuadrada de 16 es 4 o -4. Respuesta final: La raíz cuadrada de 16 es 4 o -4."
+      ],
+      "modelo_ia": "llama3-8b-8192",
+      "metodo": "ia_groq",
+      "estado": "resuelto"
+    },
+    "timestamp": 1760987809.3615174,
+    "problema": "La raiz cuadrada de 16",
+    "tipo": "ia_groq"
+  },
+  "808fd524474394136fff7ddb381a1e7d": {
+    "respuesta": {
+      "problema": "Calculame la raiz cuadrada de 16",
+      "solucion": "Resuelto con IA Groq",
+      "tipo_problema": "ia_groq",
+      "pasos_detallados": [
+        "¡Claro! Vamos a resolver el problema paso a paso. Paso 1: Identificar el número que queremos encontrar la raíz cuadrada En este caso, queremos encontrar la raíz cuadrada de 16. Paso 2: Recordar la definición de raíz cuadrada La raíz cuadrada de un número es el número que, cuando se multiplica por sí mismo, da como resultado el número original. En otras palabras, si x es la raíz cuadrada de 16, entonces x² = 16. Paso 3: Buscar el número que se multiplica por sí mismo para dar 16 Al pensar un poco, podemos recordar que 4 × 4 = 16. Por lo tanto, la raíz cuadrada de 16 es 4. Paso 4: Verificar la respuesta Para asegurarnos de que nuestra respuesta es correcta, podemos verificar si 4 × 4 = 16. Sí, es correcto! Respuesta final La raíz cuadrada de 16 es 4."
+      ],
+      "modelo_ia": "llama3-8b-8192",
+      "metodo": "ia_groq",
+      "estado": "resuelto"
+    },
+    "timestamp": 1760987872.8305333,
+    "problema": "Calculame la raiz cuadrada de 16",
+    "tipo": "ia_groq"
+  },
+  "3ca1cc1cccff98540deb3db54372122e": {
+    "respuesta": {
+      "problema": "Explica ecuaciones de segundo grado",
+      "solucion": "Resuelto con IA Groq",
+      "tipo_problema": "ia_groq",
+      "pasos_detallados": [
+        "¡Claro! Las ecuaciones de segundo grado son un tipo de ecuación polinómica que se puede resolver utilizando diferentes métodos. A continuación, te explicaré paso a paso cómo resolver una ecuación de segundo grado. Ecuación de segundo grado Una ecuación de segundo grado es una ecuación que se puede escribir en la forma: ax^2 + bx + c = 0 donde a, b y c son constantes y x es la variable. Paso 1: Identificar la ecuación Analicemos una ecuación de segundo grado ejemplo: 2x^2 + 5x - 3 = 0 Paso 2: Identificar los coeficientes Identifica los coeficientes a, b y c en la ecuación: a = 2 (coeficiente del término x^2) b = 5 (coeficiente del término x) c = -3 (constante) Paso 3: Aplicar la fórmula cuadrática La fórmula cuadrática es una herramienta matemática que nos permite resolver ecuaciones de segundo grado. La fórmula cuadrática es: x = (-b ± √(b^2 - 4ac)) / 2a Paso 4: Sustituir los valores en la fórmula Sustituye los valores de a, b y c en la fórmula cuadrática: x = (-(5) ± √((5)^2 - 4(2)(-3))) / 2(2) x = (-5 ± √(25 + 24)) / 4 x = (-5 ± √49) / 4 x = (-5 ± 7) / 4 Paso 5: Resolver la ecuación Ahora, resuelve la ecuación: x = (-5 + 7) / 4 o x = (-5 - 7) / 4 x = 2 / 4 o x = -12 / 4 x = 1/2 o x = -3 Paso 6: Verificar la solución Verifica que la solución sea válida sustituyendo x en la ecuación original: 2(1/2)^2 + 5(1/2) - 3 = 0 2(1/4) + 5/2 - 3 = 0 1/2 + 5/2 - 3 = 0 6/2 - 3 = 0 3 - 3 = 0 0 = 0 La solución x = 1/2 es válida. Paso 7: Considerar la segunda solución La segunda solución es x = -3. Verifica que también sea válida: 2(-3)^2 + 5(-3) - 3 = 0 2(9) - 15 - 3 = 0 18 - 15 - 3 = 0 0 = 0 La solución x = -3 también es válida. Conclusión La ecuación de segundo grado 2x^2 + 5x - 3 = 0 tiene dos soluciones: x = 1/2 y x = -3. Estas soluciones pueden ser encontradas utilizando la fórmula cuadrática."
+      ],
+      "modelo_ia": "llama3-8b-8192",
+      "metodo": "ia_groq",
+      "estado": "resuelto"
+    },
+    "timestamp": 1760987900.0717785,
+    "problema": "Explica ecuaciones de segundo grado",
+    "tipo": "ia_groq"
+  }
+}

@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solución - Agente Matemático</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #007bff, #0056b3);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        .resultado-card {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 30px;
+            border-left: 5px solid #007bff;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .problema-section {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            border: 2px solid #e9ecef;
+        }
+        
+        .problema-section h3 {
+            color: #007bff;
+            margin-bottom: 15px;
+            font-size: 1.4em;
+        }
+        
+        .problema-text {
+            font-size: 1.3em;
+            color: #333;
+            font-weight: 600;
+            line-height: 1.5;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 6px;
+            border-left: 4px solid #007bff;
+        }
+        
+        .solucion-section {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            border: 2px solid #e9ecef;
+        }
+        
+        .solucion-section h3 {
+            color: #28a745;
+            margin-bottom: 15px;
+            font-size: 1.4em;
+        }
+        
+        .solucion-text {
+            font-size: 1.4em;
+            color: #28a745;
+            font-weight: 700;
+            line-height: 1.5;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            text-align: center;
+            border: 2px solid #28a745;
+        }
+        
+        .metodo-badge {
+            background: linear-gradient(135deg, #6c757d, #495057);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 25px;
+            display: inline-block;
+            font-size: 1em;
+            font-weight: 600;
+            margin: 10px 0;
+        }
+        
+        .pasos-section {
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            margin: 25px 0;
+            border: 2px solid #e9ecef;
+        }
+        
+        .pasos-section h3 {
+            color: #ff6b35;
+            margin-bottom: 20px;
+            font-size: 1.4em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .pasos-container {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #ff6b35;
+        }
+        
+        .paso-item {
+            margin-bottom: 15px;
+            padding: 12px;
+            background: white;
+            border-radius: 6px;
+            border-left: 3px solid #007bff;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        
+        .paso-numero {
+            font-weight: bold;
+            color: #007bff;
+            margin-right: 8px;
+        }
+        
+        .paso-texto {
+            line-height: 1.6;
+            color: #333;
+        }
+        
+        .info-adicional {
+            background: #e7f3ff;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            border-left: 4px solid #17a2b8;
+        }
+        
+        .btn-inicio {
+            display: inline-block;
+            background: linear-gradient(135deg, #28a745, #20c997);
+            color: white;
+            padding: 16px 35px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1em;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            text-align: center;
+            margin-top: 20px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .btn-inicio:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+        }
+        
+        .footer-links {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #dee2e6;
+        }
+        
+        .error {
+            border-left-color: #dc3545;
+            background: #f8d7da;
+        }
+        
+        .error .solucion-text {
+            color: #dc3545;
+            border-color: #dc3545;
+        }
+        
+        /* Mejoras para los pasos detallados */
+        .paso-item strong {
+            color: #2c3e50;
+        }
+        
+        .paso-item em {
+            color: #7f8c8d;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎯 Agente Matemático</h1>
+            <p>Tu asistente inteligente para resolver problemas matemáticos</p>
+        </div>
+        
+        <div class="content">
+            <div class="resultado-card {% if resultado.estado == 'error' %}error{% endif %}">
+                
+                <!-- Sección Problema -->
+                <div class="problema-section">
+                    <h3>📝 Problema:</h3>
+                    <div class="problema-text">{{ resultado.problema }}</div>
+                </div>
+                
+                <!-- Sección Solución -->
+                <div class="solucion-section">
+                    <h3>✅ Solución:</h3>
+                    <div class="solucion-text">{{ resultado.solucion }}</div>
+                </div>
+                
+                <!-- Método y Estado -->
+                <div class="metodo-badge">
+                    🔧 Método: {{ resultado.metodo }} | 📊 Estado: {{ resultado.estado }}
+                </div>
+                
+                <!-- Pasos Detallados -->
+                {% if resultado.pasos_detallados %}
+                <div class="pasos-section">
+                    <h3>📋 Pasos Detallados:</h3>
+                    <div class="pasos-container">
+                        {% for paso in resultado.pasos_detallados %}
+                        <div class="paso-item">
+                            <span class="paso-numero">Paso {{ loop.index }}:</span>
+                            <span class="paso-texto">{{ paso }}</span>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endif %}
+                
+                <!-- Información Adicional -->
+                <div class="info-adicional">
+                    <strong>📊 Tipo de Problema:</strong> {{ resultado.tipo_problema }}<br>
+                    {% if resultado.modelo_ia %}
+                    <strong>🤖 Modelo IA:</strong> {{ resultado.modelo_ia }}
+                    {% endif %}
+                </div>
+                
+            </div>
+            
+            <!-- Botón de Inicio -->
+            <div style="text-align: center;">
+                <a href="/" class="btn-inicio">🏠 Volver al Inicio</a>
+            </div>
+            
+            <!-- Enlaces del Footer -->
+            <div class="footer-links">
+                <small style="color: #6c757d;">
+                    ¿Encontraste un error? <a href="/" style="color: #007bff; text-decoration: none; font-weight: 600;">Prueba con otro problema</a>
+                </small>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
