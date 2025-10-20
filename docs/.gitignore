@@ -41,3 +41,15 @@ matematica_cache.json
 # OS
 .DS_Store
 Thumbs.db
+
+# Archivos temporales y borradores
+borrador.txt
+
+# Asegurarte de que estos archivos estén en .gitignore
+echo "# Archivos temporales y de testing con secretos" >> .gitignore
+echo "borrador.txt" >> .gitignore
+echo "test_*.py" >> .gitignore
+echo "*.key" >> .gitignore
+echo "*.env" >> .gitignore
+echo ".env" >> .gitignore
+echo "secrets.txt" >> .gitignore
