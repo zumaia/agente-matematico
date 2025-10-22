@@ -1,60 +1,138 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="{{ lang }}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agente Matemático ESO+</title>
+    <title>{{ t('title') }}</title>
     <link rel="stylesheet" href="/static/style.css">
     <link rel="icon" href="/static/favicon.ico">
+    <style>
+        .language-switcher {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 5px;
+        }
+        .lang-btn {
+            padding: 5px 10px;
+            border: 1px solid #ddd;
+            background: white;
+            cursor: pointer;
+            border-radius: 4px;
+            font-size: 12px;
+        }
+        .lang-btn.active {
+            background: #007bff;
+            color: white;
+            border-color: #007bff;
+        }
+        .examples {
+            margin-top: 30px;
+        }
+        
+        .category {
+            margin-bottom: 25px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border-left: 4px solid #007bff;
+        }
+        
+        .category h4 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .example-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 10px;
+        }
+        
+        .example-btn {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 12px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.9em;
+            transition: all 0.3s ease;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .example-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            background: linear-gradient(135deg, #764ba2, #667eea);
+        }
+    </style>
 </head>
 <body>
+    <!-- AÑADIR SELECTOR DE IDIOMA -->
+    <div class="language-switcher">
+        <button class="lang-btn {{ 'active' if lang == 'es' else '' }}" onclick="changeLanguage('es')">ES</button>
+        <button class="lang-btn {{ 'active' if lang == 'en' else '' }}" onclick="changeLanguage('en')">EN</button>
+        <button class="lang-btn {{ 'active' if lang == 'eu' else '' }}" onclick="changeLanguage('eu')">EU</button>
+    </div>
+
     <div class="container">
         <header>
-            <h1>🧮 Agente Matemático ESO+</h1>
-            <p>Resuelve problemas de matemáticas con inteligencia artificial</p>
+            <a href="/{{ lang }}" style="text-decoration: none; color: inherit;">
+                <h1>🧮 {{ t('title') }}</h1>
+            </a>
+            <p>{{ t('subtitle') }}</p>
         </header>
 
         <main>
             <form method="post" action="/resolver-web" class="problem-form">
+                <input type="hidden" name="lang" value="{{ lang }}">
+                
                 <div class="input-group">
-                    <label for="problema">Escribe tu problema matemático:</label>
+                    <label for="problema">{{ t('problem_label') }}</label>
                     <textarea 
                         id="problema" 
                         name="problema" 
-                        placeholder="Ej: Calcula el área de un triángulo de base 8 y altura 5, o: media de 5, 10, 15"
+                        placeholder="{{ t('problem_placeholder') }}"
                         rows="3"
                         required>{{ problema or '' }}</textarea>
                 </div>
                 
                 <button type="submit" class="btn-resolver">
-                    <span>Resolver Problema</span>
-                    <div class="loading" id="loading" style="display: none;">⏳</div>
+                    <span>{{ t('solve_button') }}</span>
+                    <div class="loading" id="loading" style="display: none;">{{ t('loading') }}</div>
                 </button>
             </form>
 
             {% if solucion %}
             <div class="solution-container">
                 <div class="solution-header">
-                    <h3>✅ Solución</h3>
+                    <h3>{{ t('solution_title') }}</h3>
                     <span class="method-badge">
                         {% if metodo == 'algoritmo' %}
-                        🧮 Algoritmo
+                        {{ t('algorithm_badge') }}
                         {% else %}
-                        🤖 IA
+                        {{ t('ai_badge') }}
                         {% endif %}
                     </span>
                 </div>
                 
                 <div class="problem-statement">
-                    <strong>Problema:</strong> {{ problema }}
+                    <strong>{{ t('problem_text') }}</strong> {{ problema }}
                 </div>
 
                 <div class="solution-result">
-                    <strong>Solución:</strong> {{ solucion.solucion }}
+                    <strong>{{ t('solution_text') }}</strong> {{ solucion.solucion }}
                 </div>
 
                 <div class="solution-steps">
-                    <strong>Pasos detallados:</strong>
+                    <strong>{{ t('steps_text') }}</strong>
                     <ol>
                         {% for paso in solucion.pasos %}
                         <li>{{ paso }}</li>
@@ -66,32 +144,100 @@
 
             {% if error %}
             <div class="error-container">
-                <h3>❌ Error</h3>
+                <h3>{{ t('error_title') }}</h3>
                 <p>{{ error }}</p>
             </div>
             {% endif %}
 
             <div class="examples">
-                <h3>📚 Ejemplos para probar:</h3>
-                <div class="example-grid">
-                    <button class="example-btn" onclick="setExample(this)">3x + 5 = 20</button>
-                    <button class="example-btn" onclick="setExample(this)">Área de triángulo base 6 altura 4</button>
-                    <button class="example-btn" onclick="setExample(this)">1/2 + 1/3</button>
-                    <button class="example-btn" onclick="setExample(this)">20% de 150</button>
-                    <button class="example-btn" onclick="setExample(this)">media de 5, 10, 15</button>
-                    <button class="example-btn" onclick="setExample(this)">Explica ecuaciones de segundo grado</button>
+                <h3>{{ t('examples_title') }}</h3>
+                
+                <!-- Álgebra -->
+                <div class="category">
+                    <h4>🧮 Álgebra</h4>
+                    <div class="example-grid">
+                        <button class="example-btn" onclick="setExample(this)">3x + 5 = 20</button>
+                        <button class="example-btn" onclick="setExample(this)">x² - 5x + 6 = 0</button>
+                        <button class="example-btn" onclick="setExample(this)">2x + y = 7, 3x - 2y = 4</button>
+                    </div>
+                </div>
+                
+                <!-- Geometría -->
+                <div class="category">
+                    <h4>📐 Geometría</h4>
+                    <div class="example-grid">
+                        <button class="example-btn" onclick="setExample(this)">Área de triángulo base 8 altura 5</button>
+                        <button class="example-btn" onclick="setExample(this)">Hipotenusa de triángulo catetos 6 y 8</button>
+                        <button class="example-btn" onclick="setExample(this)">Volumen de cilindro radio 3 altura 10</button>
+                    </div>
+                </div>
+                
+                <!-- Aritmética -->
+                <div class="category">
+                    <h4>🔢 Aritmética</h4>
+                    <div class="example-grid">
+                        <button class="example-btn" onclick="setExample(this)">1/2 + 1/3 - 1/4</button>
+                        <button class="example-btn" onclick="setExample(this)">25% de 200 euros</button>
+                        <button class="example-btn" onclick="setExample(this)">Producto que cuesta 80€ con 15% descuento</button>
+                    </div>
+                </div>
+                
+                <!-- Estadística -->
+                <div class="category">
+                    <h4>📊 Estadística</h4>
+                    <div class="example-grid">
+                        <button class="example-btn" onclick="setExample(this)">Media de 4, 7, 2, 9, 5</button>
+                        <button class="example-btn" onclick="setExample(this)">Mediana de 3, 1, 7, 4, 2</button>
+                        <button class="example-btn" onclick="setExample(this)">Probabilidad de cara en moneda</button>
+                    </div>
+                </div>
+                
+                <!-- Trigonometría -->
+                <div class="category">
+                    <h4>📈 Trigonometría</h4>
+                    <div class="example-grid">
+                        <button class="example-btn" onclick="setExample(this)">sen(30°) + cos(60°)</button>
+                        <button class="example-btn" onclick="setExample(this)">Triángulo: ángulo 30°, lado opuesto 5</button>
+                        <button class="example-btn" onclick="setExample(this)">tan(45°) × cos(0°)</button>
+                    </div>
+                </div>
+                
+                <!-- Sucesiones y Combinatoria -->
+                <div class="category">
+                    <h4>🎯 Sucesiones & Combinatoria</h4>
+                    <div class="example-grid">
+                        <button class="example-btn" onclick="setExample(this)">Sucesión: 2, 4, 6, 8, ...</button>
+                        <button class="example-btn" onclick="setExample(this)">Combinaciones de 3 elementos de A,B,C,D</button>
+                        <button class="example-btn" onclick="setExample(this)">Término n de sucesión 3, 7, 11, 15</button>
+                    </div>
+                </div>
+                
+                <!-- Geometría Analítica -->
+                <div class="category">
+                    <h4>🎨 Geometría Analítica</h4>
+                    <div class="example-grid">
+                        <button class="example-btn" onclick="setExample(this)">Distancia entre puntos (1,2) y (4,6)</button>
+                        <button class="example-btn" onclick="setExample(this)">Pendiente de recta por (2,3) y (5,11)</button>
+                        <button class="example-btn" onclick="setExample(this)">Ecuación de recta y = 2x + 1</button>
+                    </div>
                 </div>
             </div>
+
+
         </main>
 
         <footer>
-            <p>Powered by FastAPI + Groq AI | v4.0</p>
+            <p>{{ t('footer_text') }}</p>
         </footer>
     </div>
 
     <script>
         function setExample(button) {
             document.getElementById('problema').value = button.textContent;
+        }
+
+        function changeLanguage(lang) {
+            window.location.href = `/${lang}`;
         }
 
         // Mostrar loading al enviar formulario

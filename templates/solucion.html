@@ -1,290 +1,412 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="{{ lang }}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Solución - Agente Matemático</title>
+    <title>{{ t('solution_title') }} - {{ t('title') }}</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="icon" href="/static/favicon.ico">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        .language-switcher {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 5px;
+        }
+        .lang-btn {
+            padding: 5px 10px;
+            border: 1px solid #ddd;
+            background: white;
+            cursor: pointer;
+            border-radius: 4px;
+            font-size: 12px;
+        }
+        .lang-btn.active {
+            background: #007bff;
+            color: white;
+            border-color: #007bff;
         }
         
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            padding: 20px;
-        }
-        
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
+        /* Estilos específicos para la página de solución */
+        .solution-container {
             background: white;
             border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            overflow: hidden;
-        }
-        
-        .header {
-            background: linear-gradient(135deg, #007bff, #0056b3);
-            color: white;
             padding: 30px;
-            text-align: center;
-        }
-        
-        .header h1 {
-            font-size: 2.5em;
-            margin-bottom: 10px;
-        }
-        
-        .header p {
-            font-size: 1.2em;
-            opacity: 0.9;
-        }
-        
-        .content {
-            padding: 40px;
-        }
-        
-        .resultado-card {
-            background: #f8f9fa;
-            border-radius: 12px;
-            padding: 30px;
-            margin-bottom: 30px;
+            margin: 20px 0;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
             border-left: 5px solid #007bff;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
         
-        .problema-section {
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
+        .solution-header {
+            display: flex;
+            justify-content: between;
+            align-items: center;
             margin-bottom: 25px;
-            border: 2px solid #e9ecef;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #e9ecef;
         }
         
-        .problema-section h3 {
-            color: #007bff;
-            margin-bottom: 15px;
-            font-size: 1.4em;
+        .solution-header h2 {
+            color: #2c3e50;
+            font-size: 1.8em;
+            margin: 0;
         }
         
-        .problema-text {
-            font-size: 1.3em;
-            color: #333;
+        .method-badge {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
             font-weight: 600;
-            line-height: 1.5;
-            padding: 15px;
+            font-size: 0.9em;
+        }
+        
+        .problem-statement {
             background: #f8f9fa;
-            border-radius: 6px;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
             border-left: 4px solid #007bff;
         }
         
-        .solucion-section {
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            margin-bottom: 25px;
-            border: 2px solid #e9ecef;
+        .problem-statement strong {
+            color: #2c3e50;
+            font-size: 1.1em;
         }
         
-        .solucion-section h3 {
+        .solution-result {
+            background: #e8f5e8;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 25px 0;
+            border: 2px solid #28a745;
+            text-align: center;
+        }
+        
+        .solution-result strong {
             color: #28a745;
-            margin-bottom: 15px;
-            font-size: 1.4em;
+            font-size: 1.2em;
+            display: block;
+            margin-bottom: 10px;
         }
         
-        .solucion-text {
+        .solution-text {
             font-size: 1.4em;
             color: #28a745;
             font-weight: 700;
-            line-height: 1.5;
-            padding: 20px;
-            background: #f8f9fa;
-            border-radius: 8px;
-            text-align: center;
-            border: 2px solid #28a745;
+            line-height: 1.4;
         }
         
-        .metodo-badge {
-            background: linear-gradient(135deg, #6c757d, #495057);
-            color: white;
-            padding: 12px 20px;
-            border-radius: 25px;
-            display: inline-block;
-            font-size: 1em;
-            font-weight: 600;
-            margin: 10px 0;
-        }
-        
-        .pasos-section {
-            background: white;
+        .steps-section {
+            background: #fff3cd;
             padding: 25px;
-            border-radius: 8px;
+            border-radius: 10px;
             margin: 25px 0;
-            border: 2px solid #e9ecef;
+            border-left: 4px solid #ffc107;
         }
         
-        .pasos-section h3 {
-            color: #ff6b35;
+        .steps-section h3 {
+            color: #856404;
             margin-bottom: 20px;
-            font-size: 1.4em;
+            font-size: 1.3em;
             display: flex;
             align-items: center;
             gap: 10px;
         }
         
-        .pasos-container {
-            background: #f8f9fa;
-            padding: 20px;
-            border-radius: 8px;
-            border-left: 4px solid #ff6b35;
+        .steps-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
         }
         
-        .paso-item {
-            margin-bottom: 15px;
-            padding: 12px;
+        .step-item {
             background: white;
-            border-radius: 6px;
-            border-left: 3px solid #007bff;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-        }
-        
-        .paso-numero {
-            font-weight: bold;
-            color: #007bff;
-            margin-right: 8px;
-        }
-        
-        .paso-texto {
-            line-height: 1.6;
-            color: #333;
-        }
-        
-        .info-adicional {
-            background: #e7f3ff;
             padding: 15px;
+            margin-bottom: 12px;
             border-radius: 8px;
-            margin-top: 20px;
+            border-left: 4px solid #007bff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: transform 0.2s;
+        }
+        
+        .step-item:hover {
+            transform: translateX(5px);
+        }
+        
+        .step-number {
+            background: #007bff;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+        
+        .additional-info {
+            background: #d1ecf1;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
             border-left: 4px solid #17a2b8;
         }
         
-        .btn-inicio {
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 10px;
+        }
+        
+        .info-item {
+            background: white;
+            padding: 12px;
+            border-radius: 6px;
+            text-align: center;
+        }
+        
+        .practice-exercises {
+            background: #e2e3e5;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 25px 0;
+        }
+        
+        .exercise-card {
+            background: white;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border-left: 4px solid #6f42c1;
+        }
+        
+        .exercise-header {
+            display: flex;
+            justify-content: between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .difficulty-badge {
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 0.8em;
+            font-weight: 600;
+        }
+        
+        .difficulty-easy { background: #d4edda; color: #155724; }
+        .difficulty-medium { background: #fff3cd; color: #856404; }
+        .difficulty-hard { background: #f8d7da; color: #721c24; }
+        
+        .graphic-container {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 25px 0;
+            text-align: center;
+            border: 2px solid #dee2e6;
+        }
+        
+        .graphic-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .btn-back {
             display: inline-block;
             background: linear-gradient(135deg, #28a745, #20c997);
             color: white;
-            padding: 16px 35px;
+            padding: 12px 30px;
             border: none;
-            border-radius: 10px;
+            border-radius: 25px;
             font-size: 1.1em;
             font-weight: 600;
             text-decoration: none;
             cursor: pointer;
-            transition: transform 0.2s, box-shadow 0.2s;
-            text-align: center;
+            transition: all 0.3s ease;
             margin-top: 20px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
         }
         
-        .btn-inicio:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+        .btn-back:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(40, 167, 69, 0.4);
         }
         
-        .footer-links {
-            text-align: center;
-            margin-top: 30px;
-            padding-top: 20px;
-            border-top: 1px solid #dee2e6;
-        }
-        
-        .error {
+        .error-state {
             border-left-color: #dc3545;
             background: #f8d7da;
         }
         
-        .error .solucion-text {
-            color: #dc3545;
+        .error-state .solution-result {
+            background: #f8d7da;
             border-color: #dc3545;
         }
         
-        /* Mejoras para los pasos detallados */
-        .paso-item strong {
-            color: #2c3e50;
-        }
-        
-        .paso-item em {
-            color: #7f8c8d;
-            font-style: italic;
+        .error-state .solution-text {
+            color: #dc3545;
         }
     </style>
 </head>
 <body>
+    <div class="language-switcher">
+        <button class="lang-btn {{ 'active' if lang == 'es' else '' }}" onclick="changeLanguage('es')">ES</button>
+        <button class="lang-btn {{ 'active' if lang == 'en' else '' }}" onclick="changeLanguage('en')">EN</button>
+        <button class="lang-btn {{ 'active' if lang == 'eu' else '' }}" onclick="changeLanguage('eu')">EU</button>
+    </div>
+
     <div class="container">
-        <div class="header">
-            <h1>🎯 Agente Matemático</h1>
-            <p>Tu asistente inteligente para resolver problemas matemáticos</p>
-        </div>
-        
-        <div class="content">
-            <div class="resultado-card {% if resultado.estado == 'error' %}error{% endif %}">
-                
-                <!-- Sección Problema -->
-                <div class="problema-section">
-                    <h3>📝 Problema:</h3>
-                    <div class="problema-text">{{ resultado.problema }}</div>
+        <header>
+            <a href="/{{ lang }}" style="text-decoration: none; color: inherit;">
+                <h1>🧮 {{ t('title') }}</h1>
+            </a>
+            <p>{{ t('subtitle') }}</p>
+        </header>
+
+        <main>
+            <div class="solution-container {% if resultado.estado == 'error' %}error-state{% endif %}">
+                <!-- Encabezado de la solución -->
+                <div class="solution-header">
+                    <h2>{{ t('solution_title') }}</h2>
+                    <div class="method-badge">
+                        {% if resultado.metodo == 'algoritmo_matematico' %}
+                        🧮 {{ t('algorithm_badge') }}
+                        {% elif resultado.metodo == 'ia_groq' %}
+                        🤖 {{ t('ai_badge') }}
+                        {% else %}
+                        💾 {{ t('cache_badge', 'Cache') }}
+                        {% endif %}
+                    </div>
                 </div>
-                
-                <!-- Sección Solución -->
-                <div class="solucion-section">
-                    <h3>✅ Solución:</h3>
-                    <div class="solucion-text">{{ resultado.solucion }}</div>
+
+                <!-- Problema -->
+                <div class="problem-statement">
+                    <strong>{{ t('problem_text') }}</strong>
+                    <div style="margin-top: 10px; font-size: 1.1em; color: #495057;">
+                        {{ resultado.problema }}
+                    </div>
                 </div>
-                
-                <!-- Método y Estado -->
-                <div class="metodo-badge">
-                    🔧 Método: {{ resultado.metodo }} | 📊 Estado: {{ resultado.estado }}
+
+                <!-- Solución principal -->
+                <div class="solution-result">
+                    <strong>{{ t('solution_text') }}</strong>
+                    <div class="solution-text">{{ resultado.solucion }}</div>
                 </div>
-                
-                <!-- Pasos Detallados -->
+
+                <!-- Información adicional -->
+                <div class="additional-info">
+                    <strong>📊 {{ t('additional_info') }}</strong>
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <strong>{{ t('type_label') }}:</strong><br>
+                            {{ resultado.tipo_problema }}
+                        </div>
+                        <div class="info-item">
+                            <strong>{{ t('status_label') }}:</strong><br>
+                            {% if resultado.estado == 'resuelto' %}
+                                {{ t('solved_status') }}
+                            {% else %}
+                                {{ t('error_status') }}
+                            {% endif %}
+                        </div>
+                        {% if resultado.nivel_eso %}
+                        <div class="info-item">
+                            <strong>{{ t('level_label') }}:</strong><br>
+                            {% if resultado.nivel_eso == 'ESO General' %}
+                                {{ t('general_level') }}
+                            {% else %}
+                                {{ resultado.nivel_eso }}
+                            {% endif %}
+                        </div>
+                        {% endif %}
+                        {% if resultado.modelo_ia %}
+                        <div class="info-item">
+                            <strong>🤖 {{ t('ai_model', 'Modelo IA') }}:</strong><br>
+                            {{ resultado.modelo_ia }}
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <!-- Pasos detallados -->
                 {% if resultado.pasos_detallados %}
-                <div class="pasos-section">
-                    <h3>📋 Pasos Detallados:</h3>
-                    <div class="pasos-container">
+                <div class="steps-section">
+                    <h3>📋 {{ t('steps_text') }}</h3>
+                    <div class="steps-list">
                         {% for paso in resultado.pasos_detallados %}
-                        <div class="paso-item">
-                            <span class="paso-numero">Paso {{ loop.index }}:</span>
-                            <span class="paso-texto">{{ paso }}</span>
+                        <div class="step-item">
+                            <span class="step-number">{{ loop.index }}</span>
+                            <span class="step-text">{{ paso }}</span>
                         </div>
                         {% endfor %}
                     </div>
                 </div>
                 {% endif %}
-                
-                <!-- Información Adicional -->
-                <div class="info-adicional">
-                    <strong>📊 Tipo de Problema:</strong> {{ resultado.tipo_problema }}<br>
-                    {% if resultado.modelo_ia %}
-                    <strong>🤖 Modelo IA:</strong> {{ resultado.modelo_ia }}
-                    {% endif %}
+
+                <!-- Gráficos -->
+                {% if resultado.grafico %}
+                <div class="graphic-container">
+                    <h3>📊 {{ t('graphic_title', 'Gráfico de la Solución') }}</h3>
+                    <img src="{{ resultado.grafico }}" alt="Gráfico matemático" class="graphic-image">
                 </div>
-                
+                {% endif %}
+
+                <!-- Ejercicios de práctica -->
+                {% if resultado.ejercicios_practica %}
+                <div class="practice-exercises">
+                    <h3>💪 {{ t('practice_title') }}</h3>
+                    {% for ejercicio in resultado.ejercicios_practica %}
+                    <div class="exercise-card">
+                        <div class="exercise-header">
+                            <strong>{{ t('problem_text') }} {{ loop.index }}:</strong>
+                            <span class="difficulty-badge difficulty-{{ ejercicio.dificultad|default('medium') }}">
+                                {% if ejercicio.dificultad == 'easy' %}
+                                    {{ t('easy_difficulty') }}
+                                {% elif ejercicio.dificultad == 'hard' %}
+                                    {{ t('hard_difficulty') }}
+                                {% else %}
+                                    {{ t('medium_difficulty') }}
+                                {% endif %}
+                            </span>
+                        </div>
+                        <p>{{ ejercicio.problema }}</p>
+                        <details>
+                            <summary>🔍 {{ t('view_solution') }}</summary>
+                            <div style="margin-top: 10px; padding: 10px; background: #f8f9fa; border-radius: 5px;">
+                                <strong>{{ t('solution_text') }}:</strong> {{ ejercicio.solucion }}
+                            </div>
+                        </details>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% endif %}
+
+                <!-- Botón de volver -->
+                <div style="text-align: center; margin-top: 30px;">
+                    <a href="/{{ lang }}" class="btn-back">
+                        🏠 {{ t('back_home', 'Volver al Inicio') }}
+                    </a>
+                </div>
             </div>
-            
-            <!-- Botón de Inicio -->
-            <div style="text-align: center;">
-                <a href="/" class="btn-inicio">🏠 Volver al Inicio</a>
-            </div>
-            
-            <!-- Enlaces del Footer -->
-            <div class="footer-links">
-                <small style="color: #6c757d;">
-                    ¿Encontraste un error? <a href="/" style="color: #007bff; text-decoration: none; font-weight: 600;">Prueba con otro problema</a>
-                </small>
-            </div>
-        </div>
+        </main>
+
+        <footer>
+            <p>{{ t('footer_text') }}</p>
+        </footer>
     </div>
+
+    <script>
+        function changeLanguage(lang) {
+            // Mantener el contexto actual al cambiar idioma
+            window.location.href = `/${lang}`;
+        }
+    </script>
 </body>
 </html>

@@ -81,6 +81,28 @@ python app.py
 3. **Haz clic** en "Resolver Problema"
 4. **Obtén** solución paso a paso con explicaciones detalladas
 
+### 🌐 **Soporte Multiidioma Completo**
+- **🇪🇸 Español** - Idioma principal
+- **🇬🇧 Inglés** - Cobertura internacional  
+- **🇪🇺 Euskera** - Soporte regional
+- **🔄 Cambio dinámico** - Interfaz adaptable en tiempo real
+
+### 🎨 **Interfaz Mejorada**
+- **📱 Diseño totalmente responsive** - Adaptable a móviles y tablets
+- **🎯 21 ejemplos organizados** por categorías matemáticas
+- **⚡ Selector de idioma intuitivo** - Cambio inmediato ES/EN/EU
+- **📊 Gráficos integrados** para visualización matemática
+
+### 📚 **Dominio Matemático Extendido** (7 categorías)
+- **🧮 Álgebra**: Ecuaciones lineales, cuadráticas, sistemas de ecuaciones
+- **📐 Geometría**: Áreas, volúmenes, Pitágoras, circunferencias
+- **🔢 Aritmética**: Fracciones, porcentajes, operaciones combinadas
+- **📊 Estadística**: Media, mediana, moda, probabilidad, rango
+- **📈 Trigonometría**: Seno, coseno, tangente, funciones trigonométricas
+- **🔄 Sucesiones**: Patrones numéricos, progresiones, términos generales
+- **🎲 Combinatoria**: Permutaciones, combinaciones, principios de conteo
+- **📏 Geometría Analítica**: Distancias, pendientes, ecuaciones de recta
+
 ### 🔌 API REST (Para desarrolladores)
 
 ```python
@@ -128,24 +150,34 @@ print(response.json())
 
 ```
 agente-matematico/
-├── 📁 matematica/           # Módulos matemáticos
-│   ├── algebra.py          # Resolutores algebraicos
-│   ├── geometria.py        # Funciones geométricas
-│   ├── aritmetica.py       # Operaciones aritméticas
-│   ├── estadistica.py      # Cálculos estadísticos
-│   ├── patrones.py         # Detección de intención
-│   ├── ia.py              # Integración Groq AI
-│   ├── cache.py           # Sistema de cache
-│   └── utils.py           # Utilidades compartidas
-├── 📁 templates/           # Plantillas HTML
-│   ├── index.html         # Página principal
-│   └── solucion.html      # Página de resultados
-├── 📁 static/             # Archivos estáticos
-│   ├── style.css          # Estilos CSS
-│   └── favicon.ico        # Favicon
-├── app.py                 # Servidor FastAPI principal
-├── requirements.txt       # Dependencias del proyecto
-└── README.md             # Este archivo
+├── 📁 matematica/ # Módulos matemáticos extendidos
+│ ├── algebra.py # Resolutores algebraicos
+│ ├── geometria.py # Funciones geométricas
+│ ├── aritmetica.py # Operaciones aritméticas
+│ ├── estadistica.py # Cálculos estadísticos
+│ ├── trigonometria.py # Funciones trigonométricas
+│ ├── sucesiones.py # Patrones y secuencias
+│ ├── combinatoria.py # Combinatoria y permutaciones
+│ ├── geometria_analitica.py # Geometría con coordenadas
+│ ├── patrones.py # Detección de intención
+│ ├── ia.py # Integración Groq AI + Procesador
+│ ├── procesador_groq.py # Procesamiento de respuestas IA
+│ ├── cache.py # Sistema de cache inteligente
+│ ├── ejercicios.py # Generación de práctica
+│ ├── graficos.py # Generación de gráficos
+│ └── utils.py # Utilidades y traducciones
+├── 📁 templates/ # Plantillas multiidioma
+│ ├── index.html # Página principal con selector idioma
+│ └── solucion.html # Página de resultados traducida
+├── 📁 static/ # Archivos estáticos
+│ ├── style.css # Estilos CSS mejorados
+│ └── favicon.ico # Favicon
+├── 📄 app.py # Servidor FastAPI principal
+├── 📄 translations.py # Sistema de traducciones ES/EN/EU
+├── 📄 requirements.txt # Dependencias actualizadas
+├── 📄 Dockerfile # Configuración container
+├── 📄 docker-compose.yml # Orquestación
+└── 📄 README.md # Documentación
 
 ```
 
@@ -187,16 +219,28 @@ agente-matematico/
 
 ## 🚀 Deployment
 
-### 🐳 Con Docker (Recomendado)
+## 🐳 Dockerización (Nuevo)
 
-```docker
-# Construir imagen
-docker build -t agente-matematico .
+### Ejecución con Docker Compose (Recomendado)
 
-# Ejecutar contenedor
-docker run -p 8000:8000 agente-matematico
+```bash
+# 1. Clonar y configurar
+git clone https://github.com/tu-usuario/agente-matematico-eso-plus.git
+cd agente-matematico-eso-plus
 
-```
+# 2. Configurar API key
+echo "GROQ_API_KEY=tu_api_key_aqui" > .env
+
+# 3. Ejecutar
+docker-compose up --build
+
+Estructura de archivos Docker:
+
+agente-matematico/
+├── 📄 Dockerfile          # Configuración del contenedor
+├── 📄 docker-compose.yml  # Orquestación multi-servicio  
+├── 📄 .dockerignore       # Archivos excluidos
+└── 📄 .env.example        # Variables de entorno
 
 ### ☁️ En la Nube
 
@@ -224,6 +268,34 @@ DEBUG=False
 
 ```
 
+
+### **5. Añadir sección "🚀 Novedades v4.0"**
+
+```markdown
+## 🚀 Novedades en Versión 4.0
+
+### ✨ Características Implementadas
+- **🌍 Soporte multiidioma completo** (ES, EN, EU)
+- **🐳 Dockerización completa** para fácil despliegue
+- **🎨 Interfaz web modernizada** con 21 ejemplos organizados
+- **🤖 Procesador inteligente de Groq** para respuestas estructuradas
+- **📊 Sistema de gráficos integrado** para visualización matemática
+- **💪 Generador de ejercicios de práctica** automático
+
+### 🔧 Mejoras Técnicas
+- **Arquitectura modular mejorada** con 12 módulos especializados
+- **Sistema de cache optimizado** para respuestas ultra-rápidas
+- **Procesamiento de pasos inteligente** para explicaciones claras
+- **Detección de nivel ESO automática** y adaptación de explicaciones
+
+### ✅ Estado Actual como Purple Agent (Mejorado)
+
+- **🟣 A2A Protocol Ready** - Interfaz estándar para evaluación
+- **🌍 Multi-language Support** - Soporte completo ES/EN/EU
+- **🐳 Docker Containerized** - Deployment optimizado para competición
+- **📊 Enhanced Performance** - Cache inteligente + procesamiento optimizado
+- **🎯 Extended Math Coverage** - 7 categorías matemáticas completas
+
 ## 🤝 Contribución
 
 ¡Contribuciones son bienvenidas! ¿Quieres mejorar el agente?
@@ -247,7 +319,7 @@ Distribuido bajo licencia MIT. Ver `LICENSE` para más información.
 
 ## 👥 Autor
 
-**Tu Nombre** - [GitHub](https://github.com/tu-usuario) - [Email](mailto:tu-email@domain.com)
+**Oscar Rojo** - [GitHub](https://github.com/zumaia) - [Email](mailto:tu-email@domain.com)
 
 Desarrollado con ❤️ para la AgentX Competition 2025-2026.
 
@@ -272,87 +344,3 @@ ESO y Bachillerato, con capacidad para algunos problemas universitarios básicos
 Abre un issue en GitHub con el problema y los pasos para reproducirlo.
 
 ---
-
-**⭐ ¿Te gusta este proyecto? ¡Dale una estrella en GitHub!**
-
-```
-
-## 🎨 **Ahora necesitamos crear los archivos auxiliares:**
-
-### **1. requirements.txt**
-```txt
-fastapi==0.104.1
-uvicorn==0.24.0
-jinja2==3.1.2
-python-multipart==0.0.6
-requests==2.31.0
-pydantic==2.5.0
-
-```
-
-### **2. .gitignore**
-
-```
-# Python
-__pycache__/
-*.py[cod]
-*$py.class
-*.so
-.Python
-build/
-develop-eggs/
-dist/
-downloads/
-eggs/
-.eggs/
-lib/
-lib64/
-parts/
-sdist/
-var/
-wheels/
-*.egg-info/
-.installed.cfg
-*.egg
-
-# Virtual Environment
-venv/
-env/
-
-# Environment variables
-.env
-.env.local
-
-# Cache
-.cache
-matematica_cache.json
-
-# IDE
-.vscode/
-.idea/
-*.swp
-*.swo
-
-# OS
-.DS_Store
-Thumbs.db
-
-```
-
-### **3. Dockerfile**
-
-```docker
-FROM python:3.10-slim
-
-WORKDIR /app
-
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
-
-COPY . .
-
-EXPOSE 8000
-
-CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8000"]
-
-```

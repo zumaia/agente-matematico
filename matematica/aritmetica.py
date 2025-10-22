@@ -50,41 +50,72 @@ def operaciones_fracciones(problema: str):
     
     return None
 
-def calcular_porcentajes(problema: str):
-    """Calcula porcentajes"""
-    problema_lower = problema.lower()
-    match = re.search(r"(\d+)\s*%\s*de\s*(\d+)", problema_lower)
-    if match:
-        porcentaje = int(match.group(1))
-        cantidad = int(match.group(2))
-        resultado = (cantidad * porcentaje) / 100
+def calcular_porcentajes(problema):
+    """
+    Calcula porcentajes - VERSIÓN CORREGIDA
+    """
+    problema_limpio = problema.lower()
+    
+    # PRIMERO: Buscar patrones de descuento específicos
+    patron_descuento = r'(\d+)\s*euros?\s*(?:con|de|tiene)\s*(\d+)%?\s*descuento'
+    match_descuento = re.search(patron_descuento, problema_limpio)
+    
+    if match_descuento:
+        precio_original = float(match_descuento.group(1))
+        porcentaje_descuento = float(match_descuento.group(2))
+        
+        descuento = (porcentaje_descuento * precio_original) / 100
+        precio_final = precio_original - descuento
+        
         return {
-            "tipo": "porcentaje",
-            "solucion": f"El {porcentaje}% de {cantidad} es {resultado}",
+            "solucion": f"Precio final: {precio_final} euros (descuento de {descuento} euros)",
+            "tipo": "porcentaje_descuento",
             "pasos": [
-                f"Fórmula: (cantidad × porcentaje) / 100",
-                f"Sustitución: ({cantidad} × {porcentaje}) / 100",
-                f"Cálculo: {resultado}"
+                f"Precio original: {precio_original} euros",
+                f"Porcentaje de descuento: {porcentaje_descuento}%",
+                f"Descuento = ({porcentaje_descuento} × {precio_original}) / 100 = {descuento} euros",
+                f"Precio final = {precio_original} - {descuento} = {precio_final} euros"
             ]
         }
-
-    numeros = [int(n) for n in re.findall(r'\d+', problema)]
-    if not numeros:
-        return None
-
-    if len(numeros) >= 2:
-        if "%" in problema_lower:
-            porcentaje, cantidad = numeros[0], numeros[1]
-        else:
-            cantidad, porcentaje = numeros[0], numeros[1]
-
-        resultado = (cantidad * porcentaje) / 100
+    
+    # SEGUNDO: Buscar patrones de aumento
+    patron_aumento = r'(\d+)\s*euros?\s*(?:con|de|tiene)\s*(\d+)%?\s*(?:aumento|incremento)'
+    match_aumento = re.search(patron_aumento, problema_limpio)
+    
+    if match_aumento:
+        precio_original = float(match_aumento.group(1))
+        porcentaje_aumento = float(match_aumento.group(2))
+        
+        aumento = (porcentaje_aumento * precio_original) / 100
+        precio_final = precio_original + aumento
+        
         return {
-            "tipo": "porcentaje",
-            "solucion": f"El {porcentaje}% de {cantidad} es {resultado}",
+            "solucion": f"Precio final: {precio_final} euros (aumento de {aumento} euros)",
+            "tipo": "porcentaje_aumento",
             "pasos": [
-                f"Fórmula: (cantidad × porcentaje) / 100",
-                f"Sustitución: ({cantidad} × {porcentaje}) / 100",
+                f"Precio original: {precio_original} euros",
+                f"Porcentaje de aumento: {porcentaje_aumento}%",
+                f"Aumento = ({porcentaje_aumento} × {precio_original}) / 100 = {aumento} euros",
+                f"Precio final = {precio_original} + {aumento} = {precio_final} euros"
+            ]
+        }
+    
+    # TERCERO: Búsqueda general de porcentajes
+    patron_general = r'(\d+)%?\s*de\s*(\d+)'
+    match_general = re.search(patron_general, problema_limpio)
+    
+    if match_general:
+        porcentaje = float(match_general.group(1))
+        cantidad = float(match_general.group(2))
+        
+        resultado = (porcentaje * cantidad) / 100
+        
+        return {
+            "solucion": f"El {porcentaje}% de {cantidad} es {resultado}",
+            "tipo": "porcentaje_simple",
+            "pasos": [
+                f"Fórmula: (porcentaje × cantidad) / 100",
+                f"Sustitución: ({porcentaje} × {cantidad}) / 100",
                 f"Cálculo: {resultado}"
             ]
         }
