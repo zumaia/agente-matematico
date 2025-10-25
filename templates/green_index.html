@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MathESO Evaluator - Green Agent</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #4CAF50 0%, #2E7D32 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: #4CAF50;
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        .header .badge {
+            background: #2E7D32;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            display: inline-block;
+            margin-top: 10px;
+        }
+        
+        .content {
+            padding: 30px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+        
+        .panel {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 25px;
+            border-left: 5px solid #4CAF50;
+        }
+        
+        .panel h2 {
+            color: #2E7D32;
+            margin-bottom: 20px;
+            font-size: 1.4em;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+        }
+        
+        input, select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1em;
+            transition: border-color 0.3s;
+        }
+        
+        input:focus, select:focus {
+            outline: none;
+            border-color: #4CAF50;
+        }
+        
+        .btn {
+            background: linear-gradient(135deg, #4CAF50, #2E7D32);
+            color: white;
+            border: none;
+            padding: 15px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(76, 175, 80, 0.3);
+        }
+        
+        .btn:disabled {
+            background: #cccccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .results {
+            margin-top: 30px;
+        }
+        
+        .metric-card {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 15px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            border-left: 4px solid #4CAF50;
+        }
+        
+        .metric-value {
+            font-size: 2em;
+            font-weight: bold;
+            color: #2E7D32;
+        }
+        
+        .metric-label {
+            color: #666;
+            font-size: 0.9em;
+        }
+        
+        .task-result {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-left: 3px solid #4CAF50;
+        }
+        
+        .task-success {
+            border-left-color: #4CAF50;
+        }
+        
+        .task-error {
+            border-left-color: #f44336;
+        }
+        
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #4CAF50;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 10px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .problems-list {
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        
+        .problem-item {
+            background: white;
+            padding: 12px;
+            margin-bottom: 8px;
+            border-radius: 6px;
+            border-left: 3px solid #2196F3;
+        }
+        
+        .problem-category {
+            font-size: 0.8em;
+            color: #666;
+            background: #e3f2fd;
+            padding: 2px 8px;
+            border-radius: 10px;
+            display: inline-block;
+            margin-right: 8px;
+        }
+
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+            margin: 15px 0;
+        }
+
+        .problem-difficulty {
+            font-size: 0.8em;
+            background: #e8f5e8;
+            padding: 2px 8px;
+            border-radius: 10px;
+            color: #2E7D32;
+            display: inline-block;
+        }
+
+        .filter-section {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #e0e0e0;
+        }
+
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            text-align: center;
+            margin: 15px 0;
+        }
+
+        .summary-item {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🟢 MathESO Evaluator</h1>
+            <p>Green Agent especializado en evaluación matemática para ESO/Bachillerato</p>
+            <div class="badge">AgentBeats Competition Ready</div>
+        </div>
+        
+        <div class="content">
+            <!-- Panel de Configuración -->
+            <div class="panel">
+                <h2>⚙️ Configurar Evaluación</h2>
+                
+                <div class="form-group">
+                    <label for="purpleAgentUrl">URL del Purple Agent:</label>
+                    <input type="text" id="purpleAgentUrl" 
+                           placeholder="http://localhost:8000"
+                           value="http://localhost:8000">
+                </div>
+                
+                <div class="form-group">
+                    <label for="numProblems">Número de Problemas:</label>
+                    <select id="numProblems">
+                        <option value="3">3 problemas</option>
+                        <option value="5" selected>5 problemas</option>
+                        <option value="8">8 problemas</option>
+                        <option value="10">10 problemas</option>
+                        <option value="15">15 problemas</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="category">Categoría:</label>
+                    <select id="category">
+                        <option value="">Todas las categorías</option>
+                        <option value="algebra">Álgebra</option>
+                        <option value="geometria">Geometría</option>
+                        <option value="aritmetica">Aritmética</option>
+                        <option value="estadistica">Estadística</option>
+                        <option value="geometria_analitica">Geometría Analítica</option>
+                        <option value="trigonometria">Trigonometría</option>
+                        <option value="funciones">Funciones</option>
+                        <option value="sucesiones">Sucesiones</option>
+                        <option value="combinatoria">Combinatoria</option>
+                        <option value="patrones">Patrones</option>
+                        <option value="algebra_lineal">Álgebra Lineal</option>
+                        <option value="graficos">Gráficos</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="difficulty">Dificultad:</label>
+                    <select id="difficulty">
+                        <option value="">Todas las dificultades</option>
+                        <option value="facil">Fácil</option>
+                        <option value="medio">Medio</option>
+                    </select>
+                </div>
+                
+                <button class="btn" onclick="startEvaluation()" id="evaluateBtn">
+                    🚀 Iniciar Evaluación
+                </button>
+                
+                <div class="loading" id="loading">
+                    <div class="spinner"></div>
+                    <p>Evaluando Purple Agent...</p>
+                </div>
+            </div>
+            
+            <!-- Panel de Resultados -->
+            <div class="panel">
+                <h2>📊 Resultados</h2>
+                <div id="resultsContainer">
+                    <p style="text-align: center; color: #666; padding: 40px;">
+                        Ejecuta una evaluación para ver los resultados
+                    </p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Lista de Problemas Disponibles -->
+        <div class="panel" style="grid-column: 1 / -1; margin-top: 20px;">
+            <h2>📚 Problemas Disponibles</h2>
+            
+            <div class="filter-section">
+                <label for="problemFilter">🔍 Filtrar problemas:</label>
+                <input type="text" id="problemFilter" 
+                       placeholder="Buscar por categoría, problema o dificultad..." 
+                       style="width: 100%; padding: 10px; margin-top: 8px; border: 1px solid #ddd; border-radius: 6px;"
+                       onkeyup="filterProblems()">
+            </div>
+            
+            <div class="problems-list" id="problemsList">
+                <!-- Se cargará dinámicamente -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Cargar lista de problemas al iniciar
+        document.addEventListener('DOMContentLoaded', function() {
+            loadAvailableProblems();
+        });
+        
+        async function loadAvailableProblems() {
+            try {
+                const response = await fetch('/problems');
+                const data = await response.json();
+                
+                const problemsList = document.getElementById('problemsList');
+                problemsList.innerHTML = '';
+                
+                data.problems.forEach(problem => {
+                    const problemDiv = document.createElement('div');
+                    problemDiv.className = 'problem-item';
+                    problemDiv.innerHTML = `
+                        <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 8px;">
+                            <span class="problem-category">${formatCategoryName(problem.categoria)}</span>
+                            <span class="problem-difficulty">${problem.dificultad}</span>
+                        </div>
+                        <strong style="display: block; margin-bottom: 5px;">${problem.problema}</strong>
+                        <div style="font-size: 0.9em; color: #666;">
+                            <strong>Solución:</strong> ${problem.solucion_esperada}
+                            ${problem.puntos ? ` | <strong>Puntos:</strong> ${problem.puntos}` : ''}
+                        </div>
+                    `;
+                    problemsList.appendChild(problemDiv);
+                });
+                
+            } catch (error) {
+                console.error('Error loading problems:', error);
+                document.getElementById('problemsList').innerHTML = 
+                    '<p style="color: #f44336; text-align: center;">Error cargando problemas</p>';
+            }
+        }
+        
+        function filterProblems() {
+            const filter = document.getElementById('problemFilter').value.toLowerCase();
+            const problems = document.querySelectorAll('.problem-item');
+            let visibleCount = 0;
+            
+            problems.forEach(problem => {
+                const text = problem.textContent.toLowerCase();
+                const isVisible = text.includes(filter);
+                problem.style.display = isVisible ? 'block' : 'none';
+                if (isVisible) visibleCount++;
+            });
+            
+            // Mostrar mensaje si no hay resultados
+            const problemsList = document.getElementById('problemsList');
+            if (visibleCount === 0 && filter) {
+                problemsList.innerHTML = 
+                    `<p style="text-align: center; color: #666; padding: 20px;">
+                        No se encontraron problemas que coincidan con "${filter}"
+                    </p>`;
+            }
+        }
+        
+        async function startEvaluation() {
+            const evaluateBtn = document.getElementById('evaluateBtn');
+            const loading = document.getElementById('loading');
+            const resultsContainer = document.getElementById('resultsContainer');
+            
+            // Mostrar loading
+            evaluateBtn.disabled = true;
+            loading.style.display = 'block';
+            resultsContainer.innerHTML = '<p>Evaluando Purple Agent...</p>';
+            
+            try {
+                // OBTENER VALORES CORRECTAMENTE - convertir "" a null
+                const categoriaSelect = document.getElementById('category');
+                const dificultadSelect = document.getElementById('difficulty');
+                
+                const config = {
+                    purple_agent_url: document.getElementById('purpleAgentUrl').value,
+                    num_problemas: parseInt(document.getElementById('numProblems').value),
+                    categoria: categoriaSelect.value || null,  // "" → null
+                    dificultad: dificultadSelect.value || null  // "" → null
+                };
+                
+                console.log('Configuración enviada:', config);
+                
+                const response = await fetch('/evaluate', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(config)
+                });
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                
+                const results = await response.json();
+                console.log('Respuesta completa:', results);
+                
+                displayResults(results);
+                
+            } catch (error) {
+                console.error('Error completo:', error);
+                resultsContainer.innerHTML = `
+                    <div class="metric-card" style="border-left-color: #f44336;">
+                        <div class="metric-value">❌ Error</div>
+                        <div class="metric-label">${error.message}</div>
+                        <div style="font-size: 0.8em; margin-top: 10px;">
+                            Revisa la consola para más detalles
+                        </div>
+                    </div>
+                `;
+            } finally {
+                evaluateBtn.disabled = false;
+                loading.style.display = 'none';
+            }
+        }
+        
+        function displayResults(results) {
+            const container = document.getElementById('resultsContainer');
+            console.log('Estructura de results:', results);
+            
+            if (results.status === 'error') {
+                container.innerHTML = `
+                    <div class="metric-card" style="border-left-color: #f44336;">
+                        <div class="metric-value">❌ Error</div>
+                        <div class="metric-label">${results.error_message}</div>
+                    </div>
+                `;
+                return;
+            }
+            
+            // VERIFICAR ESTRUCTURA DE LA RESPUESTA
+            let metrics, detailed, domainMetrics;
+            
+            if (results.results) {
+                // Nuevo formato estándar
+                metrics = results.results;
+                detailed = results.detailed_results;
+                domainMetrics = results.results.domain_specific_metrics;
+            } else if (results.metricas_generales) {
+                // Formato legacy
+                metrics = results.metricas_generales;
+                detailed = results.resultados_detallados;
+                domainMetrics = results.metricas_estandar?.domain_specific_metrics;
+            } else {
+                container.innerHTML = `
+                    <div class="metric-card" style="border-left-color: #f44336;">
+                        <div class="metric-value">❌ Error</div>
+                        <div class="metric-label">Estructura de respuesta no reconocida</div>
+                        <pre>${JSON.stringify(results, null, 2)}</pre>
+                    </div>
+                `;
+                return;
+            }
+            
+            // EXTRAER MÉTRICAS CON VALORES POR DEFECTO
+            const overallScore = metrics.overall_score || metrics.accuracy_general || 0;
+            const tasksCompleted = metrics.tasks_completed || metrics.problemas_correctos || 0;
+            const totalTasks = metrics.total_tasks || metrics.total_problemas || 0;
+            const avgResponseTime = metrics.average_response_time || metrics.tiempo_promedio_respuesta || 0;
+            const successRate = totalTasks > 0 ? (tasksCompleted / totalTasks * 100) : 0;
+            
+            container.innerHTML = `
+                <div class="metric-card">
+                    <div class="metric-value">${(overallScore * 100).toFixed(1)}%</div>
+                    <div class="metric-label">Precisión General</div>
+                </div>
+                
+                <!-- RESUMEN DE EVALUACIÓN -->
+                <div style="background: #f8f9fa; padding: 15px; border-radius: 8px; margin: 20px 0;">
+                    <h4 style="margin-bottom: 10px; color: #333;">📊 Resumen de Evaluación</h4>
+                    <div class="summary-grid">
+                        <div class="summary-item">
+                            <div style="font-size: 1.5em; font-weight: bold; color: #4CAF50;">${totalTasks}</div>
+                            <div style="font-size: 0.8em;">Total Problemas</div>
+                        </div>
+                        <div class="summary-item">
+                            <div style="font-size: 1.5em; font-weight: bold; color: #2196F3;">${tasksCompleted}</div>
+                            <div style="font-size: 0.8em;">Correctos</div>
+                        </div>
+                        <div class="summary-item">
+                            <div style="font-size: 1.5em; font-weight: bold; color: #FF9800;">${successRate.toFixed(1)}%</div>
+                            <div style="font-size: 0.8em;">Tasa de Éxito</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 20px;">
+                    <div class="metric-card">
+                        <div class="metric-value">${tasksCompleted}/${totalTasks}</div>
+                        <div class="metric-label">Problemas Correctos</div>
+                    </div>
+                    
+                    <div class="metric-card">
+                        <div class="metric-value">${avgResponseTime.toFixed(2)}s</div>
+                        <div class="metric-label">Tiempo Promedio</div>
+                    </div>
+                </div>
+            `;
+            
+            // MÉTRICAS POR CATEGORÍA
+            if (domainMetrics) {
+                container.innerHTML += `
+                    <h3 style="margin: 20px 0 10px 0; color: #333;">📈 Precisión por Categoría</h3>
+                    <div class="category-grid">
+                        ${Object.entries(domainMetrics).map(([category, accuracy]) => `
+                            <div class="metric-card" style="border-left-color: ${getCategoryColor(category)};">
+                                <div class="metric-value">${(accuracy * 100).toFixed(1)}%</div>
+                                <div class="metric-label">${formatCategoryName(category)}</div>
+                            </div>
+                        `).join('')}
+                    </div>
+                `;
+            }
+            
+            // RESULTADOS DETALLADOS
+            container.innerHTML += `<h3 style="margin: 20px 0 10px 0; color: #333;">🔍 Resultados Detallados</h3>`;
+            
+            if (detailed && detailed.length > 0) {
+                detailed.forEach(task => {
+                    const puntosObtenidos = task.puntuacion_obtenida || 0;
+                    const puntosTotales = task.puntos || 1;
+                    const isSuccess = puntosObtenidos === puntosTotales;
+                    
+                    const taskDiv = document.createElement('div');
+                    taskDiv.className = `task-result ${isSuccess ? 'task-success' : 'task-error'}`;
+                    taskDiv.innerHTML = `
+                        <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 8px;">
+                            <span class="problem-category">${formatCategoryName(task.categoria)}</span>
+                            <span class="problem-difficulty">${task.dificultad}</span>
+                        </div>
+                        <div style="font-weight: bold; margin-bottom: 5px;">
+                            ${task.problema || 'Problema no especificado'}
+                        </div>
+                        <div style="font-size: 0.9em;">
+                            <strong>Solución del agente:</strong> ${task.solucion_agente || 'No disponible'}<br>
+                            <strong>Solución correcta:</strong> ${task.solucion_correcta || 'No disponible'}<br>
+                            <strong>Puntuación:</strong> ${puntosObtenidos}/${puntosTotales} 
+                            | <strong>Tiempo:</strong> ${(task.tiempo_respuesta || 0).toFixed(2)}s
+                            | <strong>Estado:</strong> ${task.estado || 'desconocido'}
+                        </div>
+                    `;
+                    container.appendChild(taskDiv);
+                });
+            } else {
+                container.innerHTML += '<p style="text-align: center; color: #666;">No hay resultados detallados disponibles</p>';
+            }
+        }
+        
+        // FUNCIONES AUXILIARES
+        function getCategoryColor(category) {
+            const colors = {
+                'algebra': '#4CAF50',
+                'geometry': '#2196F3', 
+                'arithmetic': '#FF9800',
+                'statistics': '#9C27B0',
+                'analytic_geometry': '#009688',
+                'trigonometry': '#795548',
+                'functions': '#E91E63',
+                'sequences': '#607D8B',
+                'combinatorics': '#FF5722',
+                'patterns': '#673AB7',
+                'linear_algebra': '#3F51B5',
+                'graphics': '#00BCD4'
+            };
+            return colors[category] || '#4CAF50';
+        }
+        
+        function formatCategoryName(categoryKey) {
+            const names = {
+                'algebra': 'Álgebra',
+                'geometria': 'Geometría',
+                'geometry': 'Geometría',
+                'aritmetica': 'Aritmética',
+                'arithmetic': 'Aritmética',
+                'estadistica': 'Estadística',
+                'statistics': 'Estadística',
+                'geometria_analitica': 'Geom. Analítica',
+                'analytic_geometry': 'Geom. Analítica',
+                'trigonometria': 'Trigonometría',
+                'trigonometry': 'Trigonometría',
+                'funciones': 'Funciones',
+                'functions': 'Funciones',
+                'sucesiones': 'Sucesiones',
+                'sequences': 'Sucesiones',
+                'combinatoria': 'Combinatoria',
+                'combinatorics': 'Combinatoria',
+                'patrones': 'Patrones',
+                'patterns': 'Patrones',
+                'algebra_lineal': 'Álgebra Lineal',
+                'linear_algebra': 'Álgebra Lineal',
+                'graficos': 'Gráficos',
+                'graphics': 'Gráficos'
+            };
+            return names[categoryKey] || categoryKey;
+        }
+    </script>
+</body>
+</html>
