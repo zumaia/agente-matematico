@@ -7,7 +7,7 @@
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.104+-green.svg)](https://fastapi.tiangolo.com)
 [![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![AgentX Ready](https://img.shields.io/badge/AgentX-Competition-purple.svg)](https://agentx.ai)
-[![Version](https://img.shields.io/badge/Version-4.0.0-orange.svg)](https://github.com/tu-usuario/agente-matematico)
+[![Version](https://img.shields.io/badge/Version-4.0.0-orange.svg)](https://github.com/zumaia/agente-matematico)
 
 ![Agente Matemático Demo](https://via.placeholder.com/800x400/667eea/ffffff?text=Agente+Matemático+ESO+Demo)
 
@@ -51,7 +51,7 @@ Este proyecto está optimizado para participar como **Purple Agent** en la compe
 
 ```bash
 # 1. Clonar el repositorio
-git clone https://github.com/tu-usuario/agente-matematico.git
+git clone https://github.com/zumaia/agente-matematico.git
 cd agente-matematico
 
 # 2. Crear entorno virtual (recomendado)
@@ -225,7 +225,7 @@ agente-matematico/
 
 ```bash
 # 1. Clonar y configurar
-git clone https://github.com/tu-usuario/agente-matematico-eso-plus.git
+git clone https://github.com/zumaia/agente-matematico-eso-plus.git
 cd agente-matematico-eso-plus
 
 # 2. Configurar API key
