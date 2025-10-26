@@ -14,11 +14,12 @@ from typing import Optional
 from pydantic import BaseModel
 import uvicorn
 from matematica import algebra, geometria, aritmetica, estadistica, patrones, cache , ia 
-from matematica.algebra import resolver_ecuacion_lineal, sistemas_ecuaciones
+from matematica.algebra import resolver_ecuacion_lineal, sistemas_ecuaciones, resolver_determinante, resolver_suma_matrices
 from matematica.geometria import calcular_area, teorema_pitagoras, calcular_volumen
 from matematica.aritmetica import operaciones_fracciones, calcular_porcentajes
 from matematica.estadistica import calcular_media, calcular_mediana, calcular_moda, calcular_rango, probabilidad_basica
 from matematica.trigonometria import resolver_trigonometria
+from matematica.funciones import evaluar_funcion, tabla_valores, ceros_funcion
 from matematica.sucesiones import resolver_sucesiones
 from matematica.combinatoria import resolver_combinatoria
 from matematica.geometria_analitica import resolver_geometria_analitica
@@ -191,9 +192,12 @@ async def resolver_problema_web(
         calcular_rango,
         probabilidad_basica,
         resolver_trigonometria,
-        resolver_sucesiones,          
-        resolver_combinatoria,        
-        resolver_geometria_analitica 
+            resolver_sucesiones,         
+    resolver_combinatoria,
+    resolver_suma_matrices,
+    resolver_geometria_analitica,
+    resolver_determinante,
+    ceros_funcion
     ]
     
     # SEGUNDO: Priorizar resolutores basado en el problema

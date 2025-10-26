@@ -563,5 +563,490 @@
     "timestamp": 1761515506.2730887,
     "problema": "Resolver: tan(θ) = 1, encontrar θ en el primer cuadrante",
     "tipo": "algebra"
+  },
+  "0a32c079c5ae4aa57aa6c8d08ac82e6f": {
+    "respuesta": {
+      "problema": "Dada f(x) = 3x - 1, encontrar f⁻¹(x)",
+      "solucion": "Final claramente:** f⁻¹(x) = (x + 1)/3",
+      "tipo_problema": "algebra",
+      "pasos_detallados": [
+        "2. Pasos detallados numerados:*",
+        "Para encontrar la función inversa f⁻¹(x), debemos comenzar con la función original f(x) = 3x - 1.",
+        "Luego, intercambiamos los roles de x e y, lo que nos da x = 3y - 1.",
+        "Ahora, debemos resolver y en términos de x. Para hacer esto, primero sumamos 1 a ambos lados de la ecuación, lo que nos da x + 1 = 3y.",
+        "A continuación, dividimos ambos lados de la ecuación por 3, lo que nos da (x + 1)/3 = y.",
+        "Como hemos resuelto y en términos de x, ahora podemos escribir la función inversa f⁻¹(x) = (x + 1)/3. Recuerda que la función inversa de una función lineal en la forma f(x) = mx + b es f⁻¹(x) = (x - b)/m. En este caso, m = 3 y b = -1."
+      ],
+      "modelo_ia": "llama3-8b-8192",
+      "metodo": "ia_groq",
+      "estado": "resuelto",
+      "ejercicios_practica": [
+        {
+          "problema": "Resuelve: 2x + 5 = 15",
+          "dificultad": "básica",
+          "nivel": "ESO General",
+          "uid": "37333fe929d3dd70f074194bd26d6e42"
+        },
+        {
+          "problema": "Calcula el área de un triángulo de base 6 y altura 4",
+          "dificultad": "básica",
+          "nivel": "ESO General",
+          "uid": "85b80c96d8b5886c90629af6c9aaf10b"
+        }
+      ],
+      "nivel_eso": "ESO General"
+    },
+    "timestamp": 1761515799.45365,
+    "problema": "Dada f(x) = 3x - 1, encontrar f⁻¹(x)",
+    "tipo": "algebra"
+  },
+  "e66c4feb0728a56529eeda6ef50b6a31": {
+    "respuesta": {
+      "problema": "Encontrar el término 5 de la sucesión: 2, 5, 8, 11, ...",
+      "solucion": "Final claramente:** el término 5 de la sucesión es 18",
+      "tipo_problema": "algebra",
+      "pasos_detallados": [
+        "2. Pasos detallados numerados:*",
+        "Identificar el patrón de la sucesión: Observa que cada término de la sucesión aumenta en 3. Por ejemplo, el segundo término es 5, que es 3 más que el primer término (2). De manera similar, el tercer término es 8, que es 3 más que el segundo término (5).",
+        "Determinar la diferencia común: La diferencia común (d) es 3, ya que cada término aumenta en 3.",
+        "Usar la fórmula para encontrar el enésimo término: La fórmula para encontrar el enésimo término de una sucesión aritmética es: a_n = a_1 + (n-1)d, donde a_n es el enésimo término, a_1 es el primer término, n es el número del término y d es la diferencia común.",
+        "Sustituir los valores conocidos: En este caso, a_1 = 2 (el primer término), n = 5 (el término que queremos encontrar), y d = 3 (la diferencia común).",
+        "Resolver la ecuación: a_5 = 2 + (5-1)3 a_5 = 2 + 4(3) a_5 = 2 + 12 a_5 = 14",
+        "Nota:* Al revisar el problema original, parece que la sucesión es 2, 5, 8, 11, 14, 17, 20, 23, 26, 29, 32, 35, 38, 41, 44, 47, 50, 53, 56, 59, 62, 65, 68, 71, 74, 77, 80, 83, 86, 89, 92, 95, 98, 101, 104, 107, 110, 113, 116, 119, 122, 125, 128, 131, 134, 137, 140, 143, 146, 149, 152, 155, 158, 161, 164, 167, 170, 173, 176, 179, 182, 185, 188, 191, 194, 197, 200, 203, 206, 209, 212, 215, 218, 221, 224, 227, 230, 233, 236, 239, 242, 245, 248, 251, 254, 257, 260, 263, 266, 269, 272, 275, 278, 281, 284, 287, 290, 293, 296, 299, 302, 305, 308, 311, 314, 317, 320, 323, 326, 329, 332, 335, 338, 341, 344, 347, 350, 353, 356, 359, 362, 365, 368, 371, 374, 377, 380, 383, 386, 389, 392, 395, 398, 401, 404, 407, 410, 413, 416, 419, 422, 425, 428, 431, 434, 437, 440, 443, 446, 449, 452, 455, 458, 461, 464, 467, 470, 473, 476, 479, 482, 485, 488, 491, 494, 497, 500, 503, 506, 509, 512, 515, 518, 521, 524, 527, 530, 533, 536, 539, 542, 545, 548, 551, 554, 557, 560, 563, 566, 569, 572, 575, 578, 581, 584, 587, 590, 593, 596, 599, 602, 605, 608, 611, 614, 617, 620, 623, 626, 629, 632, 635, 638, 641, 644, 647, 650, 653, 656, 659, 662,"
+      ],
+      "modelo_ia": "llama3-8b-8192",
+      "metodo": "ia_groq",
+      "estado": "resuelto",
+      "ejercicios_practica": [
+        {
+          "problema": "Resuelve: 2x + 5 = 15",
+          "dificultad": "básica",
+          "nivel": "ESO General",
+          "uid": "b0e9d3e24bc56d8ea0b926cc7f966ccf"
+        },
+        {
+          "problema": "Calcula el área de un triángulo de base 6 y altura 4",
+          "dificultad": "básica",
+          "nivel": "ESO General",
+          "uid": "3d783d0df33e888bb834b7cf556114ff"
+        }
+      ],
+      "nivel_eso": "3º-4º ESO"
+    },
+    "timestamp": 1761515800.622893,
+    "problema": "Encontrar el término 5 de la sucesión: 2, 5, 8, 11, ...",
+    "tipo": "algebra"
+  },
+  "cd43b7e1982ad7647a7d63bbc0755164": {
+    "respuesta": {
+      "problema": "Dada f(x) = 2x + 3, calcular f(5)",
+      "solucion": "Final**: por lo tanto, f(5) = 13",
+      "tipo_problema": "algebra",
+      "pasos_detallados": [
+        "2. Pasos detallados numerados:*",
+        "Identifica la función: La función dada es f(x) = 2x + 3. Esto significa que para cualquier valor de x, se multiplica por 2 y luego se suma 3.",
+        "Sustituye el valor de x: Necesitamos encontrar f(5), por lo que sustituimos x = 5 en la función.",
+        "Aplica la función: Sustituyendo x = 5 en la función f(x) = 2x + 3, obtenemos f(5) = 2(5) + 3.",
+        "Realiza la multiplicación: Multiplica 2 por 5, lo que da como resultado 10.",
+        "Realiza la suma: Suma 3 a 10, lo que da como resultado 13.",
+        "Obtén la respuesta final: Por lo tanto, f(5) = 13."
+      ],
+      "modelo_ia": "llama3-8b-8192",
+      "metodo": "ia_groq",
+      "estado": "resuelto",
+      "ejercicios_practica": [
+        {
+          "problema": "Resuelve: 2x + 5 = 15",
+          "dificultad": "básica",
+          "nivel": "ESO General",
+          "uid": "ff69b4ba612774774cf75aac8e1c6c40"
+        },
+        {
+          "problema": "Calcula el área de un triángulo de base 6 y altura 4",
+          "dificultad": "básica",
+          "nivel": "ESO General",
+          "uid": "926b642d231c1de71d5d5079c842ad19"
+        }
+      ],
+      "nivel_eso": "1º-2º ESO"
+    },
+    "timestamp": 1761515801.050229,
+    "problema": "Dada f(x) = 2x + 3, calcular f(5)",
+    "tipo": "algebra"
+  },
+  "f0adf4a45e922cd54f29139e9cdc2934": {
+    "respuesta": {
+      "problema": "Calcular la suma de los primeros 4 términos de: 1, 3, 5, 7, ...",
+      "solucion": "Final**: la suma de los primeros 4 términos de la secuencia es 16",
+      "tipo_problema": "algebra",
+      "pasos_detallados": [
+        "Pasos detallados:*",
+        "Identificar la secuencia: La secuencia dada es una secuencia aritmética, donde cada término es 2 mayor que el anterior. La secuencia comienza con 1 y aumenta en 2 cada vez.",
+        "Determinar los primeros 4 términos: Los primeros 4 términos de la secuencia son 1, 3, 5 y 7.",
+        "Sumar los términos: Para encontrar la suma de los primeros 4 términos, simplemente sumamos los números: 1 + 3 + 5 + 7.",
+        "Realizar la suma: 1 + 3 = 4, luego 4 + 5 = 9 y finalmente 9 + 7 = 16.",
+        "Presentar la respuesta final: La suma de los primeros 4 términos de la secuencia es 16."
+      ],
+      "modelo_ia": "llama3-8b-8192",
+      "metodo": "ia_groq",
+      "estado": "resuelto",
+      "ejercicios_practica": [
+        {
+          "problema": "Resuelve: 2x + 5 = 15",
+          "dificultad": "básica",
+          "nivel": "ESO General",
+          "uid": "b54545d534b9381cc3622d186eaab77e"
+        },
+        {
+          "problema": "Calcula el área de un triángulo de base 6 y altura 4",
+          "dificultad": "básica",
+          "nivel": "ESO General",
+          "uid": "16a990c694067ab56d9cfce32f073d47"
+        }
+      ],
+      "nivel_eso": "1º-2º ESO"
+    },
+    "timestamp": 1761515801.460304,
+    "problema": "Calcular la suma de los primeros 4 términos de: 1, 3, 5, 7, ...",
+    "tipo": "algebra"
+  },
+  "4e9516c2249e3e090a58ada09943c21a": {
+    "respuesta": {
+      "problema": "Resolver el sistema: x + y = 10, 2x - y = 5",
+      "solucion": "x = 5.00, y = 5.00",
+      "tipo_problema": "sistema_ecuaciones",
+      "pasos_detallados": [
+        "Sistema: 1x + 1y = 10, 2x + -1y = 5",
+        "Determinante: 1×-1 - 2×1 = -3",
+        "X = (10×-1 - 5×1) / -3 = 5.00",
+        "Y = (1×5 - 2×10) / -3 = 5.00"
+      ],
+      "metodo": "algoritmo_matematico",
+      "estado": "resuelto",
+      "ejercicios_practica": [
+        {
+          "problema": "Resuelve: 2x + 5 = 15",
+          "dificultad": "básica",
+          "nivel": "ESO General",
+          "uid": "a7ae15489b068ceb6f6fb620f416dc9d"
+        },
+        {
+          "problema": "Calcula el área de un triángulo de base 6 y altura 4",
+          "dificultad": "básica",
+          "nivel": "ESO General",
+          "uid": "a8b543b70c77c9205acc75f381282d9a"
+        }
+      ],
+      "nivel_eso": "2º-3º ESO"
+    },
+    "timestamp": 1761515819.179143,
+    "problema": "Resolver el sistema: x + y = 10, 2x - y = 5",
+    "tipo": "sistema_ecuaciones"
+  },
+  "ff974c1912ec427efab174ac8c74d6b1": {
+    "respuesta": {
+      "problema": "Aplicar el teorema de Pitágoras: cateto a=3, cateto b=4, hallar hipotenusa",
+      "solucion": "Hipotenusa = 5.00",
+      "tipo_problema": "teorema_pitagoras_hipotenusa",
+      "pasos_detallados": [
+        "Teorema: h² = a² + b²",
+        "Sustitución: h² = 3² + 4²",
+        "Cálculo: h² = 9 + 16 = 25",
+        "H = √25 = 5.00"
+      ],
+      "metodo": "algoritmo_matematico",
+      "estado": "resuelto",
+      "ejercicios_practica": [
+        {
+          "problema": "Resuelve: 2x + 5 = 15",
+          "dificultad": "básica",
+          "nivel": "ESO General",
+          "uid": "664022745e9724aa95daa43a280cd485"
+        },
+        {
+          "problema": "Calcula el área de un triángulo de base 6 y altura 4",
+          "dificultad": "básica",
+          "nivel": "ESO General",
+          "uid": "6db4b5c6e6f35ec06e30da40d52a2cbe"
+        }
+      ],
+      "nivel_eso": "2º-3º ESO"
+    },
+    "timestamp": 1761515823.3781404,
+    "problema": "Aplicar el teorema de Pitágoras: cateto a=3, cateto b=4, hallar hipotenusa",
+    "tipo": "teorema_pitagoras_hipotenusa"
+  },
+  "daaf009216de6c74a297b8209a5f8fd7": {
+    "respuesta": {
+      "problema": "Calcular 30% de 200",
+      "solucion": "El 30.0% de 200.0 es 60.0",
+      "tipo_problema": "porcentaje_simple",
+      "pasos_detallados": [
+        "Vamos a resolverlo paso a paso:",
+        "Fórmula: (porcentaje × cantidad) / 100",
+        "Sustitución: (30.0 × 200.0) / 100",
+        "Cálculo: 60.0"
+      ],
+      "metodo": "algoritmo_matematico",
+      "estado": "resuelto",
+      "ejercicios_practica": [
+        {
+          "problema": "Resuelve: 2x + 5 = 15",
+          "dificultad": "básica",
+          "nivel": "ESO General",
+          "uid": "40f8efe017b06f1f25ba098302554435"
+        },
+        {
+          "problema": "Calcula el área de un triángulo de base 6 y altura 4",
+          "dificultad": "básica",
+          "nivel": "ESO General",
+          "uid": "2f2efe53d5ef2cbea6584d4e61eedd5f"
+        }
+      ],
+      "nivel_eso": "1º-2º ESO"
+    },
+    "timestamp": 1761515826.9128242,
+    "problema": "Calcular 30% de 200",
+    "tipo": "porcentaje_simple"
+  },
+  "a0587b9e1ea651d98d74d490e18ce877": {
+    "respuesta": {
+      "problema": "Sumar las fracciones: 1/2 + 1/3",
+      "solucion": "Resultado: 5/6",
+      "tipo_problema": "suma_fracciones",
+      "pasos_detallados": [
+        "Vamos a resolverlo paso a paso:",
+        "Fracciones: 1/2 + 1/3",
+        "Mínimo común múltiplo: 6",
+        "Numerador común: (1×3) + (1×2) = 5",
+        "Fracción antes de simplificar: 5/6",
+        "Fracción simplificada: 5/6"
+      ],
+      "metodo": "algoritmo_matematico",
+      "estado": "resuelto",
+      "ejercicios_practica": [
+        {
+          "problema": "Resuelve: 2x + 5 = 15",
+          "dificultad": "básica",
+          "nivel": "ESO General",
+          "uid": "da9ecc1c27522ac035967bba090b909e"
+        },
+        {
+          "problema": "Calcula el área de un triángulo de base 6 y altura 4",
+          "dificultad": "básica",
+          "nivel": "ESO General",
+          "uid": "d85ae1a0558f53c80b0195f5597d4e73"
+        }
+      ],
+      "nivel_eso": "1º-2º ESO"
+    },
+    "timestamp": 1761515826.9211247,
+    "problema": "Sumar las fracciones: 1/2 + 1/3",
+    "tipo": "suma_fracciones"
+  },
+  "32f7eaeb907fe20bec5ce6211e9de797": {
+    "respuesta": {
+      "problema": "Encontrar la mediana de: 3, 1, 7, 5, 9",
+      "solucion": "Media = 5.00",
+      "tipo_problema": "media_aritmetica",
+      "pasos_detallados": [
+        "Números: [3.0, 1.0, 7.0, 5.0, 9.0]",
+        "Suma: 3.0 + 1.0 + 7.0 + 5.0 + 9.0 = 25.0",
+        "Cantidad de números: 5",
+        "Media = 25.0 / 5 = 5.00"
+      ],
+      "metodo": "algoritmo_matematico",
+      "estado": "resuelto",
+      "ejercicios_practica": [
+        {
+          "problema": "Resuelve: 2x + 5 = 15",
+          "dificultad": "básica",
+          "nivel": "ESO General",
+          "uid": "d6540c060f0d744cd7c9ae89514bc260"
+        },
+        {
+          "problema": "Calcula el área de un triángulo de base 6 y altura 4",
+          "dificultad": "básica",
+          "nivel": "ESO General",
+          "uid": "82b7e466428cade257f8339b4073be37"
+        }
+      ],
+      "nivel_eso": "2º-3º ESO"
+    },
+    "timestamp": 1761515830.0827441,
+    "problema": "Encontrar la mediana de: 3, 1, 7, 5, 9",
+    "tipo": "media_aritmetica"
+  },
+  "b995d97b2ce61ced9a580b634448126c": {
+    "respuesta": {
+      "problema": "Encontrar la fórmula del término general de: 3, 6, 9, 12, ...",
+      "solucion": "Término general: aₙ = 3.0 + (n-1)×3.0",
+      "tipo_problema": "termino_general_aritmetico",
+      "pasos_detallados": [
+        "1. Términos: 3.0, 6.0, 9.0",
+        "2. Diferencia constante: 6.0 - 3.0 = 9.0 - 6.0 = 3.0",
+        "3. Es una progresión aritmética",
+        "4. Término general: aₙ = a₁ + (n-1)×d",
+        "5. Fórmula: aₙ = 3.0 + (n-1)×3.0"
+      ],
+      "metodo": "algoritmo_matematico",
+      "estado": "resuelto",
+      "ejercicios_practica": [
+        {
+          "problema": "Resuelve: 2x + 5 = 15",
+          "dificultad": "básica",
+          "nivel": "ESO General",
+          "uid": "147672cc163fdc0ac0dcb33f78982a3d"
+        },
+        {
+          "problema": "Calcula el área de un triángulo de base 6 y altura 4",
+          "dificultad": "básica",
+          "nivel": "ESO General",
+          "uid": "9cf953a6cb81ec2a9cfea0aefa7a5c49"
+        }
+      ],
+      "nivel_eso": "ESO General"
+    },
+    "timestamp": 1761515943.5159035,
+    "problema": "Encontrar la fórmula del término general de: 3, 6, 9, 12, ...",
+    "tipo": "termino_general_aritmetico"
+  },
+  "82502165c367c2293f3a46f03a787dbb": {
+    "respuesta": {
+      "problema": "¿En qué cuadrante se encuentra el punto (-3, 4)?",
+      "solucion": "Final clara:** el punto (-3, 4) se encuentra en el cuadrante ii",
+      "tipo_problema": "algebra",
+      "pasos_detallados": [
+        "2. Pasos detallados numerados:*",
+        "Recuerda la definición de los cuadrantes: En un sistema de coordenadas cartesianas, los cuadrantes se dividen en cuatro áreas: I (arriba a la derecha), II (arriba a la izquierda), III (abajo a la izquierda) y IV (abajo a la derecha).",
+        "Identifica el signo de las coordenadas: En el punto (-3, 4), la coordenada x es negativa (-3) y la coordenada y es positiva (4).",
+        "Aplica la regla de los cuadrantes: Si la coordenada x es negativa y la coordenada y es positiva, el punto se encuentra en el cuadrante II.",
+        "Conclusión: Por lo tanto, el punto (-3, 4) se encuentra en el cuadrante II."
+      ],
+      "modelo_ia": "llama3-8b-8192",
+      "metodo": "ia_groq",
+      "estado": "resuelto",
+      "ejercicios_practica": [
+        {
+          "problema": "Resuelve: 2x + 5 = 15",
+          "dificultad": "básica",
+          "nivel": "ESO General",
+          "uid": "8760ce027db3ae9e643e50d8249bdc9a"
+        },
+        {
+          "problema": "Calcula el área de un triángulo de base 6 y altura 4",
+          "dificultad": "básica",
+          "nivel": "ESO General",
+          "uid": "e401c1ef067e67773c4e675a8be2c175"
+        }
+      ],
+      "nivel_eso": "ESO General"
+    },
+    "timestamp": 1761516434.6920257,
+    "problema": "¿En qué cuadrante se encuentra el punto (-3, 4)?",
+    "tipo": "algebra"
+  },
+  "b7d5a5228bb048c45eebf0dfb0f5e685": {
+    "respuesta": {
+      "problema": "Calcular el determinante de [[1,2],[3,4]]",
+      "solucion": "Determinante = -2",
+      "tipo_problema": "determinante",
+      "pasos_detallados": [
+        "Vamos a resolverlo paso a paso:",
+        "Matriz: [[1.0,2.0],[3.0,4.0]]",
+        "Determinante: 1.0×4.0 - 2.0×3.0 = -2.0"
+      ],
+      "metodo": "algoritmo_matematico",
+      "estado": "resuelto",
+      "ejercicios_practica": [
+        {
+          "problema": "Resuelve: 2x + 5 = 15",
+          "dificultad": "básica",
+          "nivel": "ESO General",
+          "uid": "cbd11b01f518d50866e3beb4737729a2"
+        },
+        {
+          "problema": "Calcula el área de un triángulo de base 6 y altura 4",
+          "dificultad": "básica",
+          "nivel": "ESO General",
+          "uid": "63ab41a0d3c9877820971107baa003fc"
+        }
+      ],
+      "nivel_eso": "1º-2º ESO"
+    },
+    "timestamp": 1761516447.5263627,
+    "problema": "Calcular el determinante de [[1,2],[3,4]]",
+    "tipo": "determinante"
+  },
+  "29ce5b815826114bbb9962bf565438a0": {
+    "respuesta": {
+      "problema": "Sumar las matrices: [[1,2],[3,4]] + [[5,6],[7,8]]",
+      "solucion": "[[6,8],[10,12]]",
+      "tipo_problema": "suma_matrices",
+      "pasos_detallados": [
+        "Vamos a resolverlo paso a paso:",
+        "Matriz A: [[1.0,2.0],[3.0,4.0]]",
+        "Matriz B: [[5.0,6.0],[7.0,8.0]]",
+        "Suma: [[6.0,8.0],[10.0,12.0]]"
+      ],
+      "metodo": "algoritmo_matematico",
+      "estado": "resuelto",
+      "ejercicios_practica": [
+        {
+          "problema": "Resuelve: 2x + 5 = 15",
+          "dificultad": "básica",
+          "nivel": "ESO General",
+          "uid": "cce68409d987e7138978168f8a143825"
+        },
+        {
+          "problema": "Calcula el área de un triángulo de base 6 y altura 4",
+          "dificultad": "básica",
+          "nivel": "ESO General",
+          "uid": "6edf29379d3038c32097877faf5c51a7"
+        }
+      ],
+      "nivel_eso": "1º-2º ESO"
+    },
+    "timestamp": 1761516447.5385003,
+    "problema": "Sumar las matrices: [[1,2],[3,4]] + [[5,6],[7,8]]",
+    "tipo": "suma_matrices"
+  },
+  "50288d20201e6b8a91a1728e1b68c56a": {
+    "respuesta": {
+      "problema": "¿La función y = x² es par o impar?",
+      "solucion": "Final clara:** la función y = x² es par",
+      "tipo_problema": "algebra",
+      "pasos_detallados": [
+        "2. Pasos detallados numerados:*",
+        "Para determinar si una función es par o impar, debemos evaluar su comportamiento cuando se multiplica por -1.",
+        "Reemplazamos x por -x en la función y = x².",
+        "La función se convierte en y = (-x)².",
+        "Simplificamos la expresión: (-x)² = x² (ya que el cuadrado de un número negativo es positivo).",
+        "Como la función y = x² se convierte en y = x² después de reemplazar x por -x, podemos concluir que la función es par.",
+        "Las funciones pares tienen la propiedad de que su gráfica es simétrica con respecto al eje y, lo que significa que si (a, b) está en la gráfica, entonces (-a, b) también está en la gráfica.",
+        "En este caso, la función y = x² satisface esta propiedad, por lo que es par."
+      ],
+      "modelo_ia": "llama3-8b-8192",
+      "metodo": "ia_groq",
+      "estado": "resuelto",
+      "ejercicios_practica": [
+        {
+          "problema": "Resuelve: 2x + 5 = 15",
+          "dificultad": "básica",
+          "nivel": "ESO General",
+          "uid": "5e697e95d88e63f036b529a6bdc298e2"
+        },
+        {
+          "problema": "Calcula el área de un triángulo de base 6 y altura 4",
+          "dificultad": "básica",
+          "nivel": "ESO General",
+          "uid": "e890ab1936c85f70dcac58e37d28cba5"
+        }
+      ],
+      "nivel_eso": "3º-4º ESO"
+    },
+    "timestamp": 1761517094.2354703,
+    "problema": "¿La función y = x² es par o impar?",
+    "tipo": "algebra"
   }
 }

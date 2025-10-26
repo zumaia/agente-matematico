@@ -41,9 +41,10 @@ def resolver_permutaciones(problema: str) -> dict:
                 f"3. Resultado: {n}! = {resultado}"
             ])
             
+            # Devolver la solución principal como valor numérico (p.ej. '6') para evaluación
             return {
                 "tipo": "permutaciones",
-                "solucion": f"P({n}) = {resultado}",
+                "solucion": f"{resultado}",
                 "pasos": pasos
             }
     except Exception as e:

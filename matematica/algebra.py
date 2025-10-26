@@ -55,3 +55,34 @@ def sistemas_ecuaciones(problema: str):
             }
     
     return None
+
+
+def resolver_determinante(problema: str):
+    """Resuelve determinantes de matrices pequeñas escritas como [[a,b],[c,d]]"""
+    m = re.search(r'\[\s*\[\s*([\d\-\.]+)\s*,\s*([\d\-\.]+)\s*\]\s*,\s*\[\s*([\d\-\.]+)\s*,\s*([\d\-\.]+)\s*\]\s*\]', problema)
+    if m:
+        a, b, c, d = [float(x) for x in m.groups()]
+        det = a * d - b * c
+        pasos = [f"Matriz: [[{a},{b}],[{c},{d}]]", f"Determinante: {a}×{d} - {b}×{c} = {det}"]
+        return {
+            "tipo": "determinante",
+            "solucion": f"Determinante = {int(det) if det.is_integer() else det}",
+            "pasos": pasos
+        }
+    return None
+
+
+def resolver_suma_matrices(problema: str):
+    """Suma matrices escritas como [[a,b],[c,d]] + [[e,f],[g,h]]"""
+    m = re.search(r'\[\s*\[\s*([\d\-\.]+)\s*,\s*([\d\-\.]+)\s*\]\s*,\s*\[\s*([\d\-\.]+)\s*,\s*([\d\-\.]+)\s*\]\s*\]\s*\+\s*\[\s*\[\s*([\d\-\.]+)\s*,\s*([\d\-\.]+)\s*\]\s*,\s*\[\s*([\d\-\.]+)\s*,\s*([\d\-\.]+)\s*\]\s*\]', problema)
+    if m:
+        a,b,c,d,e,f,g,h = [float(x) for x in m.groups()]
+        r1 = [a+e, b+f]
+        r2 = [c+g, d+h]
+        pasos = [f"Matriz A: [[{a},{b}],[{c},{d}]]", f"Matriz B: [[{e},{f}],[{g},{h}]]", f"Suma: [[{r1[0]},{r1[1]}],[{r2[0]},{r2[1]}]]"]
+        # Formatear como enteros si corresponde
+        def fmt(x):
+            return int(x) if float(x).is_integer() else x
+        solucion = f"[[{fmt(r1[0])},{fmt(r1[1])}],[{fmt(r2[0])},{fmt(r2[1])}]]"
+        return {"tipo": "suma_matrices", "solucion": solucion, "pasos": pasos}
+    return None

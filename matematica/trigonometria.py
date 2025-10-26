@@ -46,9 +46,11 @@ def resolver_razones_trigonometricas(problema: str) -> dict:
                 f"3. Resultado: {funcion}({angulo}°) = {resultado:.4f}"
             ]
             
+            # Devolver la solución en formato canónico: solo el valor numérico (p.ej. 0.5)
+            val = ('{:.4f}'.format(resultado)).rstrip('0').rstrip('.')
             return {
                 "tipo": "razones_trigonometricas",
-                "solucion": f"{funcion.capitalize()}({angulo}°) = {resultado:.4f}",
+                "solucion": f"{val}",
                 "pasos": pasos
             }
     except Exception as e:

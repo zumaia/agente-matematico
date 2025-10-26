@@ -66,18 +66,24 @@ def calcular_moda(problema: str):
             # Verificar si hay múltiples modas
             modas = [num for num, count in contador.items() if count == moda[1]]
             
+            # Formatear números para mostrar enteros cuando corresponda
+            def fmt(v):
+                return str(int(v)) if float(v).is_integer() else str(v)
+
             if len(modas) == 1:
-                solucion = f"Moda = {modas[0]} (aparece {moda[1]} veces)"
+                solucion = fmt(modas[0])
+                detalle = f"Moda = {solucion} (aparece {moda[1]} veces)"
             else:
-                solucion = f"Modas = {modas} (aparecen {moda[1]} veces cada una)"
-            
+                solucion = '[' + ', '.join(fmt(m) for m in modas) + ']'
+                detalle = f"Modas = {solucion} (aparecen {moda[1]} veces cada una)"
+
             return {
                 "tipo": "moda",
                 "solucion": solucion,
                 "pasos": [
                     f"Números: {numeros}",
                     f"Frecuencias: {dict(contador)}",
-                    solucion
+                    detalle
                 ]
             }
     
