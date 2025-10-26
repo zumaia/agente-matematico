@@ -61,6 +61,14 @@ class GreenAgentMatematico:
         texto_plano = re.sub(r'\s+', ' ', texto_plano).strip()
         
         print(f"📄 Texto limpio ({len(texto_plano)} chars): {texto_plano[:200]}...")
+        # PRIMER INTENTO: Extraer la solución desde el bloque principal si existe
+        # Buscar la clase 'solution-text' generada por el servidor (evitar extracciones de práctica)
+        main_block_match = re.search(r'<div[^>]+class=["\']solution-text["\'][^>]*>(.*?)</div>', respuesta_html, re.IGNORECASE | re.DOTALL)
+        if main_block_match:
+            candidate = self._limpiar_respuesta(main_block_match.group(1))
+            if candidate and self._es_respuesta_valida(candidate):
+                print(f"🎯 EXTRAÍDO DESDE BLOQUE PRINCIPAL: '{candidate}'")
+                return candidate
         
         # DETECCIÓN DE FALLO CRÍTICO: Si contiene "= 12 🏠" o texto similar, es un error
         if "= 12" in texto_plano and "🏠" in texto_plano:
@@ -192,6 +200,31 @@ class GreenAgentMatematico:
         respuesta = re.sub(r'\s+', ' ', respuesta)
         
         return respuesta
+
+    def _es_respuesta_plausible_text(self, texto: str) -> bool:
+        """Filtros adicionales para evitar artefactos de plantilla o rutas como '/lang'."""
+        t = texto.strip()
+        if not t:
+            return False
+
+        # Excluir tokens que claramente son rutas o fragmentos del template
+        if '/' in t:
+            # Permitir fracciones simples como '5/6' o expresiones con paréntesis '(x+1)/3'
+            frac_pattern = re.compile(r'^[\-]?[0-9]+\/[0-9]+$')
+            expr_frac_pattern = re.compile(r'[\w\)\]]+\s*\/\s*[\w\(\[]+')
+            if frac_pattern.match(t) or expr_frac_pattern.search(t):
+                return True
+            return False
+
+        # Excluir tokens que parecen rutas o nombres de plantilla
+        if t.startswith('/') or t.lower().startswith('powered by') or 'language-switcher' in t.lower():
+            return False
+
+        # Excluir textos que tengan caracteres no útiles (p. ej., '/lang' o tokens aislados)
+        if re.match(r'^\/\w+$', t):
+            return False
+
+        return True
     
     def _es_respuesta_valida(self, respuesta: str) -> bool:
         """Determina si una respuesta parece ser válida"""
@@ -209,6 +242,10 @@ class GreenAgentMatematico:
         
         # Debe contener algún contenido matemático
         if not any(char in respuesta for char in '0123456789x[](),/-'):
+            return False
+
+        # Filtros adicionales para evitar artefactos de plantilla
+        if not self._es_respuesta_plausible_text(respuesta):
             return False
         
         return True

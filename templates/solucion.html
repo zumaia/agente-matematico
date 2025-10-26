@@ -377,10 +377,11 @@
                             </span>
                         </div>
                         <p>{{ ejercicio.problema }}</p>
-                        <details>
+                        <details class="practice-item" data-uid="{{ ejercicio.uid }}">
                             <summary>🔍 {{ t('view_solution') }}</summary>
                             <div style="margin-top: 10px; padding: 10px; background: #f8f9fa; border-radius: 5px;">
-                                <strong>{{ t('solution_text') }}:</strong> {{ ejercicio.solucion }}
+                                <strong>{{ t('solution_text') }}:</strong>
+                                <span class="practice-solution-text" data-loaded="false">Solución oculta — pulsa para mostrar</span>
                             </div>
                         </details>
                     </div>
@@ -407,6 +408,30 @@
             // Mantener el contexto actual al cambiar idioma
             window.location.href = `/${lang}`;
         }
+        // Lazy-load para soluciones de ejercicios de práctica
+        document.addEventListener('DOMContentLoaded', function(){
+            document.querySelectorAll('details.practice-item').forEach(function(d){
+                d.addEventListener('toggle', async function(e){
+                    if(!d.open) return;
+                    try{
+                        const uid = d.dataset.uid;
+                        const span = d.querySelector('.practice-solution-text');
+                        if(!uid || !span || span.dataset.loaded === 'true') return;
+                        span.textContent = 'Cargando...';
+                        const res = await fetch(`/practice/solucion?uid=${uid}`);
+                        const data = await res.json();
+                        if(data.exito){
+                            span.textContent = data.solucion;
+                            span.dataset.loaded = 'true';
+                        } else {
+                            span.textContent = 'Solución no disponible';
+                        }
+                    }catch(err){
+                        console.error(err);
+                    }
+                });
+            });
+        });
     </script>
 </body>
 </html>

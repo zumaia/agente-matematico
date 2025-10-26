@@ -7,7 +7,9 @@ def resolver_combinatoria(problema: str) -> dict:
     """
     problema = problema.lower().strip()
     
-    if any(palabra in problema for palabra in ['permutación', 'permutacion', 'factorial', '!']):
+    # Detección ampliada: frases del tipo "ordenar 3 libros" deben mapear a permutaciones
+    if any(palabra in problema for palabra in ['permutación', 'permutacion', 'factorial', '!']) \
+       or 'ordenar' in problema and 'libro' in problema:
         return resolver_permutaciones(problema)
     elif any(palabra in problema for palabra in ['combinación', 'combinacion', 'combinaciones']):
         return resolver_combinaciones(problema)

@@ -1,4 +1,6 @@
 from datetime import datetime
+import hashlib
+import time
 import logging
 from fastapi import FastAPI, Request, Form
 from fastapi.staticfiles import StaticFiles
@@ -47,6 +49,9 @@ app = FastAPI(
     description="Resuelve problemas de matemáticas con IA Gratuita",
     version="4.0.0"
 )
+
+# Almacen temporal para soluciones de ejercicios de práctica (lazy-load)
+practice_cache = {}
 
 # Crear carpeta static si no existe
 os.makedirs("static", exist_ok=True)
@@ -155,6 +160,20 @@ async def resolver_problema_web(
         # PROCESAR PASOS
         if 'pasos_detallados' in resultado:
             resultado['pasos_detallados'] = procesar_pasos_detallados(resultado['pasos_detallados'])
+        # Preparar ejercicios de práctica para lazy-loading: crear uid y almacenar solución temporalmente
+        try:
+            eps = []
+            for ej in resultado.get('ejercicios_practica', []):
+                uid = hashlib.md5((ej.get('problema','') + str(time.time())).encode('utf-8')).hexdigest()
+                practice_cache[uid] = ej.get('solucion')
+                ej_copy = ej.copy()
+                ej_copy.pop('solucion', None)
+                ej_copy['uid'] = uid
+                eps.append(ej_copy)
+            resultado['ejercicios_practica'] = eps
+        except Exception:
+            pass
+
         return templates.TemplateResponse("solucion.html", get_template_context(resultado))
     
     # Lista completa de resolutores
@@ -205,8 +224,26 @@ async def resolver_problema_web(
             grafico = generar_grafico_para_problema(solucion["tipo"], problema, solucion)
             if grafico:
                 resultado["grafico"] = grafico
+            # Preparar ejercicios de práctica para lazy-loading: crear uid y almacenar solución temporalmente
+            try:
+                eps = []
+                for ej in resultado.get('ejercicios_practica', []):
+                    uid = hashlib.md5((ej.get('problema','') + str(time.time())).encode('utf-8')).hexdigest()
+                    practice_cache[uid] = ej.get('solucion')
+                    ej_copy = ej.copy()
+                    ej_copy.pop('solucion', None)
+                    ej_copy['uid'] = uid
+                    eps.append(ej_copy)
+                resultado['ejercicios_practica'] = eps
+            except Exception:
+                pass
+
             # Guardar en cache
-            cache_global.guardar(problema, resultado)
+            # Guardar en cache sólo si la solución parece plausible
+            if plausible_solution(solucion["tipo"], problema, resultado.get("solucion")):
+                cache_global.guardar(problema, resultado)
+            else:
+                print(f"⚠️ Solución no plausble para cache (no se guarda): {resultado.get('solucion')}")
             return templates.TemplateResponse("solucion.html", get_template_context(resultado))
     
     # CUARTO: Usar Groq para problemas complejos
@@ -230,8 +267,25 @@ async def resolver_problema_web(
             grafico = generar_grafico_para_problema(solucion_ia["tipo"], problema, solucion_ia)
             if grafico:
                 resultado["grafico"] = grafico
+            # Preparar ejercicios de práctica para lazy-loading: crear uid y almacenar solución temporalmente
+            try:
+                eps = []
+                for ej in resultado.get('ejercicios_practica', []):
+                    uid = hashlib.md5((ej.get('problema','') + str(time.time())).encode('utf-8')).hexdigest()
+                    practice_cache[uid] = ej.get('solucion')
+                    ej_copy = ej.copy()
+                    ej_copy.pop('solucion', None)
+                    ej_copy['uid'] = uid
+                    eps.append(ej_copy)
+                resultado['ejercicios_practica'] = eps
+            except Exception:
+                pass
+
             # Guardar respuesta de IA en cache
-            cache_global.guardar(problema, resultado)
+            if plausible_solution(solucion_ia.get("tipo"), problema, resultado.get("solucion")):
+                cache_global.guardar(problema, resultado)
+            else:
+                print(f"⚠️ Solución IA no plausble para cache (no se guarda): {resultado.get('solucion')}")
             return templates.TemplateResponse("solucion.html", get_template_context(resultado))
         else:
             resultado = {
@@ -306,6 +360,55 @@ def generar_grafico_para_problema(tipo_problema: str, problema: str, solucion: d
         print(f"❌ Error generando gráfico: {e}")
         return None
 
+
+def plausible_solution(tipo_problema: str, problema: str, solucion_valor) -> bool:
+    """
+    Heurística rápida para evitar cachear soluciones obviamente no plausibles.
+    Evita que respuestas genéricas o mal extraídas ('x = 5' para un seno) se guarden.
+    """
+    try:
+        tipo = (tipo_problema or '').lower()
+        s = str(solucion_valor).lower()
+
+        # Si la solución es el mensaje de error, no es plausible
+        if s.startswith('error') or 'no se pudo' in s:
+            return False
+
+        # Ecuaciones lineales: debe contener 'x' o un número
+        if 'ecuacion' in tipo or 'ecuación' in tipo or tipo == 'ecuacion_lineal':
+            return 'x' in s or re.search(r'[-+]?[0-9]+\.?[0-9]*', s) is not None
+
+        # Trigonometría: si la pregunta contiene 'sen' o 'cos', la respuesta numérica debe estar entre -1 y 1
+        if 'trig' in tipo or 'seno' in problema.lower() or 'sen(' in problema.lower() or 'cos(' in problema.lower():
+            nums = re.findall(r'[-+]?[0-9]*\.?[0-9]+', s)
+            if nums:
+                try:
+                    v = float(nums[0])
+                    return -1.0 - 1e-6 <= v <= 1.0 + 1e-6
+                except ValueError:
+                    return False
+            return False
+
+        # Porcentajes/aritmética: solución esperada numérica
+        if 'porcentaje' in tipo or 'aritm' in tipo or 'porcentaje' in problema.lower():
+            return re.search(r'[-+]?[0-9]+\.?[0-9]*', s) is not None
+
+        # Geometría (área/volumen/pitagoras): solución numérica no negativa
+        if any(k in tipo for k in ['area', 'volumen', 'teorema_pitagoras', 'distancia', 'punto_medio', 'pendiente']):
+            nums = re.findall(r'[-+]?[0-9]*\.?[0-9]+', s)
+            if nums:
+                try:
+                    v = float(nums[0])
+                    return v >= 0 or '(' in s or '[' in s  # permitir coordenadas
+                except ValueError:
+                    return False
+            return False
+
+        # Fallback: aceptar si hay algún número o variable
+        return re.search(r'[xX]|[-+]?[0-9]+\.?[0-9]*', s) is not None
+    except Exception:
+        return False
+
 def extraer_numero(texto: str) -> Optional[float]:
     """Extrae el primer número de un texto"""
     import re
@@ -317,6 +420,15 @@ def extraer_numeros(texto: str, cantidad: int) -> list:
     import re
     numeros = re.findall(r'[-+]?\d*\.?\d+', texto)
     return [float(n) for n in numeros[:cantidad]] if len(numeros) >= cantidad else []
+
+
+@app.get('/practice/solucion')
+def obtener_solucion_practica(uid: str):
+    """Devuelve la solución almacenada temporalmente para un ejercicio de práctica (lazy-load)."""
+    sol = practice_cache.get(uid)
+    if sol is None:
+        return {"exito": False, "error": "uid_no_encontrado"}
+    return {"exito": True, "solucion": sol}
 
 # =============================================================================
 
