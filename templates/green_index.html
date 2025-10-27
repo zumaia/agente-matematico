@@ -247,6 +247,14 @@
             <h1>🟢 MathESO Evaluator</h1>
             <p>Green Agent especializado en evaluación matemática para ESO/Bachillerato</p>
             <div class="badge">AgentBeats Competition Ready</div>
+            <div class="lang-selector" style="margin-top:10px;">
+                <small style="color: #e8f5e9;">Idioma:</small>
+                <a href="#" onclick="setLang('en'); return false;" style="color: white; margin-left: 8px; text-decoration: underline;">English</a>
+                <span style="color: #e8f5e9; margin: 0 6px;">|</span>
+                <a href="#" onclick="setLang('es'); return false;" style="color: white; text-decoration: underline;">Español</a>
+                <span style="color: #e8f5e9; margin: 0 6px;">|</span>
+                <a href="#" onclick="setLang('eu'); return false;" style="color: white; text-decoration: underline;">Euskera</a>
+            </div>
         </div>
         
         <div class="content">
@@ -340,6 +348,18 @@
     </div>
 
     <script>
+        // Language selector: preserve existing query params and set lang
+        function setLang(lang) {
+            try {
+                const url = new URL(window.location.href);
+                url.searchParams.set('lang', lang);
+                window.location.href = url.toString();
+            } catch (e) {
+                // fallback: simple reload with param
+                const base = window.location.pathname;
+                window.location.href = base + '?lang=' + encodeURIComponent(lang);
+            }
+        }
         // Cargar lista de problemas al iniciar
         document.addEventListener('DOMContentLoaded', function() {
             loadAvailableProblems();

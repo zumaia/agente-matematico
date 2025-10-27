@@ -47,6 +47,14 @@
             <h1>🟢 MathESO Evaluator</h1>
             <p>Green Agent specialized in secondary-school mathematics evaluation (ESO/Bachillerato)</p>
             <div class="badge">AgentBeats Competition Ready</div>
+            <div class="lang-selector" style="margin-top:10px;">
+                <small style="color: #e8f5e9;">Language:</small>
+                <a href="#" onclick="setLang('en'); return false;" style="color: white; margin-left: 8px; text-decoration: underline;">English</a>
+                <span style="color: #e8f5e9; margin: 0 6px;">|</span>
+                <a href="#" onclick="setLang('es'); return false;" style="color: white; text-decoration: underline;">Español</a>
+                <span style="color: #e8f5e9; margin: 0 6px;">|</span>
+                <a href="#" onclick="setLang('eu'); return false;" style="color: white; text-decoration: underline;">Euskera</a>
+            </div>
         </div>
         
         <div class="content">
@@ -232,6 +240,19 @@
         function formatCategoryName(categoryKey) {
             const names = { 'algebra': 'Algebra', 'geometria': 'Geometry', 'geometry': 'Geometry', 'aritmetica': 'Arithmetic', 'arithmetic': 'Arithmetic', 'estadistica': 'Statistics', 'statistics': 'Statistics', 'geometria_analitica': 'Analytic Geometry', 'analytic_geometry': 'Analytic Geometry', 'trigonometria': 'Trigonometry', 'trigonometry': 'Trigonometry', 'funciones': 'Functions', 'functions': 'Functions', 'sucesiones': 'Sequences', 'sequences': 'Sequences', 'combinatoria': 'Combinatorics', 'combinatorics': 'Combinatorics', 'patrones': 'Patterns', 'patterns': 'Patterns', 'algebra_lineal': 'Linear Algebra', 'linear_algebra': 'Linear Algebra', 'graficos': 'Graphs', 'graphics': 'Graphs' };
             return names[categoryKey] || categoryKey;
+        }
+    </script>
+    <script>
+        // Language selector: preserve existing query params and set lang
+        function setLang(lang) {
+            try {
+                const url = new URL(window.location.href);
+                url.searchParams.set('lang', lang);
+                window.location.href = url.toString();
+            } catch (e) {
+                const base = window.location.pathname;
+                window.location.href = base + '?lang=' + encodeURIComponent(lang);
+            }
         }
     </script>
 </body>
