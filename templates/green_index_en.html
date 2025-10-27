@@ -47,13 +47,11 @@
             <h1>🟢 MathESO Evaluator</h1>
             <p>Green Agent specialized in secondary-school mathematics evaluation (ESO/Bachillerato)</p>
             <div class="badge">AgentBeats Competition Ready</div>
-            <div class="lang-selector" style="margin-top:10px;">
-                <small style="color: #e8f5e9;">Language:</small>
-                <a href="#" onclick="setLang('en'); return false;" style="color: white; margin-left: 8px; text-decoration: underline;">English</a>
-                <span style="color: #e8f5e9; margin: 0 6px;">|</span>
-                <a href="#" onclick="setLang('es'); return false;" style="color: white; text-decoration: underline;">Español</a>
-                <span style="color: #e8f5e9; margin: 0 6px;">|</span>
-                <a href="#" onclick="setLang('eu'); return false;" style="color: white; text-decoration: underline;">Euskera</a>
+            <!-- language switcher (styled like Purple UI) -->
+            <div class="language-switcher">
+                <button class="lang-btn" data-lang="es">ES</button>
+                <button class="lang-btn" data-lang="en">EN</button>
+                <button class="lang-btn" data-lang="eu">EU</button>
             </div>
         </div>
         
@@ -254,6 +252,28 @@
                 window.location.href = base + '?lang=' + encodeURIComponent(lang);
             }
         }
+
+        // wire up the pill buttons and set active state based on ?lang
+        (function() {
+            function getLangFromUrl() {
+                try {
+                    const url = new URL(window.location.href);
+                    return (url.searchParams.get('lang') || 'en').toLowerCase();
+                } catch (e) {
+                    const m = window.location.search.match(/lang=([^&]+)/);
+                    return m ? decodeURIComponent(m[1]).toLowerCase() : 'en';
+                }
+            }
+
+            const current = getLangFromUrl();
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                const l = btn.getAttribute('data-lang');
+                if (l === current || (current === '' && l === 'en')) {
+                    btn.classList.add('active');
+                }
+                btn.addEventListener('click', () => setLang(l));
+            });
+        })();
     </script>
 </body>
 </html>

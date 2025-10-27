@@ -5,6 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MathESO Evaluator - Green Agent</title>
     <style>
+        /* language switcher style aligned with Purple UI */
+        .language-switcher {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            display: flex;
+            gap: 6px;
+            z-index: 40;
+        }
+        .lang-btn {
+            padding: 6px 10px;
+            border: 1px solid rgba(255,255,255,0.15);
+            background: rgba(255,255,255,0.95);
+            cursor: pointer;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 700;
+            color: #0d0d0d;
+        }
+        .lang-btn.active {
+            background: #007bff; /* blue active */
+            color: white;
+            border-color: #007bff;
+        }
         * {
             margin: 0;
             padding: 0;
@@ -247,13 +271,11 @@
             <h1>🟢 MathESO Evaluator</h1>
             <p>Green Agent especializado en evaluación matemática para ESO/Bachillerato</p>
             <div class="badge">AgentBeats Competition Ready</div>
-            <div class="lang-selector" style="margin-top:10px;">
-                <small style="color: #e8f5e9;">Idioma:</small>
-                <a href="#" onclick="setLang('en'); return false;" style="color: white; margin-left: 8px; text-decoration: underline;">English</a>
-                <span style="color: #e8f5e9; margin: 0 6px;">|</span>
-                <a href="#" onclick="setLang('es'); return false;" style="color: white; text-decoration: underline;">Español</a>
-                <span style="color: #e8f5e9; margin: 0 6px;">|</span>
-                <a href="#" onclick="setLang('eu'); return false;" style="color: white; text-decoration: underline;">Euskera</a>
+            <!-- language switcher (styled like Purple UI) -->
+            <div class="language-switcher">
+                <button class="lang-btn" data-lang="es">ES</button>
+                <button class="lang-btn" data-lang="en">EN</button>
+                <button class="lang-btn" data-lang="eu">EU</button>
             </div>
         </div>
         
@@ -360,6 +382,28 @@
                 window.location.href = base + '?lang=' + encodeURIComponent(lang);
             }
         }
+
+        // wire up the pill buttons and set active state based on ?lang
+        (function() {
+            function getLangFromUrl() {
+                try {
+                    const url = new URL(window.location.href);
+                    return (url.searchParams.get('lang') || 'en').toLowerCase();
+                } catch (e) {
+                    const m = window.location.search.match(/lang=([^&]+)/);
+                    return m ? decodeURIComponent(m[1]).toLowerCase() : 'en';
+                }
+            }
+
+            const current = getLangFromUrl();
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                const l = btn.getAttribute('data-lang');
+                if (l === current || (current === '' && l === 'en')) {
+                    btn.classList.add('active');
+                }
+                btn.addEventListener('click', () => setLang(l));
+            });
+        })();
         // Cargar lista de problemas al iniciar
         document.addEventListener('DOMContentLoaded', function() {
             loadAvailableProblems();
