@@ -9,7 +9,17 @@
 [![AgentX Ready](https://img.shields.io/badge/AgentX-Competition-purple.svg)](https://agentx.ai)
 [![Version](https://img.shields.io/badge/Version-4.0.0-orange.svg)](https://github.com/zumaia/agente-matematico)
 
-![Agente Matemático Demo](https://via.placeholder.com/800x400/667eea/ffffff?text=Agente+Matemático+ESO+Demo)
+<!-- Imagen de demo: reemplaza con capturas reales en `demo/` -->
+> Capturas de pantalla de la interfaz: revisa la carpeta `demo/` para añadir imágenes reales.
+
+Si quieres que el README muestre una captura, añade los archivos `demo/screenshot_purple_ui.png` y `demo/screenshot_green_ui.png` y usa la siguiente sintaxis:
+
+```markdown
+![Purple UI](demo/screenshot_purple_ui.png)
+![Green UI](demo/screenshot_green_ui.png)
+```
+
+Mientras no haya imágenes reales, las capturas se mantienen en `demo/` y el README enlaza a esa carpeta.
 
 ## 🌟 Descripción
 
