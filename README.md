@@ -1,72 +1,31 @@
-# 🎯 Agente Matemático Inteligente ESO+
-
-> **Agente AI especializado en matemáticas de ESO/Bachillerato con arquitectura híbrida**  
-> *Preparado para AgentX Competition 2025-2026 - Purple Agent Category*
-
-[![Python](https://img.shields.io/badge/Python-3.10+-blue.svg)](https://python.org)
-[![FastAPI](https://img.shields.io/badge/FastAPI-0.104+-green.svg)](https://fastapi.tiangolo.com)
-[![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![AgentX Ready](https://img.shields.io/badge/AgentX-Competition-purple.svg)](https://agentx.ai)
-[![Version](https://img.shields.io/badge/Version-4.0.0-orange.svg)](https://github.com/zumaia/agente-matematico)
-
-## Capturas (demo)
-
-A continuación se muestran capturas de la interfaz incluidas en `demo/`:
-
-![Purple UI — Interfaz principal](demo/screenshot_purple_ui.png)
-
-![Green UI — Evaluador](demo/screenshot_green_ui.png)
-
-Si quieres reemplazarlas por otras, agrega archivos PNG con los mismos nombres en la carpeta `demo/` y el README se actualizará automáticamente al mostrar las nuevas imágenes.
-
-## 🌟 Descripción
-
-**Agente Matemático Inteligente ESO+** es un sistema avanzado de resolución de problemas matemáticos que combina algoritmos tradicionales con inteligencia artificial para ofrecer soluciones precisas y explicaciones paso a paso. Diseñado específicamente para estudiantes de ESO y Bachillerato.
-
-### 🏆 Preparado para AgentX Competition
-Este proyecto está optimizado para participar como **Purple Agent** en la competencia AgentX 2025-2026, implementando los estándares A2A para evaluación de agentes AI.
-
-## 🚀 Características Principales
-
-### 🧠 **Arquitectura Híbrida Inteligente**
-| Módulo | Función | Ventaja |
-|--------|---------|---------|
-| **🔢 Algoritmos Matemáticos** | Resolución precisa con métodos tradicionales | Máxima precisión |
-| **🤖 IA Groq Integration** | Problemas complejos y explicaciones naturales | Flexibilidad y adaptabilidad |
-| **⚡ Cache Inteligente** | Almacenamiento de soluciones recurrentes | Respuestas ultra-rápidas (<500ms) |
-| **🎯 Detección de Intención** | Análisis semántico de problemas | Priorización automática de resolutores |
-
-### 📚 **Dominio Matemático Completo**
-- **🔤 Álgebra**: Ecuaciones lineales, sistemas de ecuaciones, expresiones algebraicas
-- **📐 Geometría**: Áreas, volúmenes, teorema de Pitágoras, perímetros
-- **🔢 Aritmética**: Fracciones, porcentajes, operaciones combinadas, potencias
-- **📊 Estadística**: Media, mediana, moda, rango, probabilidad básica
-- **🔄 Patrones**: Secuencias numéricas, detección de regularidades
-
-### 🌐 **Interfaz Completa**
-- **🖥️ Interfaz Web Moderna** - Diseño responsive y intuitivo
-- **🔌 API REST Completa** - Para integraciones programáticas
-- **📚 Documentación Automática** - Swagger/OpenAPI incluido
-- **🎨 Templates Profesionales** - Experiencia de usuario mejorada
-
-## 🛠️ Instalación Rápida
-
-# 🎯 Math Agent (ESO / High School)
+## 🎯 Math Agent (ESO / High School)
 
 English • Español • Demo
 
-- English (current): `README.md`
-- Español: `README_es.md`
+- English (current): `README.md` (this file) — start here for usage and deployment
+- Español: `README_es.md` — full Spanish translation
 - Demo & screenshots: `demo/README.md`
 
-Hybrid project to solve math problems using algorithmic solvers with an AI fallback. Ready for A2A evaluation (AgentX) and for local use via Docker or a Python virtual environment.
+This repository contains a hybrid math problem-solving agent for middle/high-school level math. It combines algorithmic solvers with an AI fallback for problems that require natural-language explanations or fuzzy reasoning. The repo includes both the Purple (UI/API) and Green (evaluator) services, Docker compose files and an automated local evaluation runner.
 
-Quick summary
+Table of contents
+
+- [Quick summary](#quick-summary)
+- [Requirements & local install](#requirements--local-install)
+- [Docker Compose (recommended)](#docker-compose--recommended)
+- [Automatic evaluation](#automatic-evaluation)
+- [Important endpoints](#important-endpoints)
+- [Security notes](#security-notes)
+- [Contributing & license](#contributing--license)
+
+## Quick summary
+
 - Purple server (main): `app.py` — port 8000
 - Green evaluator: `green_app.py` — port 8001
 - Automatic evaluation runner: `scripts/run_local_eval.py`
 
-Requirements
+## Requirements & local install
+
 - Python 3.10+ (3.11 recommended)
 - pip
 - Docker & docker-compose (optional, recommended for reproducibility)
@@ -92,101 +51,79 @@ Run Green evaluator locally (separate terminal):
 python green_app.py
 # or: uvicorn green_app:app --host 0.0.0.0 --port 8001 --reload
 ```
-Visita: http://localhost:8000
 
-Para arrancar también el servicio Green localmente (si no usas Docker), en otra terminal:
+## Docker Compose (recommended)
 
-```bash
-python green_app.py
-# o: uvicorn green_app:app --host 0.0.0.0 --port 8001 --reload
-```
-
----
-
-## Uso con Docker Compose (recomendado para demo/entrega)
-
-1) Asegúrate de tener Docker y docker-compose instalados.
-2) Crea un `.env` con la variable (opcional):
+Create a `.env` with the optional Groq API key (if you use AI fallback):
 
 ```bash
-echo "GROQ_API_KEY=tu_api_key_aqui" > .env
+echo "GROQ_API_KEY=your_api_key_here" > .env
 ```
 
-3) Arranca los servicios:
+Start the services:
 
 ```bash
 docker-compose up --build
 ```
 
-Esto levanta dos servicios:
-- Purple (app) en http://localhost:8000
-- Green (evaluador) en http://localhost:8001
+Services started:
+- Purple (app) → http://localhost:8000
+- Green (evaluator) → http://localhost:8001
 
-Para detenerlos:
+To stop:
 
 ```bash
 docker-compose down
 ```
 
-Notas: en entorno Docker, Green está configurado para comunicarse con Purple usando el nombre de servicio `http://app:8000` dentro de la red de Compose.
+Note: inside Docker Compose the Green service contacts Purple via the internal network address `http://app:8000` (service name `app`).
 
----
+## Automatic evaluation
 
-## Evaluación automática
+Use `scripts/run_local_eval.py` to run a quick evaluation (Green evaluates Purple).
 
-Usa `scripts/run_local_eval.py` para ejecutar una evaluación rápida (usa el servicio Green contra Purple).
-
-Ejemplo local (si ambos servidores están corriendo):
+Local example (with both servers running):
 
 ```bash
-# desde la raíz del repo
+# from repo root
 python scripts/run_local_eval.py
 ```
 
-También puedes ejecutar el runner dentro del contenedor Green:
+Run the runner inside the Green container:
 
 ```bash
 docker-compose exec -T green python3 scripts/run_local_eval.py
 ```
 
----
+## Important endpoints
 
-## Endpoints importantes
+- `/` (GET) — web UI
+- `/resolver` (POST) — resolve problem (JSON)
+- `/resolver-web` (POST) — form submit from UI
+- `/api` (GET) — basic info / health
+- `/health` (GET, on Green) — evaluator health
+- `/cache/estado` (GET) — cache status
+- `/cache/limpiar` (DELETE) — clear cache
 
-- `/` (GET) — interfaz web
-- `/resolver` (POST) — resolver problema en JSON
-- `/resolver-web` (POST) — form submit desde la web
-- `/api` (GET) — info básica y health
-- `/health` (GET, en Green) — healthcheck evaluador
-- `/cache/estado` (GET) — estado del cache
-- `/cache/limpiar` (DELETE) — limpiar cache
+## Security notes
 
----
+- Never commit secrets (`.env`) to the repository. Ensure `.gitignore` includes `.env`, `venv/`, `__pycache__/` and `*.pyc`.
+- If a key may have been exposed, rotate it immediately.
+- For CI, use repo secrets and avoid embedding keys in workflows.
 
-## Buenas prácticas y seguridad
+## Contributing
 
-- Nunca comites claves en `.env`. Asegúrate de que `.gitignore` incluye `.env`, `venv/`, `__pycache__/` y `*.pyc`.
-- Si crees que una clave fue expuesta, rótala inmediatamente.
-- Para CI, usa secretos del repositorio y no incluyas claves en los workflows.
+1. Fork the repo
+2. Create a branch: `git checkout -b feature/my-change`
+3. Commit and push
+4. Open a Pull Request
 
----
+See `demo/README.md` for demo instructions and screenshots.
 
-## Contribuir
-
-1. Fork del proyecto
-2. Crear rama: `git checkout -b feature/mi-cambio`
-3. Commit y push
-4. Abrir Pull Request
-
-Revisa `demo/README.md` para guías rápidas de demo y capturas.
-
----
-
-## Autor y licencia
+## Author and license
 
 Oscar Rojo — https://github.com/zumaia
 
-Licencia: MIT (ver `LICENSE`)
+License: MIT (see `LICENSE`)
 
----
 
