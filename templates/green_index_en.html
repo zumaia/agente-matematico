@@ -6,6 +6,30 @@
     <title>MathESO Evaluator - Green Agent</title>
     <style>
         /* Styles copied from the Spanish template but text is English */
+        /* language switcher style aligned with Purple UI */
+        .language-switcher {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            display: flex;
+            gap: 6px;
+            z-index: 40;
+        }
+        .lang-btn {
+            padding: 6px 10px;
+            border: 1px solid rgba(255,255,255,0.15);
+            background: rgba(255,255,255,0.95);
+            cursor: pointer;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 700;
+            color: #0d0d0d;
+        }
+        .lang-btn.active {
+            background: #007bff; /* blue active */
+            color: white;
+            border-color: #007bff;
+        }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: linear-gradient(135deg, #4CAF50 0%, #2E7D32 100%); min-height: 100vh; padding: 20px; }
         .container { max-width: 1200px; margin: 0 auto; background: white; border-radius: 15px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); overflow: hidden; }
