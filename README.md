@@ -134,213 +134,157 @@ print(response.json())
 }
 
 ```
+ # 🎯 Agente Matemático Inteligente (ESO / Bachillerato)
 
-### 🔍 Endpoints Disponibles
+Proyecto híbrido para resolver problemas matemáticos combinando resolutores algorítmicos y un fallback de IA. Preparado para evaluación A2A (AgentX) y para uso local con Docker o en un entorno virtual Python.
 
-| Endpoint | Método | Descripción |
-| --- | --- | --- |
-| `/` | GET | Interfaz web principal |
-| `/resolver` | POST | Resolver problema (JSON) |
-| `/resolver-web` | POST | Resolver problema (Form) |
-| `/api` | GET | Información de la API |
-| `/cache/estado` | GET | Estado del sistema de cache |
-| `/cache/limpiar` | DELETE | Limpiar cache |
+Resumen rápido
+- Servidor principal (Purple): `app.py` — puerto 8000
+- Evaluador (Green): `green_app.py` — puerto 8001
+- Evaluación automática: `scripts/run_local_eval.py`
 
-## 🏗️ Arquitectura del Sistema
+Estado: rama `main`. Revisa la carpeta `demo/` para ejemplos de uso y capturas.
 
-```
-agente-matematico/
-├── 📁 matematica/ # Módulos matemáticos extendidos
-│ ├── algebra.py # Resolutores algebraicos
-│ ├── geometria.py # Funciones geométricas
-│ ├── aritmetica.py # Operaciones aritméticas
-│ ├── estadistica.py # Cálculos estadísticos
-│ ├── trigonometria.py # Funciones trigonométricas
-│ ├── sucesiones.py # Patrones y secuencias
-│ ├── combinatoria.py # Combinatoria y permutaciones
-│ ├── geometria_analitica.py # Geometría con coordenadas
-│ ├── patrones.py # Detección de intención
-│ ├── ia.py # Integración Groq AI + Procesador
-│ ├── procesador_groq.py # Procesamiento de respuestas IA
-│ ├── cache.py # Sistema de cache inteligente
-│ ├── ejercicios.py # Generación de práctica
-│ ├── graficos.py # Generación de gráficos
-│ └── utils.py # Utilidades y traducciones
-├── 📁 templates/ # Plantillas multiidioma
-│ ├── index.html # Página principal con selector idioma
-│ └── solucion.html # Página de resultados traducida
-├── 📁 static/ # Archivos estáticos
-│ ├── style.css # Estilos CSS mejorados
-│ └── favicon.ico # Favicon
-├── 📄 app.py # Servidor FastAPI principal
-├── 📄 translations.py # Sistema de traducciones ES/EN/EU
-├── 📄 requirements.txt # Dependencias actualizadas
-├── 📄 Dockerfile # Configuración container
-├── 📄 docker-compose.yml # Orquestación
-└── 📄 README.md # Documentación
+---
 
-```
+## Requisitos
+- Python 3.10+ (recomendado 3.11)
+- pip
+- Docker & docker-compose (opcional, recomendado para reproducibilidad)
 
-### 🔄 Flujo de Resolución
+## Instalación y ejecución local (venv)
 
-1. **📥 Entrada**: Usuario envía problema matemático
-2. **🔍 Análisis**: Detección de intención y priorización
-3. **💾 Cache**: Verificación de soluciones existentes
-4. **🔄 Resolución**:
-    - Primero con algoritmos matemáticos (máxima precisión)
-    - Luego con IA Groq (máxima flexibilidad)
-5. **📤 Salida**: Solución + Pasos detallados + Método usado
-
-## 🎯 Preparación para AgentX Competition
-
-### ✅ Estado Actual como Purple Agent
-
-- **🟣 A2A Protocol Ready** - Interfaz estándar para evaluación
-- **🔄 State Management** - Sistema de reset para assessments
-- **🐳 Docker Support** - Deployment containerizado
-- **📊 Performance Metrics** - Tiempos de respuesta optimizados
-
-### 📈 Métricas de Rendimiento
-
-| Métrica | Valor | Explicación |
-| --- | --- | --- |
-| **Accuracy** | 90%+ | Con algoritmos matemáticos puros |
-| **Tiempo Respuesta** | <2s | Con cache inteligente activo |
-| **Disponibilidad** | 99%+ | Arquitectura robusta y tolerante a fallos |
-| **Consistencia** | Alta | Resultados reproducibles |
-
-### 🎯 Roadmap para AgentX
-
-- [ ]  Implementar endpoint `/reset` para A2A
-- [ ]  Crear Agent Card descriptivo
-- [ ]  Optimizar prompts para Groq
-- [ ]  Añadir más operaciones matemáticas
-- [ ]  Implementar sistema de logs estructurado
-
-## 🚀 Deployment
-
-## 🐳 Dockerización (Nuevo)
-
-### Ejecución con Docker Compose (Recomendado)
+1) Clona el repo:
 
 ```bash
-# 1. Clonar y configurar
-git clone https://github.com/zumaia/agente-matematico-eso-plus.git
-cd agente-matematico-eso-plus
+git clone https://github.com/zumaia/agente-matematico.git
+cd agente-matematico
+```
 
-# 2. Configurar API key
+2) Crea y activa un entorno virtual:
+
+```bash
+python -m venv venv
+source venv/bin/activate  # Linux / macOS
+# venv\Scripts\activate  # Windows (PowerShell)
+```
+
+3) Instala dependencias:
+
+```bash
+pip install -r requirements.txt
+```
+
+4) Opcional: copia el ejemplo de variables de entorno y añade tu clave si la tienes:
+
+```bash
+cp .env.example .env
+# Edita .env para añadir GROQ_API_KEY si quieres usar el fallback de IA
+```
+
+5) Ejecuta el servidor Purple (interfaz web):
+
+```bash
+python app.py
+# o: uvicorn app:app --host 0.0.0.0 --port 8000 --reload
+```
+
+Visita: http://localhost:8000
+
+Para arrancar también el servicio Green localmente (si no usas Docker), en otra terminal:
+
+```bash
+python green_app.py
+# o: uvicorn green_app:app --host 0.0.0.0 --port 8001 --reload
+```
+
+---
+
+## Uso con Docker Compose (recomendado para demo/entrega)
+
+1) Asegúrate de tener Docker y docker-compose instalados.
+2) Crea un `.env` con la variable (opcional):
+
+```bash
 echo "GROQ_API_KEY=tu_api_key_aqui" > .env
+```
 
-# 3. Ejecutar
+3) Arranca los servicios:
+
+```bash
 docker-compose up --build
+```
 
-Estructura de archivos Docker:
+Esto levanta dos servicios:
+- Purple (app) en http://localhost:8000
+- Green (evaluador) en http://localhost:8001
 
-agente-matematico/
-├── 📄 Dockerfile          # Configuración del contenedor
-├── 📄 docker-compose.yml  # Orquestación multi-servicio  
-├── 📄 .dockerignore       # Archivos excluidos
-└── 📄 .env.example        # Variables de entorno
-
-### ☁️ En la Nube
-
-**Render/Railway:**
+Para detenerlos:
 
 ```bash
-uvicorn app:app --host 0.0.0.0 --port $PORT
-
+docker-compose down
 ```
 
-**Heroku:**
-
-```bash
-heroku create tu-agente-matematico
-git push heroku main
-
-```
-
-### 🛠️ Variables de Entorno
-
-```
-GROQ_API_KEY=tu_api_key_aqui
-CACHE_FILE=matematica_cache.json
-DEBUG=False
-
-```
-
-
-### **5. Añadir sección "🚀 Novedades v4.0"**
-
-```markdown
-## 🚀 Novedades en Versión 4.0
-
-### ✨ Características Implementadas
-- **🌍 Soporte multiidioma completo** (ES, EN, EU)
-- **🐳 Dockerización completa** para fácil despliegue
-- **🎨 Interfaz web modernizada** con 21 ejemplos organizados
-- **🤖 Procesador inteligente de Groq** para respuestas estructuradas
-- **📊 Sistema de gráficos integrado** para visualización matemática
-- **💪 Generador de ejercicios de práctica** automático
-
-### 🔧 Mejoras Técnicas
-- **Arquitectura modular mejorada** con 12 módulos especializados
-- **Sistema de cache optimizado** para respuestas ultra-rápidas
-- **Procesamiento de pasos inteligente** para explicaciones claras
-- **Detección de nivel ESO automática** y adaptación de explicaciones
-
-### ✅ Estado Actual como Purple Agent (Mejorado)
-
-- **🟣 A2A Protocol Ready** - Interfaz estándar para evaluación
-- **🌍 Multi-language Support** - Soporte completo ES/EN/EU
-- **🐳 Docker Containerized** - Deployment optimizado para competición
-- **📊 Enhanced Performance** - Cache inteligente + procesamiento optimizado
-- **🎯 Extended Math Coverage** - 7 categorías matemáticas completas
-
-## 🤝 Contribución
-
-¡Contribuciones son bienvenidas! ¿Quieres mejorar el agente?
-
-1. **Fork** el proyecto
-2. **Crea una rama** (`git checkout -b feature/nueva-funcionalidad`)
-3. **Commit tus cambios** (`git commit -m 'Añadir nueva funcionalidad'`)
-4. **Push a la rama** (`git push origin feature/nueva-funcionalidad`)
-5. **Abre un Pull Request**
-
-### 📋 Areas para Mejora
-
-- [ ]  Más operaciones de cálculo
-- [ ]  Gráficos y visualizaciones
-- [ ]  Soporte para más idiomas
-- [ ]  Integración con más modelos de IA
-
-## 📄 Licencia
-
-Distribuido bajo licencia MIT. Ver `LICENSE` para más información.
-
-## 👥 Autor
-
-**Oscar Rojo** - [GitHub](https://github.com/zumaia) - [Email](mailto:tu-email@domain.com)
-
-Desarrollado con ❤️ para la AgentX Competition 2025-2026.
+Notas: en entorno Docker, Green está configurado para comunicarse con Purple usando el nombre de servicio `http://app:8000` dentro de la red de Compose.
 
 ---
 
-## ❓ Preguntas Frecuentes
+## Evaluación automática
 
-**¿Necesito API key de Groq?**
+Usa `scripts/run_local_eval.py` para ejecutar una evaluación rápida (usa el servicio Green contra Purple).
 
-No, el agente funciona perfectamente sin ella usando algoritmos matemáticos. La IA es un complemento.
+Ejemplo local (si ambos servidores están corriendo):
 
-**¿Qué nivel matemático cubre?**
+```bash
+# desde la raíz del repo
+python scripts/run_local_eval.py
+```
 
-ESO y Bachillerato, con capacidad para algunos problemas universitarios básicos.
+También puedes ejecutar el runner dentro del contenedor Green:
 
-**¿Puedo usarlo en mi proyecto?**
-
-¡Sí! El código es open source bajo licencia MIT.
-
-**¿Cómo reporto un error?**
-
-Abre un issue en GitHub con el problema y los pasos para reproducirlo.
+```bash
+docker-compose exec -T green python3 scripts/run_local_eval.py
+```
 
 ---
+
+## Endpoints importantes
+
+- `/` (GET) — interfaz web
+- `/resolver` (POST) — resolver problema en JSON
+- `/resolver-web` (POST) — form submit desde la web
+- `/api` (GET) — info básica y health
+- `/health` (GET, en Green) — healthcheck evaluador
+- `/cache/estado` (GET) — estado del cache
+- `/cache/limpiar` (DELETE) — limpiar cache
+
+---
+
+## Buenas prácticas y seguridad
+
+- Nunca comites claves en `.env`. Asegúrate de que `.gitignore` incluye `.env`, `venv/`, `__pycache__/` y `*.pyc`.
+- Si crees que una clave fue expuesta, rótala inmediatamente.
+- Para CI, usa secretos del repositorio y no incluyas claves en los workflows.
+
+---
+
+## Contribuir
+
+1. Fork del proyecto
+2. Crear rama: `git checkout -b feature/mi-cambio`
+3. Commit y push
+4. Abrir Pull Request
+
+Revisa `demo/README.md` para guías rápidas de demo y capturas.
+
+---
+
+## Autor y licencia
+
+Oscar Rojo — https://github.com/zumaia
+
+Licencia: MIT (ver `LICENSE`)
+
+---
+
+Si quieres que añada capturas de pantalla en la sección `demo/` o una versión en inglés, lo hago a continuación.
