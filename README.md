@@ -51,152 +51,43 @@ Este proyecto está optimizado para participar como **Purple Agent** en la compe
 
 ## 🛠️ Instalación Rápida
 
-### Prerrequisitos
-- Python 3.10 o superior
-- pip (gestor de paquetes de Python)
+# 🎯 Math Agent (ESO / High School)
 
-### 📥 Instalación Paso a Paso
+Hybrid project to solve math problems using algorithmic solvers with an AI fallback. Ready for A2A evaluation (AgentX) and for local use via Docker or a Python virtual environment.
 
-```bash
-# 1. Clonar el repositorio
-git clone https://github.com/zumaia/agente-matematico.git
-cd agente-matematico
+> Note: a Spanish version is available at `README_es.md`.
 
-# 2. Crear entorno virtual (recomendado)
-python -m venv venv
-source venv/bin/activate  # Linux/Mac
-# venv\Scripts\activate  # Windows
+Quick summary
+- Purple server (main): `app.py` — port 8000
+- Green evaluator: `green_app.py` — port 8001
+- Automatic evaluation runner: `scripts/run_local_eval.py`
 
-# 3. Instalar dependencias
-pip install -r requirements.txt
-
-# 4. Configurar variables de entorno (opcional)
-cp .env.example .env
-# Editar .env con tu API key de Groq si la tienes
-
-# 5. Ejecutar servidor
-python app.py
-
-
-**¡Listo!** 🎉 Visita `http://localhost:8000` para usar la interfaz web.
-
-## 📖 Uso
-
-### 🌐 Interfaz Web (Recomendado para usuarios)
-
-1. **Abre** `http://localhost:8000` en tu navegador
-2. **Escribe** tu problema matemático en el campo de texto
-3. **Haz clic** en "Resolver Problema"
-4. **Obtén** solución paso a paso con explicaciones detalladas
-
-### 🌐 **Soporte Multiidioma Completo**
-- **🇪🇸 Español** - Idioma principal
-- **🇬🇧 Inglés** - Cobertura internacional  
-- **🇪🇺 Euskera** - Soporte regional
-- **🔄 Cambio dinámico** - Interfaz adaptable en tiempo real
-
-### 🎨 **Interfaz Mejorada**
-- **📱 Diseño totalmente responsive** - Adaptable a móviles y tablets
-- **🎯 21 ejemplos organizados** por categorías matemáticas
-- **⚡ Selector de idioma intuitivo** - Cambio inmediato ES/EN/EU
-- **📊 Gráficos integrados** para visualización matemática
-
-### 📚 **Dominio Matemático Extendido** (7 categorías)
-- **🧮 Álgebra**: Ecuaciones lineales, cuadráticas, sistemas de ecuaciones
-- **📐 Geometría**: Áreas, volúmenes, Pitágoras, circunferencias
-- **🔢 Aritmética**: Fracciones, porcentajes, operaciones combinadas
-- **📊 Estadística**: Media, mediana, moda, probabilidad, rango
-- **📈 Trigonometría**: Seno, coseno, tangente, funciones trigonométricas
-- **🔄 Sucesiones**: Patrones numéricos, progresiones, términos generales
-- **🎲 Combinatoria**: Permutaciones, combinaciones, principios de conteo
-- **📏 Geometría Analítica**: Distancias, pendientes, ecuaciones de recta
-
-### 🔌 API REST (Para desarrolladores)
-
-```python
-import requests
-
-# Ejemplo de uso básico
-response = requests.post(
-    "<http://localhost:8000/resolver>",
-    json={"problema": "resolver la ecuación 2x + 5 = 15"}
-)
-
-print(response.json())
-
-```
-
-**Respuesta esperada:**
-
-```json
-{
-  "problema": "resolver la ecuación 2x + 5 = 15",
-  "solucion": "x = 5",
-  "tipo_problema": "ecuacion_lineal",
-  "pasos_detallados": [
-    "Restar 5 a ambos lados: 2x = 10",
-    "Dividir ambos lados por 2: x = 5"
-  ],
-  "metodo": "algoritmo_matematico",
-  "estado": "resuelto"
-}
-
-```
- # 🎯 Agente Matemático Inteligente (ESO / Bachillerato)
-
-Proyecto híbrido para resolver problemas matemáticos combinando resolutores algorítmicos y un fallback de IA. Preparado para evaluación A2A (AgentX) y para uso local con Docker o en un entorno virtual Python.
-
-Resumen rápido
-- Servidor principal (Purple): `app.py` — puerto 8000
-- Evaluador (Green): `green_app.py` — puerto 8001
-- Evaluación automática: `scripts/run_local_eval.py`
-
-Estado: rama `main`. Revisa la carpeta `demo/` para ejemplos de uso y capturas.
-
----
-
-## Requisitos
-- Python 3.10+ (recomendado 3.11)
+Requirements
+- Python 3.10+ (3.11 recommended)
 - pip
-- Docker & docker-compose (opcional, recomendado para reproducibilidad)
+- Docker & docker-compose (optional, recommended for reproducibility)
 
-## Instalación y ejecución local (venv)
-
-1) Clona el repo:
+Local install (venv)
 
 ```bash
 git clone https://github.com/zumaia/agente-matematico.git
 cd agente-matematico
-```
-
-2) Crea y activa un entorno virtual:
-
-```bash
 python -m venv venv
 source venv/bin/activate  # Linux / macOS
-# venv\Scripts\activate  # Windows (PowerShell)
-```
-
-3) Instala dependencias:
-
-```bash
 pip install -r requirements.txt
-```
-
-4) Opcional: copia el ejemplo de variables de entorno y añade tu clave si la tienes:
-
-```bash
-cp .env.example .env
-# Edita .env para añadir GROQ_API_KEY si quieres usar el fallback de IA
-```
-
-5) Ejecuta el servidor Purple (interfaz web):
-
-```bash
+cp .env.example .env  # optional: add GROQ_API_KEY for AI fallback
 python app.py
-# o: uvicorn app:app --host 0.0.0.0 --port 8000 --reload
+# or: uvicorn app:app --host 0.0.0.0 --port 8000 --reload
 ```
 
+Open http://localhost:8000
+
+Run Green evaluator locally (separate terminal):
+
+```bash
+python green_app.py
+# or: uvicorn green_app:app --host 0.0.0.0 --port 8001 --reload
+```
 Visita: http://localhost:8000
 
 Para arrancar también el servicio Green localmente (si no usas Docker), en otra terminal:
@@ -295,4 +186,3 @@ Licencia: MIT (ver `LICENSE`)
 
 ---
 
-Si quieres que añada capturas de pantalla en la sección `demo/` o una versión en inglés, lo hago a continuación.
