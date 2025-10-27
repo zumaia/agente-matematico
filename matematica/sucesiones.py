@@ -17,14 +17,86 @@ def resolver_sucesiones(problema: str) -> dict:
     """
     problema = problema.lower().strip()
     
-    if any(palabra in problema for palabra in ['progresión aritmética', 'sucesión aritmética', 'pa', 'diferencia constante']):
+    # 1) Detección explícita por palabras clave
+    # Mejorar robustez de detección: evitar coincidencias por subcadenas cortas ('pa' dentro de 'patrón')
+    if any(palabra in problema for palabra in ['progresión aritmética', 'progresion aritmetica', 'sucesión aritmética', 'sucesion aritmetica', 'diferencia constante']):
         return resolver_progresion_aritmetica(problema)
-    elif any(palabra in problema for palabra in ['progresión geométrica', 'sucesión geométrica', 'pg', 'razón constante']):
+    elif any(palabra in problema for palabra in ['progresión geométrica', 'progresion geometrica', 'sucesión geométrica', 'sucesion geometrica', 'razón constante', 'razon constante']):
         return resolver_progresion_geometrica(problema)
     elif any(palabra in problema for palabra in ['término general', 'término n-ésimo', 'sucesión', 'progresión']):
         return resolver_termino_general(problema)
-    else:
+
+    # 2) Detección por lista de números (ej. "Completar: 2, 4, 8, 16, ...")
+    # Extraer números del problema
+    numeros = [float(x) for x in re.findall(r'[-+]?\d*\.?\d+', problema)]
+    # DEBUG
+    # print(f"[resolver_sucesiones] numeros detectados: {numeros}")
+    if len(numeros) >= 3:
+        # intentamos deducir el tipo y devolver el siguiente término
+        a1, a2, a3 = numeros[0], numeros[1], numeros[2]
+
+        # Verificar progresión aritmética
+        if abs((a2 - a1) - (a3 - a2)) < 1e-9:
+            d = a2 - a1
+            ultimo = numeros[-1]
+            siguiente = ultimo + d
+            pasos = [
+                f"1. Términos conocidos: {', '.join(_format_num(x) for x in numeros)}",
+                f"2. Diferencia (d) = {d}",
+                f"3. Siguiente término = {ultimo} + {d} = {siguiente}"
+            ]
+            return {"tipo": "progresion_aritmetica", "solucion": _format_num(siguiente), "pasos": pasos}
+
+        # Verificar progresión geométrica (evitar división por cero)
+        if abs(a1) > 1e-12 and abs((a2 / a1) - (a3 / a2)) < 1e-9:
+            r = a2 / a1
+            ultimo = numeros[-1]
+            siguiente = ultimo * r
+            pasos = [
+                f"1. Términos conocidos: {', '.join(_format_num(x) for x in numeros)}",
+                f"2. Razón (r) = {r}",
+                f"3. Siguiente término = {ultimo} × {r} = {siguiente}"
+            ]
+            return {"tipo": "progresion_geometrica", "solucion": _format_num(siguiente), "pasos": pasos}
+
+        # Verificar si parece Fibonacci (cada término es la suma de los dos anteriores)
+        is_fib = True
+        for i in range(2, len(numeros)):
+            if abs(numeros[i] - (numeros[i-1] + numeros[i-2])) > 1e-9:
+                is_fib = False
+                break
+        if is_fib:
+            ultimo = numeros[-1]
+            penultimo = numeros[-2]
+            siguiente = ultimo + penultimo
+            pasos = [
+                f"1. Términos conocidos: {', '.join(_format_num(x) for x in numeros)}",
+                f"2. Patrón Fibonacci detectado: aₙ = aₙ₋₁ + aₙ₋₂",
+                f"3. Siguiente término = {ultimo} + {penultimo} = {siguiente}"
+            ]
+            return {"tipo": "fibonacci", "solucion": _format_num(siguiente), "pasos": pasos}
+
+        # Si no detectamos, intentar usar el resolutor de término general como último recurso
+        res = resolver_termino_general(problema)
+        if res:
+            # Si el resolutor devuelve fórmula en vez de valor, intentar calcular siguiente término
+            if 'siguiente' in problema or 'completar' in problema or 'qué sigue' in problema or '...' in problema:
+                # intentar usar progresión aritmética/geométrica heurística
+                try:
+                    d = a2 - a1
+                    r = a2 / a1 if abs(a1) > 1e-12 else None
+                    ultimo = numeros[-1]
+                    if r is not None and all(abs(numeros[i] / numeros[i-1] - r) < 1e-6 for i in range(1, len(numeros))):
+                        siguiente = ultimo * r
+                        return {"tipo": "progresion_geometrica", "solucion": _format_num(siguiente), "pasos": [f"Siguiente término = {ultimo} × {r} = {siguiente}"]}
+                    else:
+                        siguiente = ultimo + d
+                        return {"tipo": "progresion_aritmetica", "solucion": _format_num(siguiente), "pasos": [f"Siguiente término = {ultimo} + {d} = {siguiente}"]}
+                except Exception:
+                    return res
         return None
+
+    return None
 
 def resolver_progresion_aritmetica(problema: str) -> dict:
     """

@@ -14,7 +14,7 @@ from typing import Optional
 from pydantic import BaseModel
 import uvicorn
 from matematica import algebra, geometria, aritmetica, estadistica, patrones, cache , ia 
-from matematica.algebra import resolver_ecuacion_lineal, sistemas_ecuaciones, resolver_determinante, resolver_suma_matrices
+from matematica.algebra import resolver_ecuacion_lineal, sistemas_ecuaciones, resolver_determinante, resolver_suma_matrices, resolver_producto_escalar
 from matematica.geometria import calcular_area, teorema_pitagoras, calcular_volumen
 from matematica.aritmetica import operaciones_fracciones, calcular_porcentajes
 from matematica.estadistica import calcular_media, calcular_mediana, calcular_moda, calcular_rango, probabilidad_basica
@@ -195,6 +195,7 @@ async def resolver_problema_web(
             resolver_sucesiones,         
     resolver_combinatoria,
     resolver_suma_matrices,
+    resolver_producto_escalar,
     resolver_geometria_analitica,
     resolver_determinante,
     ceros_funcion

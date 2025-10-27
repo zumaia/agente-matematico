@@ -86,3 +86,56 @@ def resolver_suma_matrices(problema: str):
         solucion = f"[[{fmt(r1[0])},{fmt(r1[1])}],[{fmt(r2[0])},{fmt(r2[1])}]]"
         return {"tipo": "suma_matrices", "solucion": solucion, "pasos": pasos}
     return None
+
+
+def resolver_producto_escalar(problema: str):
+    """Multiplica un vector por un escalar. Detecta patrones como:
+    'Multiplicar el vector [2,3] por el escalar 4' -> '[8,12]'
+    Devuelve la solución con formato canónico sin espacios dentro de corchetes.
+    """
+    try:
+        texto = problema.lower()
+        # Buscar el primer vector entre corchetes
+        vm = re.search(r'\[\s*([\-0-9\.,\s]+)\s*\]', texto)
+        if not vm:
+            return None
+
+        vector_str = vm.group(1)
+        # Extraer números del vector
+        componentes = [c.strip() for c in re.split(r',', vector_str) if c.strip()]
+        if not componentes:
+            return None
+
+        # Buscar el escalar: palabra 'escalar' seguida de un número, o 'por el' seguido de número
+        esc_m = re.search(r'escalar\s*([\-+]?[0-9]*\.?[0-9]+)', texto)
+        if not esc_m:
+            esc_m = re.search(r'por\s+el\s+escalar\s*([\-+]?[0-9]*\.?[0-9]+)', texto)
+        if not esc_m:
+            # Intentar buscar un número cercano al final del enunciado
+            esc_m = re.search(r'([\-+]?[0-9]*\.?[0-9]+)\s*$', texto)
+        if not esc_m:
+            return None
+
+        escalar = float(esc_m.group(1))
+
+        # Multiplicar componentes
+        resultado = []
+        for c in componentes:
+            try:
+                v = float(c)
+            except ValueError:
+                # Si no es numérico, abortar
+                return None
+            prod = v * escalar
+            # Formatear como entero si corresponde
+            if float(prod).is_integer():
+                resultado.append(str(int(prod)))
+            else:
+                resultado.append(str(prod))
+
+        solucion = '[' + ','.join(resultado) + ']'
+        pasos = [f"Vector: [{', '.join(componentes)}]", f"Escalar: {escalar}", f"Producto componente a componente: [{', '.join(resultado)}]"]
+        return {"tipo": "producto_escalar", "solucion": solucion, "pasos": pasos}
+
+    except Exception:
+        return None

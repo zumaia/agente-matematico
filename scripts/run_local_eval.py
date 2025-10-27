@@ -29,6 +29,7 @@ dataset_mod = load_module_from_path('green_agent.dataset_matematico', 'green_age
 # Importar funciones
 resolver_ecuacion_lineal = algebra.resolver_ecuacion_lineal
 sistemas_ecuaciones = algebra.sistemas_ecuaciones
+resolver_producto_escalar = algebra.resolver_producto_escalar
 calcular_area = geometria.calcular_area
 teorema_pitagoras = geometria.teorema_pitagoras
 calcular_volumen = geometria.calcular_volumen
@@ -99,6 +100,7 @@ def main():
         teorema_pitagoras,
         calcular_volumen,
         sistemas_ecuaciones,
+        resolver_producto_escalar,
         calcular_media,
         calcular_mediana,
         calcular_moda,
