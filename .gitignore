@@ -1,1 +1,37 @@
+
+# Environment
 .env
+
+# Python cache
+__pycache__/
+*.py[cod]
+
+# Virtual environments
+venv/
+.venv/
+
+# Pytest cache
+.pytest_cache/
+
+# Mypy cache
+.mypy_cache/
+
+# Byte-compiled / optimized / DLL files
+*.so
+
+# Distribution / packaging
+dist/
+build/
+*.egg-info/
+
+# Node
+node_modules/
+
+# Editor files
+.vscode/
+*.swp
+
+# Cache files
+cache/
+cache_matematico.json
+
