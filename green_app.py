@@ -39,11 +39,27 @@ class EvaluacionRequest(BaseModel):
 # ========== ENDPOINTS PRINCIPALES ==========
 
 @app.get("/", response_class=HTMLResponse)
-async def interfaz_web(request: Request):
-    """Interfaz web para el Green Agent"""
+async def interfaz_web(request: Request, lang: Optional[str] = None):
+    """Interfaz web para el Green Agent.
+
+    Se acepta parámetro de query `lang` para seleccionar idioma (ej. `?lang=en`).
+    Por compatibilidad con la preferencia del proyecto, el idioma por defecto es inglés (`en`).
+    """
     # Determinar URL por defecto para el Purple Agent. En entorno docker-compose se usará 'http://app:8000'
     default_purple = os.getenv('DEFAULT_PURPLE_AGENT_URL', 'http://localhost:8000')
-    return templates.TemplateResponse("green_index.html", {"request": request, "default_purple_url": default_purple})
+    # Priorizar parámetro de query, luego variable de entorno DEFAULT_GREEN_LANG, finalmente 'en'
+    lang = (lang or request.query_params.get('lang') or os.getenv('DEFAULT_GREEN_LANG') or 'en').lower()
+
+    if lang.startswith('en'):
+        template_name = "green_index_en.html"
+    elif lang.startswith('eu'):
+        # If Basque/Euskera template is added in the future, use it. Fallback to Spanish currently.
+        template_name = "green_index.html"
+    else:
+        # default Spanish template kept as `green_index.html`
+        template_name = "green_index.html"
+
+    return templates.TemplateResponse(template_name, {"request": request, "default_purple_url": default_purple})
 
 @app.get("/favicon.ico", include_in_schema=False)
 async def favicon_green():

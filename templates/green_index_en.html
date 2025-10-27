@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MathESO Evaluator - Green Agent</title>
+    <style>
+        /* Styles copied from the Spanish template but text is English */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: linear-gradient(135deg, #4CAF50 0%, #2E7D32 100%); min-height: 100vh; padding: 20px; }
+        .container { max-width: 1200px; margin: 0 auto; background: white; border-radius: 15px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); overflow: hidden; }
+        .header { background: #4CAF50; color: white; padding: 30px; text-align: center; }
+        .header h1 { font-size: 2.5em; margin-bottom: 10px; }
+        .header .badge { background: #2E7D32; padding: 5px 15px; border-radius: 20px; font-size: 0.9em; display: inline-block; margin-top: 10px; }
+        .content { padding: 30px; display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+        .panel { background: #f8f9fa; border-radius: 10px; padding: 25px; border-left: 5px solid #4CAF50; }
+        .panel h2 { color: #2E7D32; margin-bottom: 20px; font-size: 1.4em; }
+        .form-group { margin-bottom: 20px; }
+        label { display: block; margin-bottom: 8px; font-weight: 600; color: #333; }
+        input, select { width: 100%; padding: 12px; border: 2px solid #e0e0e0; border-radius: 8px; font-size: 1em; transition: border-color 0.3s; }
+        input:focus, select:focus { outline: none; border-color: #4CAF50; }
+        .btn { background: linear-gradient(135deg, #4CAF50, #2E7D32); color: white; border: none; padding: 15px 25px; border-radius: 8px; cursor: pointer; font-size: 1em; font-weight: 600; transition: all 0.3s ease; width: 100%; }
+        .btn:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(76, 175, 80, 0.3); }
+        .results { margin-top: 30px; }
+        .metric-card { background: white; border-radius: 10px; padding: 20px; margin-bottom: 15px; box-shadow: 0 3px 10px rgba(0,0,0,0.1); border-left: 4px solid #4CAF50; }
+        .metric-value { font-size: 2em; font-weight: bold; color: #2E7D32; }
+        .metric-label { color: #666; font-size: 0.9em; }
+        .task-result { background: #f8f9fa; border-radius: 8px; padding: 15px; margin-bottom: 10px; border-left: 3px solid #4CAF50; }
+        .task-success { border-left-color: #4CAF50; }
+        .task-error { border-left-color: #f44336; }
+        .loading { display: none; text-align: center; padding: 20px; }
+        .spinner { border: 4px solid #f3f3f3; border-top: 4px solid #4CAF50; border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; margin: 0 auto 10px; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        .problems-list { max-height: 300px; overflow-y: auto; }
+        .problem-item { background: white; padding: 12px; margin-bottom: 8px; border-radius: 6px; border-left: 3px solid #2196F3; }
+        .problem-category { font-size: 0.8em; color: #666; background: #e3f2fd; padding: 2px 8px; border-radius: 10px; display: inline-block; margin-right: 8px; }
+        .category-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; margin: 15px 0; }
+        .problem-difficulty { font-size: 0.8em; background: #e8f5e8; padding: 2px 8px; border-radius: 10px; color: #2E7D32; display: inline-block; }
+        .filter-section { background: white; padding: 15px; border-radius: 8px; margin-bottom: 15px; border: 1px solid #e0e0e0; }
+        .summary-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; text-align: center; margin: 15px 0; }
+        .summary-item { background: white; padding: 15px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🟢 MathESO Evaluator</h1>
+            <p>Green Agent specialized in secondary-school mathematics evaluation (ESO/Bachillerato)</p>
+            <div class="badge">AgentBeats Competition Ready</div>
+        </div>
+        
+        <div class="content">
+            <!-- Configuration Panel -->
+            <div class="panel">
+                <h2>⚙️ Evaluation Configuration</h2>
+                
+                <div class="form-group">
+                    <label for="purpleAgentUrl">Purple Agent URL:</label>
+                    <input type="text" id="purpleAgentUrl" placeholder="http://localhost:8000" value="{{ default_purple_url }}">
+                </div>
+                
+                <div class="form-group">
+                    <label for="numProblems">Number of problems:</label>
+                    <select id="numProblems">
+                        <option value="3">3 problems</option>
+                        <option value="5" selected>5 problems</option>
+                        <option value="8">8 problems</option>
+                        <option value="10">10 problems</option>
+                        <option value="15">15 problems</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="category">Category:</label>
+                    <select id="category">
+                        <option value="">All categories</option>
+                        <option value="algebra">Algebra</option>
+                        <option value="geometria">Geometry</option>
+                        <option value="aritmetica">Arithmetic</option>
+                        <option value="estadistica">Statistics</option>
+                        <option value="geometria_analitica">Analytic Geometry</option>
+                        <option value="trigonometria">Trigonometry</option>
+                        <option value="funciones">Functions</option>
+                        <option value="sucesiones">Sequences</option>
+                        <option value="combinatoria">Combinatorics</option>
+                        <option value="patrones">Patterns</option>
+                        <option value="algebra_lineal">Linear Algebra</option>
+                        <option value="graficos">Graphs</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="difficulty">Difficulty:</label>
+                    <select id="difficulty">
+                        <option value="">All difficulties</option>
+                        <option value="facil">Easy</option>
+                        <option value="medio">Medium</option>
+                    </select>
+                </div>
+                
+                <button class="btn" onclick="startEvaluation()" id="evaluateBtn">🚀 Start Evaluation</button>
+                
+                <div class="loading" id="loading"><div class="spinner"></div><p>Evaluating Purple Agent...</p></div>
+            </div>
+            
+            <!-- Results Panel -->
+            <div class="panel">
+                <h2>📊 Results</h2>
+                <div id="resultsContainer">
+                    <p style="text-align: center; color: #666; padding: 40px;">Run an evaluation to see results</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Available problems list -->
+        <div class="panel" style="grid-column: 1 / -1; margin-top: 20px;">
+            <h2>📚 Available Problems</h2>
+            <div class="filter-section">
+                <label for="problemFilter">🔍 Filter problems:</label>
+                <input type="text" id="problemFilter" placeholder="Search by category, problem or difficulty..." style="width: 100%; padding: 10px; margin-top: 8px; border: 1px solid #ddd; border-radius: 6px;" onkeyup="filterProblems()">
+            </div>
+            <div class="problems-list" id="problemsList"></div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() { loadAvailableProblems(); });
+
+        async function loadAvailableProblems() {
+            try {
+                const response = await fetch('/problems');
+                const data = await response.json();
+                const problemsList = document.getElementById('problemsList');
+                problemsList.innerHTML = '';
+                data.problems.forEach(problem => {
+                    const problemDiv = document.createElement('div');
+                    problemDiv.className = 'problem-item';
+                    problemDiv.innerHTML = `
+                        <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 8px;">
+                            <span class="problem-category">${formatCategoryName(problem.categoria)}</span>
+                            <span class="problem-difficulty">${problem.dificultad}</span>
+                        </div>
+                        <strong style="display: block; margin-bottom: 5px;">${problem.problema}</strong>
+                        <div style="font-size: 0.9em; color: #666;"><strong>Expected solution:</strong> ${problem.solucion_esperada} ${problem.puntos ? ` | <strong>Points:</strong> ${problem.puntos}` : ''}</div>
+                    `;
+                    problemsList.appendChild(problemDiv);
+                });
+            } catch (error) {
+                console.error('Error loading problems:', error);
+                document.getElementById('problemsList').innerHTML = '<p style="color: #f44336; text-align: center;">Error loading problems</p>';
+            }
+        }
+
+        function filterProblems() {
+            const filter = document.getElementById('problemFilter').value.toLowerCase();
+            const problems = document.querySelectorAll('.problem-item');
+            let visibleCount = 0;
+            problems.forEach(problem => {
+                const text = problem.textContent.toLowerCase();
+                const isVisible = text.includes(filter);
+                problem.style.display = isVisible ? 'block' : 'none';
+                if (isVisible) visibleCount++;
+            });
+            const problemsList = document.getElementById('problemsList');
+            if (visibleCount === 0 && filter) {
+                problemsList.innerHTML = `<p style="text-align: center; color: #666; padding: 20px;">No problems match "${filter}"</p>`;
+            }
+        }
+
+        async function startEvaluation() {
+            const evaluateBtn = document.getElementById('evaluateBtn');
+            const loading = document.getElementById('loading');
+            const resultsContainer = document.getElementById('resultsContainer');
+            evaluateBtn.disabled = true; loading.style.display = 'block'; resultsContainer.innerHTML = '<p>Evaluating Purple Agent...</p>';
+            try {
+                const categoriaSelect = document.getElementById('category');
+                const dificultadSelect = document.getElementById('difficulty');
+                const config = {
+                    purple_agent_url: document.getElementById('purpleAgentUrl').value,
+                    num_problemas: parseInt(document.getElementById('numProblems').value),
+                    categoria: categoriaSelect.value || null,
+                    dificultad: dificultadSelect.value || null
+                };
+                const response = await fetch('/evaluate', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(config) });
+                if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+                const results = await response.json();
+                displayResults(results);
+            } catch (error) {
+                console.error('Evaluation error:', error);
+                resultsContainer.innerHTML = `<div class="metric-card" style="border-left-color: #f44336;"><div class="metric-value">❌ Error</div><div class="metric-label">${error.message}</div><div style="font-size: 0.8em; margin-top: 10px;">Check console for details</div></div>`;
+            } finally { evaluateBtn.disabled = false; loading.style.display = 'none'; }
+        }
+
+        function displayResults(results) {
+            const container = document.getElementById('resultsContainer');
+            if (results.status === 'error') { container.innerHTML = `<div class="metric-card" style="border-left-color: #f44336;"><div class="metric-value">❌ Error</div><div class="metric-label">${results.error_message}</div></div>`; return; }
+            let metrics, detailed, domainMetrics;
+            if (results.results) { metrics = results.results; detailed = results.detailed_results; domainMetrics = results.results.domain_specific_metrics; }
+            else if (results.metricas_generales) { metrics = results.metricas_generales; detailed = results.resultados_detallados; domainMetrics = results.metricas_estandar?.domain_specific_metrics; }
+            else { container.innerHTML = `<div class="metric-card" style="border-left-color: #f44336;"><div class="metric-value">❌ Error</div><div class="metric-label">Unrecognized response structure</div><pre>${JSON.stringify(results, null, 2)}</pre></div>`; return; }
+            const overallScore = metrics.overall_score || metrics.accuracy_general || 0; const tasksCompleted = metrics.tasks_completed || metrics.problemas_correctos || 0; const totalTasks = metrics.total_tasks || metrics.total_problemas || 0; const avgResponseTime = metrics.average_response_time || metrics.tiempo_promedio_respuesta || 0; const successRate = totalTasks > 0 ? (tasksCompleted / totalTasks * 100) : 0;
+            container.innerHTML = `
+                <div class="metric-card"><div class="metric-value">${(overallScore * 100).toFixed(1)}%</div><div class="metric-label">Overall Accuracy</div></div>
+                <div style="background: #f8f9fa; padding: 15px; border-radius: 8px; margin: 20px 0;"><h4 style="margin-bottom: 10px; color: #333;">📊 Evaluation Summary</h4><div class="summary-grid"><div class="summary-item"><div style="font-size: 1.5em; font-weight: bold; color: #4CAF50;">${totalTasks}</div><div style="font-size: 0.8em;">Total Problems</div></div><div class="summary-item"><div style="font-size: 1.5em; font-weight: bold; color: #2196F3;">${tasksCompleted}</div><div style="font-size: 0.8em;">Correct</div></div><div class="summary-item"><div style="font-size: 1.5em; font-weight: bold; color: #FF9800;">${successRate.toFixed(1)}%</div><div style="font-size: 0.8em;">Success Rate</div></div></div></div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 20px;"><div class="metric-card"><div class="metric-value">${tasksCompleted}/${totalTasks}</div><div class="metric-label">Problems Correct</div></div><div class="metric-card"><div class="metric-value">${avgResponseTime.toFixed(2)}s</div><div class="metric-label">Average Time</div></div></div>
+            `;
+            if (domainMetrics) {
+                container.innerHTML += `<h3 style="margin: 20px 0 10px 0; color: #333;">📈 Accuracy by Category</h3><div class="category-grid">${Object.entries(domainMetrics).map(([category, accuracy]) => `<div class="metric-card" style="border-left-color: ${getCategoryColor(category)};"><div class="metric-value">${(accuracy * 100).toFixed(1)}%</div><div class="metric-label">${formatCategoryName(category)}</div></div>`).join('')}</div>`;
+            }
+            container.innerHTML += `<h3 style="margin: 20px 0 10px 0; color: #333;">🔍 Detailed Results</h3>`;
+            if (detailed && detailed.length > 0) {
+                detailed.forEach(task => {
+                    const puntosObtenidos = task.puntuacion_obtenida || 0; const puntosTotales = task.puntos || 1; const isSuccess = puntosObtenidos === puntosTotales;
+                    const taskDiv = document.createElement('div'); taskDiv.className = `task-result ${isSuccess ? 'task-success' : 'task-error'}`;
+                    taskDiv.innerHTML = `
+                        <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 8px;"><span class="problem-category">${formatCategoryName(task.categoria)}</span><span class="problem-difficulty">${task.dificultad}</span></div>
+                        <div style="font-weight: bold; margin-bottom: 5px;">${task.problema || 'Problem not specified'}</div>
+                        <div style="font-size: 0.9em;"><strong>Agent solution:</strong> ${task.solucion_agente || 'Not available'}<br><strong>Correct solution:</strong> ${task.solucion_correcta || 'Not available'}<br><strong>Score:</strong> ${puntosObtenidos}/${puntosTotales} | <strong>Time:</strong> ${(task.tiempo_respuesta || 0).toFixed(2)}s | <strong>Status:</strong> ${task.estado || 'unknown'}</div>
+                    `;
+                    container.appendChild(taskDiv);
+                });
+            } else {
+                container.innerHTML += '<p style="text-align: center; color: #666;">No detailed results available</p>';
+            }
+        }
+
+        function getCategoryColor(category) {
+            const colors = { 'algebra': '#4CAF50', 'geometry': '#2196F3', 'arithmetic': '#FF9800', 'statistics': '#9C27B0', 'analytic_geometry': '#009688', 'trigonometry': '#795548', 'functions': '#E91E63', 'sequences': '#607D8B', 'combinatorics': '#FF5722', 'patterns': '#673AB7', 'linear_algebra': '#3F51B5', 'graphics': '#00BCD4' };
+            return colors[category] || '#4CAF50';
+        }
+
+        function formatCategoryName(categoryKey) {
+            const names = { 'algebra': 'Algebra', 'geometria': 'Geometry', 'geometry': 'Geometry', 'aritmetica': 'Arithmetic', 'arithmetic': 'Arithmetic', 'estadistica': 'Statistics', 'statistics': 'Statistics', 'geometria_analitica': 'Analytic Geometry', 'analytic_geometry': 'Analytic Geometry', 'trigonometria': 'Trigonometry', 'trigonometry': 'Trigonometry', 'funciones': 'Functions', 'functions': 'Functions', 'sucesiones': 'Sequences', 'sequences': 'Sequences', 'combinatoria': 'Combinatorics', 'combinatorics': 'Combinatorics', 'patrones': 'Patterns', 'patterns': 'Patterns', 'algebra_lineal': 'Linear Algebra', 'linear_algebra': 'Linear Algebra', 'graficos': 'Graphs', 'graphics': 'Graphs' };
+            return names[categoryKey] || categoryKey;
+        }
+    </script>
+</body>
+</html>
