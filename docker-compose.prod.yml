@@ -1,0 +1,27 @@
+version: "3.8"
+
+services:
+  app:
+    build: .
+    image: agente-matematico/app:latest
+    ports:
+      - "8000:8000"
+    environment:
+      - PYTHONUNBUFFERED=1
+      - GROQ_API_KEY=${GROQ_API_KEY}
+    restart: unless-stopped
+
+  green:
+    build: .
+    image: agente-matematico/green:latest
+    ports:
+      - "8001:8001"
+    environment:
+      - PYTHONUNBUFFERED=1
+      - DEFAULT_PURPLE_AGENT_URL=http://app:8000
+      - GROQ_API_KEY=${GROQ_API_KEY}
+    depends_on:
+      - app
+    restart: unless-stopped
+
+# Production compose: no mounts, no --reload. Pass secrets via env or orchestration.

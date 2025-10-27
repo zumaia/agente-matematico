@@ -41,7 +41,9 @@ class EvaluacionRequest(BaseModel):
 @app.get("/", response_class=HTMLResponse)
 async def interfaz_web(request: Request):
     """Interfaz web para el Green Agent"""
-    return templates.TemplateResponse("green_index.html", {"request": request})
+    # Determinar URL por defecto para el Purple Agent. En entorno docker-compose se usará 'http://app:8000'
+    default_purple = os.getenv('DEFAULT_PURPLE_AGENT_URL', 'http://localhost:8000')
+    return templates.TemplateResponse("green_index.html", {"request": request, "default_purple_url": default_purple})
 
 @app.get("/favicon.ico", include_in_schema=False)
 async def favicon_green():

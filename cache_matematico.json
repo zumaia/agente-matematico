@@ -33,40 +33,6 @@
     "problema": "Calcular el área de un círculo con radio 7 cm",
     "tipo": "area_circulo"
   },
-  "0d473f44dff7580e891cc03c12c4dfc1": {
-    "respuesta": {
-      "problema": "Calcular el área de un triángulo con base 8 cm y altura 5 cm",
-      "solucion": "Área = 20.0 unidades cuadradas",
-      "tipo_problema": "area_triangulo",
-      "pasos_detallados": [
-        "Vamos a resolverlo paso a paso:",
-        "Fórmula: Área = (base × altura) / 2",
-        "Sustitución: (8 × 5) / 2",
-        "Cálculo: 20.0"
-      ],
-      "metodo": "algoritmo_matematico",
-      "estado": "resuelto",
-      "ejercicios_practica": [
-        {
-          "problema": "Resuelve: 2x + 5 = 15",
-          "solucion": "x = 5",
-          "dificultad": "básica",
-          "nivel": "ESO General"
-        },
-        {
-          "problema": "Calcula el área de un triángulo de base 6 y altura 4",
-          "solucion": "Área = 12",
-          "dificultad": "básica",
-          "nivel": "ESO General"
-        }
-      ],
-      "nivel_eso": "1º-2º ESO",
-      "grafico": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAApIAAAIQCAYAAAAy8I61AAAAOnRFWHRTb2Z0d2FyZQBNYXRwbG90bGliIHZlcnNpb24zLjEwLjcsIGh0dHBzOi8vbWF0cGxvdGxpYi5vcmcvTLEjVAAAAAlwSFlzAAAPYQAAD2EBqD+naQAARFdJREFUeJzt3Xl8VPX1//H3JJAFQsKWsO8gyG5BKFIEWaVsKosoFkRBfiUWELdCW5GCRougFhABFbRCQVFUqIKIbC6UzVgQUVxYBJQokIRAAmQ+vz/4ZmSSGZK5ZHJneT0fjzw0N3fmnpy5Ie/cuedehzHGCAAAAPBRhN0FAAAAIDgRJAEAAGAJQRIAAACWECQBAABgCUESAAAAlhAkAQAAYAlBEgAAAJYQJAEAAGAJQRIhJTs7W4899pjef/99u0sJeytWrNDMmTPldDrtLgUA4CcESQSVLl26qEuXLl6/ft999+nf//632rdvX3JFFcGjjz4qh8Nhdxkl5uOPP9Yf/vAHNWvWTBERgfPPzIEDB+RwOLR48WK/bifv9f7555/9uh0UXd26dXXnnXfaXQYQcgLnX3iEBYfDUaSPjRs3+vzcr7/+ut555x29++67SkhIKP7iA0heUMn7KF26tOrWratx48bp1KlTftvu3r179eijj+rAgQNe1zlx4oRuu+02zZ49WzfeeKPfakHJczqdev7559W6dWvFxcWpSpUq6t27tz755JMiP8eLL76oq6++WjExMWrUqJFmz57tx4q9K8q+HMg2btzo9d/PrVu3Fuk5jhw5oiFDhqh8+fKKj4/XgAED9N133/m5coSaUnYXgPDyr3/9y+3zV155RevWrSuw/Oqrr/b4eG9vWRtj9MMPP+i9995T7dq1i6fYIDBv3jzFxcUpKytL69ev1+zZs7Vr1y599NFHftne3r17NXXqVHXp0kV169b1uE5qaqqmT5+u4cOH+6UG2OfBBx/UrFmzdMcdd2js2LE6deqU5s+fr86dO+vjjz9Wu3btLvv4+fPn6//9v/+ngQMHauLEidqyZYvGjRunM2fO6OGHHy6h7+KiouzLwWDcuHG69tpr3ZY1bNiw0MedPn1aN9xwg9LT0zV58mSVLl1aTz/9tDp37qzU1FRVqlTJXyUjxBAkUaLuuOMOt8+3bt2qdevWFVie35kzZ1SmTBlFRUV5/LrD4dB9991XbHUGi0GDBqly5cqSpDFjxmjo0KFavny5tm3bVugvdX/p2rWrLduFf124cEHz5s3ToEGD3P7wGzx4sOrXr68lS5Zcdp87e/as/vKXv6hPnz5asWKFJGn06NFyOp2aNm2a7rnnHlWoUMHv34e/ZWVlqWzZsiW2vU6dOmnQoEE+P+65557T/v37tW3bNlcQ7d27t5o3b66ZM2fq8ccfL+5SEaJ4axsBp0uXLmrevLl27typ66+/XmXKlNHkyZNdX7v0HMlz587pkUceUZs2bZSQkKCyZcuqU6dO2rBhg9tz5p0b99RTT2nBggVq0KCBoqOjde2112r79u0Fanj99dfVtGlTxcTEqHnz5lq5cqXuvPNOtyMXeW8t5X8bvqjn4V24cEHTpk1z1VK3bl1NnjxZOTk5PvXrUp06dZIkffvtt27L//vf/+rGG29UQkKCypQp4zqClN+RI0d09913q3r16oqOjla9evX0xz/+UefOndPixYs1ePBgSdINN9xQ4DSEt99+W3369HE9tkGDBpo2bZpyc3PdtpH3+u7du1c33HCDypQpoxo1augf//hHgXoOHjyo/v37q2zZskpKStJ9992ntWvXFui7t/PfCjunNs+HH36oTp06qWzZsipfvrwGDBigL7/8ssB6+/bt06FDhwp9vjw///yzhgwZovj4eFWqVEnjx49Xdna22zqLFi1S165dlZSUpOjoaDVt2lTz5s0r8Fw7duxQr169VLlyZcXGxqpevXq666673NZxOp165pln1KxZM8XExKhKlSoaM2aMTp48WeSavTl//rzOnj2rKlWquC1PSkpSRESEYmNjL/v4DRs26JdfftHYsWPdlicnJysrK0v/+c9/LNX11FNP6brrrlOlSpUUGxurNm3auIKqN4Xtyw6HQ48++miBx+XfzxYvXiyHw6FNmzZp7NixSkpKUs2aNSVd3HfHjh2rxo0bKzY2VpUqVdLgwYP98lZ6ZmamLly44NNjVqxYoWuvvdbtaGaTJk3UrVs3vfbaa8VdIkIYRyQRkH755Rf17t1bQ4cO1R133FHgl1eejIwMLVy4ULfffrtGjx6tjIwMvfDCC+rVq5e2bdum1q1bu62/dOlSZWZmasyYMXI4HPrHP/6hW265Rd99951Kly4tSfrPf/6jW2+9VS1atFBKSopOnjypu+++WzVq1CjW73HUqFF6+eWXNWjQIN1///3673//q5SUFH355ZdauXKlpefM+yV16ZGdDz/8UL1791abNm00ZcoURUREuMLLli1bXEeRjh49qnbt2unUqVO655571KRJEx05ckQrVqzQmTNndP3112vcuHH65z//qcmTJ7tOP8j77+LFi1W2bFlNnDhRZcuW1fr16/XII48oIyNDM2bMcKvz5MmTuvHGG3XLLbdoyJAhWrFihR5++GG1aNFCvXv3lnTxyE7Xrl117NgxjR8/XlWrVtXSpUsL/JFwpT744AP17t1b9evX16OPPqqzZ89q9uzZ6tixo3bt2uX2x8PVV1+tzp07F/kc3iFDhqhu3bpKSUnR1q1b9c9//lMnT57UK6+84lpn3rx5atasmfr3769SpUpp1apVGjt2rJxOp5KTkyVJx48fV8+ePZWYmKg///nPKl++vA4cOKA333zTbXtjxozR4sWLNXLkSI0bN07ff/+95syZo88++0wff/yxax8/ffp0gUDrSenSpV3nG8fGxqp9+/ZavHixOnTooE6dOunUqVOaNm2aKlSooHvuueeyz/XZZ59Jktq2beu2vE2bNoqIiNBnn31W6DsTnjz77LPq37+/hg0bpnPnzmnZsmUaPHiwVq9erT59+nh8TGH7sq/Gjh2rxMREPfLII8rKypIkbd++XZ988omGDh2qmjVr6sCBA5o3b566dOmivXv3qkyZMpIuhv8TJ04UaTsJCQmu1zDPyJEjdfr0aUVGRqpTp06aMWNGgR7n53Q69b///a/AHyKS1K5dO73//vvKzMxUuXLlilQXwpwBbJScnGzy74adO3c2kszzzz9fYP3OnTubzp07uz6/cOGCyc7OdlvnxIkTJjEx0dx1112uZd9//72RZCpVqmROnDjhWv72228bSWbVqlWuZS1atDA1a9Y0mZmZrmUbN240kkydOnVcyzZs2GAkmQ0bNrhtP29bixYtci2bMmWK2/eZmppqJJlRo0a5PfaBBx4wksyHH35Y4Hu/VN7zffXVVyYtLc0cOHDAvPTSSyY2NtYkJiaarKwsY4wxTqfTNGrUyPTq1cs4nU7X48+cOWPq1atnevTo4Vo2fPhwExERYbZv315ge3mPff311z1+z8YYc/r06QLLRo0aZcqUKeP2GuW9vq+88oprWU5OjqlataoZOHCga9nMmTONJPPWW2+5lp09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88031bFjR9fyS48w+qpOnTrau3evjDFu2/X02lSoUMHjhdgPHjyo+vXrX3Ybkjz+0bFv3z5Vrlz5ii7lsn//frejVd98842cTqdrgGfVqlXKycnRO++843a03NtA0W9/+1v99re/1WOPPaalS5dq2LBhWrZsmUaNGqUGDRrogw8+UMeOHQv9Q2z8+PF6+eWXC63/0sGin376SZLnMHX+/PlCp4bz/pDZsWOHfv/737uW79ixQ06n0+sfOpfzxhtvKCYmRmvXrnV7m3bRokWFPvZyf8R52p/OnTvnMXh5s2LFCo0YMUIzZ850LcvOzi7wvIcPH/Z4RNOTDRs2FHoVgu+++04xMTFup+bkFxERoRYtWmjHjh0Fvvbf//5X9evXZ9AGRcblfxDUHA6HnE6n21/4n3zySZHv7JBf9erV1bx5c73yyis6ffq0a/mmTZu0e/dut3Xr1KmjyMhIbd682W35c889V+h28n6RPvPMM27L8472eJs2LcywYcNUs2ZN11uMbdq0UYMGDfTUU0+5fT958o6ERERE6KabbtKqVas8/nLJO1KYF6ry/zLM+6V8/vx517KcnBzNmTPH0vchSb169dKRI0f0zjvvuJZlZ2dr4cKFBdZt0KCBtm7d6vbW6erVq3X48OHLbqNatWpq3bq1Xn75Zbfvac+ePXr//ffdAo/k++V/5s6d6/Z53lvCeZPpeUdL87/tmT8InTx5ssDR2rzglff25JAhQ5Sbm6tp06YVqOPChQtu399DDz2kdevWFfpxaQi66qqrJF18F+BSu3bt0ldffaVrrrnGtezMmTPat2+f27maXbt2VcWKFQtc2mjevHkqU6aMpX0+MjJSDofDLdweOHBAb731VqGP9bYvSxf3p/w/1wsWLPDp3YbIyMgCr9ns2bMLPEfeOZJF+bj0HElPRzE///xzvfPOO+rZs6fbrUkPHTqkffv2ua07aNAgbd++3e3n/auvvtKHH37oujQSUBQckURQ69Onj1auXKmbb75Zffr00Xfffaf58+erWbNmlo9KPv744xowYIA6duyokSNH6uTJk5ozZ46aN2/uFsYSEhI0ePBgzZ49Ww6HQw0aNNDq1avdzkXzplWrVhoxYoQWLFigU6dOqXPnztq2bZtefvll3XTTTUUatPGkdOnSGj9+vB588EGtWbPGNezSu3dvNWvWTCNHjlSNGjV05MgRbdiwQfHx8Vq1apXr+37//ffVuXNn3XPPPbr66qt17Ngxvf766/roo49Uvnx5tW7dWpGRkXryySeVnp6u6Ohode3aVdddd53Kly+vO++8U+PGjZPD4dArr7yiUqWs/xMzZswYzZkzR7fddpvGjx+vatWqacmSJa5hgEuPKI0aNUorVqzQjTfeqCFDhujbb7/Vq6++6joiezkzZsxQ79691aFDB919992uy/8kJCQUuJagr5f/+f7779W/f3/deOON+vTTT/Xqq6/q9ttvdwWCnj17KioqSv369dOYMWN0+vRpLVy4UElJSW5Hv15++WU999xzuvnmm9WgQQNlZmZq4cKFio+Pd4Xdzp07a8yYMUpJSVFqaqp69uyp0qVLa//+/Xr99df17LPPui5cbeUcyTZt2qhHjx56+eWXlZGRoZ49e+rYsWOaPXu2YmNjNWHCBNe627Zt0w033KApU6a4ehgbG6tp06YpOTlZgwcPVq9evbRlyxa9+uqreuyxx9yGnTZu3Fjg8Z706dNHs2bN0o033qjbb79dx48f19y5c9WwYcNCj4Z725eTkpI0atQo1x14evTooc8//1xr16697DBRfn379tW//vUvJSQkqGnTpvr000/1wQcfFLhjjNVzJG+99VbXYGFSUpL27t2rBQsWqEyZMnriiSfc1h0+fLg2bdrkFmzHjh2rhQsXqk+fPnrggQdUunRpzZo1S1WqVCm2YTaECbvGxQFjvF/+p1mzZh7Xz385F6fTaaZPn25q165tYmJiTJs2bcx7771nRowY4XapnrxLbMyYMaPAc8rDpT6WLVtmmjRpYqKjo03z5s3NO++8YwYOHGiaNGnitl5aWpoZOHCgKVOmjKlQoYIZM2aM2bNnT6GX/zHGmPPnz5upU6eaevXqmdKlS5tatWqZSZMmFbickSd5z5eWllbga+np6SYhIcGtT5999pm55ZZbTKVKlUx0dLSpU6eOGTJkiFm/fr3bYw8ePGiGDx9uEhMTTXR0tKlfv75JTk42OTk5rnUWLlxo6tevbyIjI90uSbJlyxbTvn17Exsba2rUqGEmT55s3n///QKXLfH2+uZ/zYwx5rvvvjN9+vRxXdbo/vvvN2+88YaRZLZu3eq27syZM02NGjVMdHS06dixo9mxY0eRLv9jjDEffPCB6dixo4mNjTXx8fGmX79+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"
-    },
-    "timestamp": 1761514864.6687894,
-    "problema": "Calcular el área de un triángulo con base 8 cm y altura 5 cm",
-    "tipo": "area_triangulo"
-  },
   "340bf54526a59f7461c4dac731942395": {
     "respuesta": {
       "problema": "Completar: 3, 6, 9, 12, ...",
@@ -317,38 +283,6 @@
     "problema": "Encontrar el punto medio entre (1,2) y (5,8)",
     "tipo": "punto_medio"
   },
-  "0d1a1554e07c2dd9e67cd4a59fd893ae": {
-    "respuesta": {
-      "problema": "Resolver la ecuación: 2x + 5 = 15",
-      "solucion": "x = 5.0",
-      "tipo_problema": "ecuacion_lineal",
-      "pasos_detallados": [
-        "Ecuación: 2x + 5 = 15",
-        "Restar 5 en ambos lados: 2x = 10",
-        "Dividir entre 2: x = 5.0"
-      ],
-      "metodo": "algoritmo_matematico",
-      "estado": "resuelto",
-      "ejercicios_practica": [
-        {
-          "problema": "Resuelve: 2x + 5 = 15",
-          "dificultad": "básica",
-          "nivel": "ESO General",
-          "uid": "7150ed44a0f50058a1411768a8ac971e"
-        },
-        {
-          "problema": "Calcula el área de un triángulo de base 6 y altura 4",
-          "dificultad": "básica",
-          "nivel": "ESO General",
-          "uid": "68faa4f3952b211739d1f2e2bf816ad6"
-        }
-      ],
-      "nivel_eso": "2º-3º ESO"
-    },
-    "timestamp": 1761515502.5144103,
-    "problema": "Resolver la ecuación: 2x + 5 = 15",
-    "tipo": "ecuacion_lineal"
-  },
   "4f053e530db83a1186e392b20e5e821c": {
     "respuesta": {
       "problema": "Hallar la distancia entre los puntos A(2,3) y B(5,7)",
@@ -524,82 +458,6 @@
     "problema": "Encontrar el siguiente número: 1, 1, 2, 3, 5, 8, ...",
     "tipo": "algebra"
   },
-  "44c4e9d298110094cfb7244820d3ed67": {
-    "respuesta": {
-      "problema": "Resolver: tan(θ) = 1, encontrar θ en el primer cuadrante",
-      "solucion": "Es 45°",
-      "tipo_problema": "algebra",
-      "pasos_detallados": [
-        "2. Pasos detallados numerados:*",
-        "Identifica la función trigonométrica: En este problema, se nos da la función tangente (tan) y su valor es igual a 1.",
-        "Recuerda la definición de la función tangente: La función tangente es la relación entre el seno y el coseno de un ángulo: tan(θ) = sen(θ) / cos(θ).",
-        "Establece la ecuación: Dado que tan(θ) = 1, podemos establecer la ecuación: sen(θ) / cos(θ) = 1.",
-        "Simplifica la ecuación: Multiplicando ambos lados de la ecuación por cos(θ), obtenemos: sen(θ) = cos(θ).",
-        "Recuerda las identidades trigonométricas: Sabemos que en el primer cuadrante, sen(θ) = cos(45°) y cos(θ) = sen(45°).",
-        "Sustituye las identidades: Sustituyendo las identidades en la ecuación, obtenemos: cos(45°) = sen(45°).",
-        "Recuerda que sen(45°) = cos(45°): En el primer cuadrante, sen(45°) y cos(45°) son iguales y tienen un valor de √2/2.",
-        "Concluye que θ = 45°: Dado que sen(45°) = cos(45°), podemos concluir que θ = 45°.",
-        "Nota:* Es importante recordar que la función tangente es periódica, lo que significa que se repite cada 180°. Sin embargo, en este caso, estamos buscando la solución en el primer cuadrante, por lo que la respuesta es 45°."
-      ],
-      "modelo_ia": "llama3-8b-8192",
-      "metodo": "ia_groq",
-      "estado": "resuelto",
-      "ejercicios_practica": [
-        {
-          "problema": "Resuelve: 2x + 5 = 15",
-          "dificultad": "básica",
-          "nivel": "ESO General",
-          "uid": "f3af2d79c97648b166c8b972f85ea5cb"
-        },
-        {
-          "problema": "Calcula el área de un triángulo de base 6 y altura 4",
-          "dificultad": "básica",
-          "nivel": "ESO General",
-          "uid": "75be2588d9de2a8007e792d30cbe58b2"
-        }
-      ],
-      "nivel_eso": "ESO General"
-    },
-    "timestamp": 1761515506.2730887,
-    "problema": "Resolver: tan(θ) = 1, encontrar θ en el primer cuadrante",
-    "tipo": "algebra"
-  },
-  "0a32c079c5ae4aa57aa6c8d08ac82e6f": {
-    "respuesta": {
-      "problema": "Dada f(x) = 3x - 1, encontrar f⁻¹(x)",
-      "solucion": "Final claramente:** f⁻¹(x) = (x + 1)/3",
-      "tipo_problema": "algebra",
-      "pasos_detallados": [
-        "2. Pasos detallados numerados:*",
-        "Para encontrar la función inversa f⁻¹(x), debemos comenzar con la función original f(x) = 3x - 1.",
-        "Luego, intercambiamos los roles de x e y, lo que nos da x = 3y - 1.",
-        "Ahora, debemos resolver y en términos de x. Para hacer esto, primero sumamos 1 a ambos lados de la ecuación, lo que nos da x + 1 = 3y.",
-        "A continuación, dividimos ambos lados de la ecuación por 3, lo que nos da (x + 1)/3 = y.",
-        "Como hemos resuelto y en términos de x, ahora podemos escribir la función inversa f⁻¹(x) = (x + 1)/3. Recuerda que la función inversa de una función lineal en la forma f(x) = mx + b es f⁻¹(x) = (x - b)/m. En este caso, m = 3 y b = -1."
-      ],
-      "modelo_ia": "llama3-8b-8192",
-      "metodo": "ia_groq",
-      "estado": "resuelto",
-      "ejercicios_practica": [
-        {
-          "problema": "Resuelve: 2x + 5 = 15",
-          "dificultad": "básica",
-          "nivel": "ESO General",
-          "uid": "37333fe929d3dd70f074194bd26d6e42"
-        },
-        {
-          "problema": "Calcula el área de un triángulo de base 6 y altura 4",
-          "dificultad": "básica",
-          "nivel": "ESO General",
-          "uid": "85b80c96d8b5886c90629af6c9aaf10b"
-        }
-      ],
-      "nivel_eso": "ESO General"
-    },
-    "timestamp": 1761515799.45365,
-    "problema": "Dada f(x) = 3x - 1, encontrar f⁻¹(x)",
-    "tipo": "algebra"
-  },
   "e66c4feb0728a56529eeda6ef50b6a31": {
     "respuesta": {
       "problema": "Encontrar el término 5 de la sucesión: 2, 5, 8, 11, ...",
@@ -637,112 +495,6 @@
     "problema": "Encontrar el término 5 de la sucesión: 2, 5, 8, 11, ...",
     "tipo": "algebra"
   },
-  "cd43b7e1982ad7647a7d63bbc0755164": {
-    "respuesta": {
-      "problema": "Dada f(x) = 2x + 3, calcular f(5)",
-      "solucion": "Final**: por lo tanto, f(5) = 13",
-      "tipo_problema": "algebra",
-      "pasos_detallados": [
-        "2. Pasos detallados numerados:*",
-        "Identifica la función: La función dada es f(x) = 2x + 3. Esto significa que para cualquier valor de x, se multiplica por 2 y luego se suma 3.",
-        "Sustituye el valor de x: Necesitamos encontrar f(5), por lo que sustituimos x = 5 en la función.",
-        "Aplica la función: Sustituyendo x = 5 en la función f(x) = 2x + 3, obtenemos f(5) = 2(5) + 3.",
-        "Realiza la multiplicación: Multiplica 2 por 5, lo que da como resultado 10.",
-        "Realiza la suma: Suma 3 a 10, lo que da como resultado 13.",
-        "Obtén la respuesta final: Por lo tanto, f(5) = 13."
-      ],
-      "modelo_ia": "llama3-8b-8192",
-      "metodo": "ia_groq",
-      "estado": "resuelto",
-      "ejercicios_practica": [
-        {
-          "problema": "Resuelve: 2x + 5 = 15",
-          "dificultad": "básica",
-          "nivel": "ESO General",
-          "uid": "ff69b4ba612774774cf75aac8e1c6c40"
-        },
-        {
-          "problema": "Calcula el área de un triángulo de base 6 y altura 4",
-          "dificultad": "básica",
-          "nivel": "ESO General",
-          "uid": "926b642d231c1de71d5d5079c842ad19"
-        }
-      ],
-      "nivel_eso": "1º-2º ESO"
-    },
-    "timestamp": 1761515801.050229,
-    "problema": "Dada f(x) = 2x + 3, calcular f(5)",
-    "tipo": "algebra"
-  },
-  "f0adf4a45e922cd54f29139e9cdc2934": {
-    "respuesta": {
-      "problema": "Calcular la suma de los primeros 4 términos de: 1, 3, 5, 7, ...",
-      "solucion": "Final**: la suma de los primeros 4 términos de la secuencia es 16",
-      "tipo_problema": "algebra",
-      "pasos_detallados": [
-        "Pasos detallados:*",
-        "Identificar la secuencia: La secuencia dada es una secuencia aritmética, donde cada término es 2 mayor que el anterior. La secuencia comienza con 1 y aumenta en 2 cada vez.",
-        "Determinar los primeros 4 términos: Los primeros 4 términos de la secuencia son 1, 3, 5 y 7.",
-        "Sumar los términos: Para encontrar la suma de los primeros 4 términos, simplemente sumamos los números: 1 + 3 + 5 + 7.",
-        "Realizar la suma: 1 + 3 = 4, luego 4 + 5 = 9 y finalmente 9 + 7 = 16.",
-        "Presentar la respuesta final: La suma de los primeros 4 términos de la secuencia es 16."
-      ],
-      "modelo_ia": "llama3-8b-8192",
-      "metodo": "ia_groq",
-      "estado": "resuelto",
-      "ejercicios_practica": [
-        {
-          "problema": "Resuelve: 2x + 5 = 15",
-          "dificultad": "básica",
-          "nivel": "ESO General",
-          "uid": "b54545d534b9381cc3622d186eaab77e"
-        },
-        {
-          "problema": "Calcula el área de un triángulo de base 6 y altura 4",
-          "dificultad": "básica",
-          "nivel": "ESO General",
-          "uid": "16a990c694067ab56d9cfce32f073d47"
-        }
-      ],
-      "nivel_eso": "1º-2º ESO"
-    },
-    "timestamp": 1761515801.460304,
-    "problema": "Calcular la suma de los primeros 4 términos de: 1, 3, 5, 7, ...",
-    "tipo": "algebra"
-  },
-  "4e9516c2249e3e090a58ada09943c21a": {
-    "respuesta": {
-      "problema": "Resolver el sistema: x + y = 10, 2x - y = 5",
-      "solucion": "x = 5.00, y = 5.00",
-      "tipo_problema": "sistema_ecuaciones",
-      "pasos_detallados": [
-        "Sistema: 1x + 1y = 10, 2x + -1y = 5",
-        "Determinante: 1×-1 - 2×1 = -3",
-        "X = (10×-1 - 5×1) / -3 = 5.00",
-        "Y = (1×5 - 2×10) / -3 = 5.00"
-      ],
-      "metodo": "algoritmo_matematico",
-      "estado": "resuelto",
-      "ejercicios_practica": [
-        {
-          "problema": "Resuelve: 2x + 5 = 15",
-          "dificultad": "básica",
-          "nivel": "ESO General",
-          "uid": "a7ae15489b068ceb6f6fb620f416dc9d"
-        },
-        {
-          "problema": "Calcula el área de un triángulo de base 6 y altura 4",
-          "dificultad": "básica",
-          "nivel": "ESO General",
-          "uid": "a8b543b70c77c9205acc75f381282d9a"
-        }
-      ],
-      "nivel_eso": "2º-3º ESO"
-    },
-    "timestamp": 1761515819.179143,
-    "problema": "Resolver el sistema: x + y = 10, 2x - y = 5",
-    "tipo": "sistema_ecuaciones"
-  },
   "ff974c1912ec427efab174ac8c74d6b1": {
     "respuesta": {
       "problema": "Aplicar el teorema de Pitágoras: cateto a=3, cateto b=4, hallar hipotenusa",
@@ -775,74 +527,6 @@
     "timestamp": 1761515823.3781404,
     "problema": "Aplicar el teorema de Pitágoras: cateto a=3, cateto b=4, hallar hipotenusa",
     "tipo": "teorema_pitagoras_hipotenusa"
-  },
-  "daaf009216de6c74a297b8209a5f8fd7": {
-    "respuesta": {
-      "problema": "Calcular 30% de 200",
-      "solucion": "El 30.0% de 200.0 es 60.0",
-      "tipo_problema": "porcentaje_simple",
-      "pasos_detallados": [
-        "Vamos a resolverlo paso a paso:",
-        "Fórmula: (porcentaje × cantidad) / 100",
-        "Sustitución: (30.0 × 200.0) / 100",
-        "Cálculo: 60.0"
-      ],
-      "metodo": "algoritmo_matematico",
-      "estado": "resuelto",
-      "ejercicios_practica": [
-        {
-          "problema": "Resuelve: 2x + 5 = 15",
-          "dificultad": "básica",
-          "nivel": "ESO General",
-          "uid": "40f8efe017b06f1f25ba098302554435"
-        },
-        {
-          "problema": "Calcula el área de un triángulo de base 6 y altura 4",
-          "dificultad": "básica",
-          "nivel": "ESO General",
-          "uid": "2f2efe53d5ef2cbea6584d4e61eedd5f"
-        }
-      ],
-      "nivel_eso": "1º-2º ESO"
-    },
-    "timestamp": 1761515826.9128242,
-    "problema": "Calcular 30% de 200",
-    "tipo": "porcentaje_simple"
-  },
-  "a0587b9e1ea651d98d74d490e18ce877": {
-    "respuesta": {
-      "problema": "Sumar las fracciones: 1/2 + 1/3",
-      "solucion": "Resultado: 5/6",
-      "tipo_problema": "suma_fracciones",
-      "pasos_detallados": [
-        "Vamos a resolverlo paso a paso:",
-        "Fracciones: 1/2 + 1/3",
-        "Mínimo común múltiplo: 6",
-        "Numerador común: (1×3) + (1×2) = 5",
-        "Fracción antes de simplificar: 5/6",
-        "Fracción simplificada: 5/6"
-      ],
-      "metodo": "algoritmo_matematico",
-      "estado": "resuelto",
-      "ejercicios_practica": [
-        {
-          "problema": "Resuelve: 2x + 5 = 15",
-          "dificultad": "básica",
-          "nivel": "ESO General",
-          "uid": "da9ecc1c27522ac035967bba090b909e"
-        },
-        {
-          "problema": "Calcula el área de un triángulo de base 6 y altura 4",
-          "dificultad": "básica",
-          "nivel": "ESO General",
-          "uid": "d85ae1a0558f53c80b0195f5597d4e73"
-        }
-      ],
-      "nivel_eso": "1º-2º ESO"
-    },
-    "timestamp": 1761515826.9211247,
-    "problema": "Sumar las fracciones: 1/2 + 1/3",
-    "tipo": "suma_fracciones"
   },
   "32f7eaeb907fe20bec5ce6211e9de797": {
     "respuesta": {
@@ -946,38 +630,6 @@
     "problema": "¿En qué cuadrante se encuentra el punto (-3, 4)?",
     "tipo": "algebra"
   },
-  "b7d5a5228bb048c45eebf0dfb0f5e685": {
-    "respuesta": {
-      "problema": "Calcular el determinante de [[1,2],[3,4]]",
-      "solucion": "Determinante = -2",
-      "tipo_problema": "determinante",
-      "pasos_detallados": [
-        "Vamos a resolverlo paso a paso:",
-        "Matriz: [[1.0,2.0],[3.0,4.0]]",
-        "Determinante: 1.0×4.0 - 2.0×3.0 = -2.0"
-      ],
-      "metodo": "algoritmo_matematico",
-      "estado": "resuelto",
-      "ejercicios_practica": [
-        {
-          "problema": "Resuelve: 2x + 5 = 15",
-          "dificultad": "básica",
-          "nivel": "ESO General",
-          "uid": "cbd11b01f518d50866e3beb4737729a2"
-        },
-        {
-          "problema": "Calcula el área de un triángulo de base 6 y altura 4",
-          "dificultad": "básica",
-          "nivel": "ESO General",
-          "uid": "63ab41a0d3c9877820971107baa003fc"
-        }
-      ],
-      "nivel_eso": "1º-2º ESO"
-    },
-    "timestamp": 1761516447.5263627,
-    "problema": "Calcular el determinante de [[1,2],[3,4]]",
-    "tipo": "determinante"
-  },
   "29ce5b815826114bbb9962bf565438a0": {
     "respuesta": {
       "problema": "Sumar las matrices: [[1,2],[3,4]] + [[5,6],[7,8]]",
@@ -1048,5 +700,308 @@
     "timestamp": 1761517094.2354703,
     "problema": "¿La función y = x² es par o impar?",
     "tipo": "algebra"
+  },
+  "0d473f44dff7580e891cc03c12c4dfc1": {
+    "respuesta": {
+      "problema": "Calcular el área de un triángulo con base 8 cm y altura 5 cm",
+      "solucion": "Área = 20.0 unidades cuadradas",
+      "tipo_problema": "area_triangulo",
+      "pasos_detallados": [
+        "Vamos a resolverlo paso a paso:",
+        "Fórmula: Área = (base × altura) / 2",
+        "Sustitución: (8 × 5) / 2",
+        "Cálculo: 20.0"
+      ],
+      "metodo": "algoritmo_matematico",
+      "estado": "resuelto",
+      "ejercicios_practica": [
+        {
+          "problema": "Resuelve: 2x + 5 = 15",
+          "dificultad": "básica",
+          "nivel": "ESO General",
+          "uid": "e327bcb664cd4a901ac8d007775530ab"
+        },
+        {
+          "problema": "Calcula el área de un triángulo de base 6 y altura 4",
+          "dificultad": "básica",
+          "nivel": "ESO General",
+          "uid": "b65c5928dca3bb162690725bb2567d0a"
+        }
+      ],
+      "nivel_eso": "1º-2º ESO",
+      "grafico": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAApIAAAIQCAYAAAAy8I61AAAAOnRFWHRTb2Z0d2FyZQBNYXRwbG90bGliIHZlcnNpb24zLjEwLjcsIGh0dHBzOi8vbWF0cGxvdGxpYi5vcmcvTLEjVAAAAAlwSFlzAAAPYQAAD2EBqD+naQAARFdJREFUeJzt3Xl8VPX1//H3JJAFQsKWsO8gyG5BKFIEWaVsKosoFkRBfiUWELdCW5GCRougFhABFbRCQVFUqIKIbC6UzVgQUVxYBJQokIRAAmQ+vz/4ZmSSGZK5ZHJneT0fjzw0N3fmnpy5Ie/cuedehzHGCAAAAPBRhN0FAAAAIDgRJAEAAGAJQRIAAACWECQBAABgCUESAAAAlhAkAQAAYAlBEgAAAJYQJAEAAGAJQRIhJTs7W4899pjef/99u0sJeytWrNDMmTPldDrtLgUA4CcESQSVLl26qEuXLl6/ft999+nf//632rdvX3JFFcGjjz4qh8Nhdxkl5uOPP9Yf/vAHNWvWTBERgfPPzIEDB+RwOLR48WK/bifv9f7555/9uh0UXd26dXXnnXfaXQYQcgLnX3iEBYfDUaSPjRs3+vzcr7/+ut555x29++67SkhIKP7iA0heUMn7KF26tOrWratx48bp1KlTftvu3r179eijj+rAgQNe1zlx4oRuu+02zZ49WzfeeKPfakHJczqdev7559W6dWvFxcWpSpUq6t27tz755JMiP8eLL76oq6++WjExMWrUqJFmz57tx4q9K8q+HMg2btzo9d/PrVu3Fuk5jhw5oiFDhqh8+fKKj4/XgAED9N133/m5coSaUnYXgPDyr3/9y+3zV155RevWrSuw/Oqrr/b4eG9vWRtj9MMPP+i9995T7dq1i6fYIDBv3jzFxcUpKytL69ev1+zZs7Vr1y599NFHftne3r17NXXqVHXp0kV169b1uE5qaqqmT5+u4cOH+6UG2OfBBx/UrFmzdMcdd2js2LE6deqU5s+fr86dO+vjjz9Wu3btLvv4+fPn6//9v/+ngQMHauLEidqyZYvGjRunM2fO6OGHHy6h7+KiouzLwWDcuHG69tpr3ZY1bNiw0MedPn1aN9xwg9LT0zV58mSVLl1aTz/9tDp37qzU1FRVqlTJXyUjxBAkUaLuuOMOt8+3bt2qdevWFVie35kzZ1SmTBlFRUV5/LrD4dB9991XbHUGi0GDBqly5cqSpDFjxmjo0KFavny5tm3bVugvdX/p2rWrLduFf124cEHz5s3ToEGD3P7wGzx4sOrXr68lS5Zcdp87e/as/vKXv6hPnz5asWKFJGn06NFyOp2aNm2a7rnnHlWoUMHv34e/ZWVlqWzZsiW2vU6dOmnQoEE+P+65557T/v37tW3bNlcQ7d27t5o3b66ZM2fq8ccfL+5SEaJ4axsBp0uXLmrevLl27typ66+/XmXKlNHkyZNdX7v0HMlz587pkUceUZs2bZSQkKCyZcuqU6dO2rBhg9tz5p0b99RTT2nBggVq0KCBoqOjde2112r79u0Fanj99dfVtGlTxcTEqHnz5lq5cqXuvPNOtyMXeW8t5X8bvqjn4V24cEHTpk1z1VK3bl1NnjxZOTk5PvXrUp06dZIkffvtt27L//vf/+rGG29UQkKCypQp4zqClN+RI0d09913q3r16oqOjla9evX0xz/+UefOndPixYs1ePBgSdINN9xQ4DSEt99+W3369HE9tkGDBpo2bZpyc3PdtpH3+u7du1c33HCDypQpoxo1augf//hHgXoOHjyo/v37q2zZskpKStJ9992ntWvXFui7t/PfCjunNs+HH36oTp06qWzZsipfvrwGDBigL7/8ssB6+/bt06FDhwp9vjw///yzhgwZovj4eFWqVEnjx49Xdna22zqLFi1S165dlZSUpOjoaDVt2lTz5s0r8Fw7duxQr169VLlyZcXGxqpevXq666673NZxOp165pln1KxZM8XExKhKlSoaM2aMTp48WeSavTl//rzOnj2rKlWquC1PSkpSRESEYmNjL/v4DRs26JdfftHYsWPdlicnJysrK0v/+c9/LNX11FNP6brrrlOlSpUUGxurNm3auIKqN4Xtyw6HQ48++miBx+XfzxYvXiyHw6FNmzZp7NixSkpKUs2aNSVd3HfHjh2rxo0bKzY2VpUqVdLgwYP98lZ6ZmamLly44NNjVqxYoWuvvdbtaGaTJk3UrVs3vfbaa8VdIkIYRyQRkH755Rf17t1bQ4cO1R133FHgl1eejIwMLVy4ULfffrtGjx6tjIwMvfDCC+rVq5e2bdum1q1bu62/dOlSZWZmasyYMXI4HPrHP/6hW265Rd99951Kly4tSfrPf/6jW2+9VS1atFBKSopOnjypu+++WzVq1CjW73HUqFF6+eWXNWjQIN1///3673//q5SUFH355ZdauXKlpefM+yV16ZGdDz/8UL1791abNm00ZcoURUREuMLLli1bXEeRjh49qnbt2unUqVO655571KRJEx05ckQrVqzQmTNndP3112vcuHH65z//qcmTJ7tOP8j77+LFi1W2bFlNnDhRZcuW1fr16/XII48oIyNDM2bMcKvz5MmTuvHGG3XLLbdoyJAhWrFihR5++GG1aNFCvXv3lnTxyE7Xrl117NgxjR8/XlWrVtXSpUsL/JFwpT744AP17t1b9evX16OPPqqzZ89q9uzZ6tixo3bt2uX2x8PVV1+tzp07F/kc3iFDhqhu3bpKSUnR1q1b9c9//lMnT57UK6+84lpn3rx5atasmfr3769SpUpp1apVGjt2rJxOp5KTkyVJx48fV8+ePZWYmKg///nPKl++vA4cOKA333zTbXtjxozR4sWLNXLkSI0bN07ff/+95syZo88++0wff/yxax8/ffp0gUDrSenSpV3nG8fGxqp9+/ZavHixOnTooE6dOunUqVOaNm2aKlSooHvuueeyz/XZZ59Jktq2beu2vE2bNoqIiNBnn31W6DsTnjz77LPq37+/hg0bpnPnzmnZsmUaPHiwVq9erT59+nh8TGH7sq/Gjh2rxMREPfLII8rKypIkbd++XZ988omGDh2qmjVr6sCBA5o3b566dOmivXv3qkyZMpIuhv8TJ04UaTsJCQmu1zDPyJEjdfr0aUVGRqpTp06aMWNGgR7n53Q69b///a/AHyKS1K5dO73//vvKzMxUuXLlilQXwpwBbJScnGzy74adO3c2kszzzz9fYP3OnTubzp07uz6/cOGCyc7OdlvnxIkTJjEx0dx1112uZd9//72RZCpVqmROnDjhWv72228bSWbVqlWuZS1atDA1a9Y0mZmZrmUbN240kkydOnVcyzZs2GAkmQ0bNrhtP29bixYtci2bMmWK2/eZmppqJJlRo0a5PfaBBx4wksyHH35Y4Hu/VN7zffXVVyYtLc0cOHDAvPTSSyY2NtYkJiaarKwsY4wxTqfTNGrUyPTq1cs4nU7X48+cOWPq1atnevTo4Vo2fPhwExERYbZv315ge3mPff311z1+z8YYc/r06QLLRo0aZcqUKeP2GuW9vq+88oprWU5OjqlataoZOHCga9nMmTONJPPWW2+5lp09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88031bFjR9fyS48w+qpOnTrau3evjDFu2/X02lSoUMHjhdgPHjyo+vXrX3Ybkjz+0bFv3z5Vrlz5ii7lsn//frejVd98842cTqdrgGfVqlXKycnRO++843a03NtA0W9/+1v99re/1WOPPaalS5dq2LBhWrZsmUaNGqUGDRrogw8+UMeOHQv9Q2z8+PF6+eWXC63/0sGin376SZLnMHX+/PlCp4bz/pDZsWOHfv/737uW79ixQ06n0+sfOpfzxhtvKCYmRmvXrnV7m3bRokWFPvZyf8R52p/OnTvnMXh5s2LFCo0YMUIzZ850LcvOzi7wvIcPH/Z4RNOTDRs2FHoVgu+++04xMTFup+bkFxERoRYtWmjHjh0Fvvbf//5X9evXZ9AGRcblfxDUHA6HnE6n21/4n3zySZHv7JBf9erV1bx5c73yyis6ffq0a/mmTZu0e/dut3Xr1KmjyMhIbd682W35c889V+h28n6RPvPMM27L8472eJs2LcywYcNUs2ZN11uMbdq0UYMGDfTUU0+5fT958o6ERERE6KabbtKqVas8/nLJO1KYF6ry/zLM+6V8/vx517KcnBzNmTPH0vchSb169dKRI0f0zjvvuJZlZ2dr4cKFBdZt0KCBtm7d6vbW6erVq3X48OHLbqNatWpq3bq1Xn75Zbfvac+ePXr//ffdAo/k++V/5s6d6/Z53lvCeZPpeUdL87/tmT8InTx5ssDR2rzglff25JAhQ5Sbm6tp06YVqOPChQtu399DDz2kdevWFfpxaQi66qqrJF18F+BSu3bt0ldffaVrrrnGtezMmTPat2+f27maXbt2VcWKFQtc2mjevHkqU6aMpX0+MjJSDofDLdweOHBAb731VqGP9bYvSxf3p/w/1wsWLPDp3YbIyMgCr9ns2bMLPEfeOZJF+bj0HElPRzE///xzvfPOO+rZs6fbrUkPHTqkffv2ua07aNAgbd++3e3n/auvvtKHH37oujQSUBQckURQ69Onj1auXKmbb75Zffr00Xfffaf58+erWbNmlo9KPv744xowYIA6duyokSNH6uTJk5ozZ46aN2/uFsYSEhI0ePBgzZ49Ww6HQw0aNNDq1avdzkXzplWrVhoxYoQWLFigU6dOqXPnztq2bZtefvll3XTTTUUatPGkdOnSGj9+vB588EGtWbPGNezSu3dvNWvWTCNHjlSNGjV05MgRbdiwQfHx8Vq1apXr+37//ffVuXNn3XPPPbr66qt17Ngxvf766/roo49Uvnx5tW7dWpGRkXryySeVnp6u6Ohode3aVdddd53Kly+vO++8U+PGjZPD4dArr7yiUqWs/xMzZswYzZkzR7fddpvGjx+vatWqacmSJa5hgEuPKI0aNUorVqzQjTfeqCFDhujbb7/Vq6++6joiezkzZsxQ79691aFDB919992uy/8kJCQUuJagr5f/+f7779W/f3/deOON+vTTT/Xqq6/q9ttvdwWCnj17KioqSv369dOYMWN0+vRpLVy4UElJSW5Hv15++WU999xzuvnmm9WgQQNlZmZq4cKFio+Pd4Xdzp07a8yYMUpJSVFqaqp69uyp0qVLa//+/Xr99df17LPPui5cbeUcyTZt2qhHjx56+eWXlZGRoZ49e+rYsWOaPXu2YmNjNWHCBNe627Zt0w033KApU6a4ehgbG6tp06YpOTlZgwcPVq9evbRlyxa9+uqreuyxx9yGnTZu3Fjg8Z706dNHs2bN0o033qjbb79dx48f19y5c9WwYcNCj4Z725eTkpI0atQo1x14evTooc8//1xr16697DBRfn379tW//vUvJSQkqGnTpvr000/1wQcfFLhjjNVzJG+99VbXYGFSUpL27t2rBQsWqEyZMnriiSfc1h0+fLg2bdrkFmzHjh2rhQsXqk+fPnrggQdUunRpzZo1S1WqVCm2YTaECbvGxQFjvF/+p1mzZh7Xz385F6fTaaZPn25q165tYmJiTJs2bcx7771nRowY4XapnrxLbMyYMaPAc8rDpT6WLVtmmjRpYqKjo03z5s3NO++8YwYOHGiaNGnitl5aWpoZOHCgKVOmjKlQoYIZM2aM2bNnT6GX/zHGmPPnz5upU6eaevXqmdKlS5tatWqZSZMmFbickSd5z5eWllbga+np6SYhIcGtT5999pm55ZZbTKVKlUx0dLSpU6eOGTJkiFm/fr3bYw8ePGiGDx9uEhMTTXR0tKlfv75JTk42OTk5rnUWLlxo6tevbyIjI90uSbJlyxbTvn17Exsba2rUqGEmT55s3n///QKXLfH2+uZ/zYwx5rvvvjN9+vRxXdbo/vvvN2+88YaRZLZu3eq27syZM02NGjVMdHS06dixo9mxY0eRLv9jjDEffPCB6dixo4mNjTXx8fGmX79+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"
+    },
+    "timestamp": 1761595980.4825077,
+    "problema": "Calcular el área de un triángulo con base 8 cm y altura 5 cm",
+    "tipo": "area_triangulo"
+  },
+  "b7d5a5228bb048c45eebf0dfb0f5e685": {
+    "respuesta": {
+      "problema": "Calcular el determinante de [[1,2],[3,4]]",
+      "solucion": "Determinante = -2",
+      "tipo_problema": "determinante",
+      "pasos_detallados": [
+        "Vamos a resolverlo paso a paso:",
+        "Matriz: [[1.0,2.0],[3.0,4.0]]",
+        "Determinante: 1.0×4.0 - 2.0×3.0 = -2.0"
+      ],
+      "metodo": "algoritmo_matematico",
+      "estado": "resuelto",
+      "ejercicios_practica": [
+        {
+          "problema": "Resuelve: 2x + 5 = 15",
+          "dificultad": "básica",
+          "nivel": "ESO General",
+          "uid": "5b7d28e7698d6385d4a69eb5a943b85d"
+        },
+        {
+          "problema": "Calcula el área de un triángulo de base 6 y altura 4",
+          "dificultad": "básica",
+          "nivel": "ESO General",
+          "uid": "e29ca24dcdb6e6c028c8395ee6924b5d"
+        }
+      ],
+      "nivel_eso": "1º-2º ESO"
+    },
+    "timestamp": 1761595980.502035,
+    "problema": "Calcular el determinante de [[1,2],[3,4]]",
+    "tipo": "determinante"
+  },
+  "f0adf4a45e922cd54f29139e9cdc2934": {
+    "respuesta": {
+      "problema": "Calcular la suma de los primeros 4 términos de: 1, 3, 5, 7, ...",
+      "solucion": "** podemos verificar la respuesta sumando los primeros 4 términos de la secuencia: 1 + 3 = 4, 4 + 5 = 9, 9 + 7 = 16",
+      "tipo_problema": "algebra",
+      "pasos_detallados": [
+        "2. Pasos detallados numerados:*",
+        "Identifica la secuencia: La secuencia dada es una secuencia aritmética (A.R.) con una diferencia común (d) de 2. Esto significa que cada término es 2 más que el anterior.",
+        "Determina los primeros 4 términos: Los primeros 4 términos de la secuencia son 1, 3, 5 y 7.",
+        "Calcula la suma: Para calcular la suma de los primeros 4 términos, simplemente sumamos los números: 1 + 3 + 5 + 7 = 16.",
+        "Verifica la respuesta: Podemos verificar la respuesta sumando los primeros 4 términos de la secuencia: 1 + 3 = 4, 4 + 5 = 9, 9 + 7 = 16. La respuesta es correcta.",
+        "Recuerda: La suma de los primeros n términos de una secuencia aritmética se puede calcular usando la fórmula: S = (n/2) (a1 + an), donde S es la suma, n es el número de términos, a1 es el primer término y an es el último término. Sin embargo, en este caso, podemos simplemente sumar los primeros 4 términos para obtener la respuesta."
+      ],
+      "modelo_ia": "llama3-8b-8192",
+      "metodo": "ia_groq",
+      "estado": "resuelto",
+      "ejercicios_practica": [
+        {
+          "problema": "Resuelve: 2x + 5 = 15",
+          "dificultad": "básica",
+          "nivel": "ESO General",
+          "uid": "efcbd60368bcc8bcdfd43f66bcb5f32b"
+        },
+        {
+          "problema": "Calcula el área de un triángulo de base 6 y altura 4",
+          "dificultad": "básica",
+          "nivel": "ESO General",
+          "uid": "36f30c55aeee9cec5eda8eab6a504a0c"
+        }
+      ],
+      "nivel_eso": "1º-2º ESO"
+    },
+    "timestamp": 1761595981.2049649,
+    "problema": "Calcular la suma de los primeros 4 términos de: 1, 3, 5, 7, ...",
+    "tipo": "algebra"
+  },
+  "a0587b9e1ea651d98d74d490e18ce877": {
+    "respuesta": {
+      "problema": "Sumar las fracciones: 1/2 + 1/3",
+      "solucion": "Resultado: 5/6",
+      "tipo_problema": "suma_fracciones",
+      "pasos_detallados": [
+        "Vamos a resolverlo paso a paso:",
+        "Fracciones: 1/2 + 1/3",
+        "Mínimo común múltiplo: 6",
+        "Numerador común: (1×3) + (1×2) = 5",
+        "Fracción antes de simplificar: 5/6",
+        "Fracción simplificada: 5/6"
+      ],
+      "metodo": "algoritmo_matematico",
+      "estado": "resuelto",
+      "ejercicios_practica": [
+        {
+          "problema": "Resuelve: 2x + 5 = 15",
+          "dificultad": "básica",
+          "nivel": "ESO General",
+          "uid": "6fbc77263055773c43c37980cec998b5"
+        },
+        {
+          "problema": "Calcula el área de un triángulo de base 6 y altura 4",
+          "dificultad": "básica",
+          "nivel": "ESO General",
+          "uid": "d818e5a49cea88f5c251eead82ac5cf4"
+        }
+      ],
+      "nivel_eso": "1º-2º ESO"
+    },
+    "timestamp": 1761595981.2123718,
+    "problema": "Sumar las fracciones: 1/2 + 1/3",
+    "tipo": "suma_fracciones"
+  },
+  "4e9516c2249e3e090a58ada09943c21a": {
+    "respuesta": {
+      "problema": "Resolver el sistema: x + y = 10, 2x - y = 5",
+      "solucion": "x = 5.00, y = 5.00",
+      "tipo_problema": "sistema_ecuaciones",
+      "pasos_detallados": [
+        "Sistema: 1x + 1y = 10, 2x + -1y = 5",
+        "Determinante: 1×-1 - 2×1 = -3",
+        "X = (10×-1 - 5×1) / -3 = 5.00",
+        "Y = (1×5 - 2×10) / -3 = 5.00"
+      ],
+      "metodo": "algoritmo_matematico",
+      "estado": "resuelto",
+      "ejercicios_practica": [
+        {
+          "problema": "Resuelve: 2x + 5 = 15",
+          "dificultad": "básica",
+          "nivel": "ESO General",
+          "uid": "46d6ea60fdd260b5c7fda790571df8dc"
+        },
+        {
+          "problema": "Calcula el área de un triángulo de base 6 y altura 4",
+          "dificultad": "básica",
+          "nivel": "ESO General",
+          "uid": "d5f9bb1fcb28dfaffa45f0183e772ede"
+        }
+      ],
+      "nivel_eso": "2º-3º ESO"
+    },
+    "timestamp": 1761595981.2186046,
+    "problema": "Resolver el sistema: x + y = 10, 2x - y = 5",
+    "tipo": "sistema_ecuaciones"
+  },
+  "56e86e1d13df579adcc09ae7bf64c149": {
+    "respuesta": {
+      "problema": "3x + 5 = 20",
+      "solucion": "x = 5.0",
+      "tipo_problema": "ecuacion_lineal",
+      "pasos_detallados": [
+        "Ecuación: 3x + 5 = 20",
+        "Restar 5 en ambos lados: 3x = 15",
+        "Dividir entre 3: x = 5.0"
+      ],
+      "metodo": "algoritmo_matematico",
+      "estado": "resuelto",
+      "ejercicios_practica": [
+        {
+          "problema": "Resuelve: 2x + 5 = 15",
+          "dificultad": "básica",
+          "nivel": "ESO General",
+          "uid": "f359151ce00aa042cbdd0a51e7440fa1"
+        },
+        {
+          "problema": "Calcula el área de un triángulo de base 6 y altura 4",
+          "dificultad": "básica",
+          "nivel": "ESO General",
+          "uid": "6638a1df401f255b3e60b96f3c8d6645"
+        }
+      ],
+      "nivel_eso": "ESO General"
+    },
+    "timestamp": 1761596370.4681618,
+    "problema": "3x + 5 = 20",
+    "tipo": "ecuacion_lineal"
+  },
+  "0d1a1554e07c2dd9e67cd4a59fd893ae": {
+    "respuesta": {
+      "problema": "Resolver la ecuación: 2x + 5 = 15",
+      "solucion": "x = 5.0",
+      "tipo_problema": "ecuacion_lineal",
+      "pasos_detallados": [
+        "Ecuación: 2x + 5 = 15",
+        "Restar 5 en ambos lados: 2x = 10",
+        "Dividir entre 2: x = 5.0"
+      ],
+      "metodo": "algoritmo_matematico",
+      "estado": "resuelto",
+      "ejercicios_practica": [
+        {
+          "problema": "Resuelve: 2x + 5 = 15",
+          "dificultad": "básica",
+          "nivel": "ESO General",
+          "uid": "541201e76904f4a8ae6dc73e399645da"
+        },
+        {
+          "problema": "Calcula el área de un triángulo de base 6 y altura 4",
+          "dificultad": "básica",
+          "nivel": "ESO General",
+          "uid": "a2985378a35652faf9cad7c873c54d11"
+        }
+      ],
+      "nivel_eso": "2º-3º ESO"
+    },
+    "timestamp": 1761596758.2658691,
+    "problema": "Resolver la ecuación: 2x + 5 = 15",
+    "tipo": "ecuacion_lineal"
+  },
+  "44c4e9d298110094cfb7244820d3ed67": {
+    "respuesta": {
+      "problema": "Resolver: tan(θ) = 1, encontrar θ en el primer cuadrante",
+      "solucion": "Final clara:** θ = π/4",
+      "tipo_problema": "algebra",
+      "pasos_detallados": [
+        "2. Pasos detallados numerados:*",
+        "Identificar la función trigonométrica: En este problema, se nos da la función tangente (tan) y su valor es igual a 1. La función tangente está definida como la relación entre el seno y el coseno de un ángulo: tan(θ) = sen(θ) / cos(θ).",
+        "Establecer la ecuación: Sabemos que tan(θ) = 1, por lo que podemos establecer la ecuación: sen(θ) / cos(θ) = 1.",
+        "Simplificar la ecuación: Para simplificar la ecuación, podemos multiplicar ambos lados por cos(θ), lo que nos da: sen(θ) = cos(θ).",
+        "Recuerda la identidad trigonométrica: Sabemos que en el primer cuadrante, sen(θ) = cos(θ) cuando θ = π/4. Esto se debe a que en el primer cuadrante, el ángulo θ es igual a π/4 y en este punto, el seno y el coseno del ángulo son iguales.",
+        "Concluir la solución: Por lo tanto, la solución al problema es θ = π/4."
+      ],
+      "modelo_ia": "llama3-8b-8192",
+      "metodo": "ia_groq",
+      "estado": "resuelto",
+      "ejercicios_practica": [
+        {
+          "problema": "Resuelve: 2x + 5 = 15",
+          "dificultad": "básica",
+          "nivel": "ESO General",
+          "uid": "0d9a760b59e9eafc312c2c33c1add1a5"
+        },
+        {
+          "problema": "Calcula el área de un triángulo de base 6 y altura 4",
+          "dificultad": "básica",
+          "nivel": "ESO General",
+          "uid": "725ecb9089bb2c3fd322328bb66e30d9"
+        }
+      ],
+      "nivel_eso": "ESO General"
+    },
+    "timestamp": 1761596758.8598623,
+    "problema": "Resolver: tan(θ) = 1, encontrar θ en el primer cuadrante",
+    "tipo": "algebra"
+  },
+  "daaf009216de6c74a297b8209a5f8fd7": {
+    "respuesta": {
+      "problema": "Calcular 30% de 200",
+      "solucion": "El 30.0% de 200.0 es 60.0",
+      "tipo_problema": "porcentaje_simple",
+      "pasos_detallados": [
+        "Vamos a resolverlo paso a paso:",
+        "Fórmula: (porcentaje × cantidad) / 100",
+        "Sustitución: (30.0 × 200.0) / 100",
+        "Cálculo: 60.0"
+      ],
+      "metodo": "algoritmo_matematico",
+      "estado": "resuelto",
+      "ejercicios_practica": [
+        {
+          "problema": "Resuelve: 2x + 5 = 15",
+          "dificultad": "básica",
+          "nivel": "ESO General",
+          "uid": "f3b5c89d38140db1fee47b7f8c8c855f"
+        },
+        {
+          "problema": "Calcula el área de un triángulo de base 6 y altura 4",
+          "dificultad": "básica",
+          "nivel": "ESO General",
+          "uid": "4d879771765f53211f006326bae7e22e"
+        }
+      ],
+      "nivel_eso": "1º-2º ESO"
+    },
+    "timestamp": 1761596758.86658,
+    "problema": "Calcular 30% de 200",
+    "tipo": "porcentaje_simple"
   }
 }
