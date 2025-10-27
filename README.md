@@ -53,9 +53,13 @@ Este proyecto está optimizado para participar como **Purple Agent** en la compe
 
 # 🎯 Math Agent (ESO / High School)
 
-Hybrid project to solve math problems using algorithmic solvers with an AI fallback. Ready for A2A evaluation (AgentX) and for local use via Docker or a Python virtual environment.
+English • Español • Demo
 
-> Note: a Spanish version is available at `README_es.md`.
+- English (current): `README.md`
+- Español: `README_es.md`
+- Demo & screenshots: `demo/README.md`
+
+Hybrid project to solve math problems using algorithmic solvers with an AI fallback. Ready for A2A evaluation (AgentX) and for local use via Docker or a Python virtual environment.
 
 Quick summary
 - Purple server (main): `app.py` — port 8000
