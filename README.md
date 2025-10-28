@@ -80,13 +80,14 @@ Note: inside Docker Compose the Green service contacts Purple via the internal n
 
 ## Automatic evaluation
 
-Use `scripts/run_local_eval.py` to run a quick evaluation (Green evaluates Purple).
+Use `scripts/run_local_eval_en.py` to run a quick evaluation (Green evaluates Purple).
 
 Local example (with both servers running):
 
 ```bash
+chmod +x scripts/run_local_eval_en.py   # to get permision
 # from repo root
-python scripts/run_local_eval.py
+python scripts/run_local_eval_en.py
 ```
 
 Run the runner inside the Green container:

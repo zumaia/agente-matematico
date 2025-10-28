@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
-"""Script de prueba: Ejecuta 5 problemas del dataset usando los resolutores locales.
-Muestra la solución encontrada y si la heurística plausible_solution permitiría cachearla.
+"""Test script: Runs 5 problems from the dataset using local solvers.
+Shows the found solution and whether the plausible_solution heuristic would allow caching it.
 """
 import importlib.util
 import os
@@ -15,7 +15,7 @@ def load_module_from_path(name, rel_path):
     spec.loader.exec_module(mod)
     return mod
 
-# Cargar módulos directamente por ruta (evita problemas si falta __init__.py)
+# Load modules directly by path (avoids issues if __init__.py is missing)
 algebra = load_module_from_path('matematica.algebra', 'matematica/algebra.py')
 geometria = load_module_from_path('matematica.geometria', 'matematica/geometria.py')
 aritmetica = load_module_from_path('matematica.aritmetica', 'matematica/aritmetica.py')
@@ -26,7 +26,7 @@ combinatoria = load_module_from_path('matematica.combinatoria', 'matematica/comb
 geo_analitica = load_module_from_path('matematica.geometria_analitica', 'matematica/geometria_analitica.py')
 dataset_mod = load_module_from_path('green_agent.dataset_matematico', 'green_agent/dataset_matematico.py')
 
-# Importar funciones
+# Import functions
 resolver_ecuacion_lineal = algebra.resolver_ecuacion_lineal
 sistemas_ecuaciones = algebra.sistemas_ecuaciones
 resolver_producto_escalar = algebra.resolver_producto_escalar
@@ -46,22 +46,22 @@ resolver_combinatoria = combinatoria.resolver_combinatoria
 resolver_geometria_analitica = geo_analitica.resolver_geometria_analitica
 obtener_problemas_aleatorios = dataset_mod.obtener_problemas_aleatorios
 
-def plausible_solution(tipo_problema: str, problema: str, solucion_valor) -> bool:
+def plausible_solution(problem_type: str, problem: str, solution_value) -> bool:
     """
-    Heurística local (copia ligera de la función en app.py) para evitar cachear soluciones no plausibles.
+    Local heuristic (light copy of function in app.py) to avoid caching non-plausible solutions.
     """
     import re
     try:
-        tipo = (tipo_problema or '').lower()
-        s = str(solucion_valor).lower()
+        problem_type = (problem_type or '').lower()
+        s = str(solution_value).lower()
 
-        if s.startswith('error') or 'no se pudo' in s:
+        if s.startswith('error') or 'could not' in s or 'no se pudo' in s:
             return False
 
-        if 'ecuacion' in tipo or 'ecuación' in tipo or tipo == 'ecuacion_lineal':
+        if 'equation' in problem_type or 'ecuacion' in problem_type or 'ecuación' in problem_type or problem_type == 'ecuacion_lineal':
             return 'x' in s or re.search(r'[-+]?[0-9]+\.?[0-9]*', s) is not None
 
-        if 'trig' in tipo or 'seno' in problema.lower() or 'sen(' in problema.lower() or 'cos(' in problema.lower():
+        if 'trig' in problem_type or 'sine' in problem.lower() or 'sin(' in problem.lower() or 'cos(' in problem.lower() or 'seno' in problem.lower() or 'sen(' in problem.lower():
             nums = re.findall(r'[-+]?[0-9]*\.?[0-9]+', s)
             if nums:
                 try:
@@ -71,10 +71,10 @@ def plausible_solution(tipo_problema: str, problema: str, solucion_valor) -> boo
                     return False
             return False
 
-        if 'porcentaje' in tipo or 'aritm' in tipo or 'porcentaje' in problema.lower():
+        if 'percentage' in problem_type or 'arithmetic' in problem_type or 'porcentaje' in problem_type or 'percentage' in problem.lower() or 'porcentaje' in problem.lower():
             return re.search(r'[-+]?[0-9]+\.?[0-9]*', s) is not None
 
-        if any(k in tipo for k in ['area', 'volumen', 'teorema_pitagoras', 'distancia', 'punto_medio', 'pendiente']):
+        if any(k in problem_type for k in ['area', 'volume', 'volume', 'pythagorean_theorem', 'distance', 'midpoint', 'slope']):
             nums = re.findall(r'[-+]?[0-9]*\.?[0-9]+', s)
             if nums:
                 try:
@@ -89,10 +89,10 @@ def plausible_solution(tipo_problema: str, problema: str, solucion_valor) -> boo
         return False
 
 def main():
-    # Tomar 5 problemas aleatorios del dataset
-    problemas = obtener_problemas_aleatorios(5)
+    # Take 5 random problems from the dataset
+    problems = obtener_problemas_aleatorios(5)
 
-    resolutores = [
+    solvers = [
         resolver_ecuacion_lineal,
         calcular_area,
         operaciones_fracciones,
@@ -112,34 +112,34 @@ def main():
         resolver_geometria_analitica
     ]
 
-    for p in problemas:
+    for p in problems:
         text = p['problema']
         print('\n' + '='*80)
-        print(f"ID: {p['id']} | Tipo esperado: {p.get('tipo','-')} | Problema: {text}")
+        print(f"ID: {p['id']} | Expected type: {p.get('tipo','-')} | Problem: {text}")
 
-        solucion = None
-        for r in resolutores:
+        solution = None
+        for solver in solvers:
             try:
-                out = r(text)
+                out = solver(text)
             except Exception as e:
                 out = None
             if out:
-                solucion = out
-                print(f"Resuelto por: {r.__name__}")
+                solution = out
+                print(f"Solved by: {solver.__name__}")
                 break
 
-        if solucion:
-            valor = solucion.get('solucion') if isinstance(solucion, dict) else str(solucion)
-            pasos = solucion.get('pasos') if isinstance(solucion, dict) else None
-            print(f"Solución encontrada: {valor}")
-            if pasos:
-                print("Pasos:")
-                for step in pasos:
+        if solution:
+            value = solution.get('solucion') if isinstance(solution, dict) else str(solution)
+            steps = solution.get('pasos') if isinstance(solution, dict) else None
+            print(f"Solution found: {value}")
+            if steps:
+                print("Steps:")
+                for step in steps:
                     print(f"  - {step}")
-            plausible = plausible_solution(solucion.get('tipo') if isinstance(solucion, dict) else '', text, valor)
-            print(f"¿Plausible para cache? {'Sí' if plausible else 'No'}")
+            plausible = plausible_solution(solution.get('tipo') if isinstance(solution, dict) else '', text, value)
+            print(f"Plausible for cache? {'Yes' if plausible else 'No'}")
         else:
-            print("No resuelto por los resolutores locales. Se usaría IA o extracción.")
+            print("Not solved by local solvers. Would use AI or extraction.")
 
 if __name__ == '__main__':
     main()

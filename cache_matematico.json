@@ -1,39 +1,4 @@
 {
-  "784e4909d2115327ac386580973f2513": {
-    "respuesta": {
-      "problema": "Hallar la pendiente de la recta que pasa por (1,2) y (4,8)",
-      "solucion": "Término aₙ = 7.0, Suma Sₙ = 16.0",
-      "tipo_problema": "progresion_aritmetica",
-      "pasos_detallados": [
-        "1. Primer término (a₁) = 1.0",
-        "2. Diferencia (d) = 2.0",
-        "3. Término en posición n = 4.0",
-        "4. Fórmula: aₙ = a₁ + (n-1)×d",
-        "5. aₙ = 1.0 + (4.0-1)×2.0 = 1.0 + 3.0×2.0 = 7.0",
-        "6. Suma de los primeros 4.0 términos: Sₙ = n×(a₁+aₙ)/2 = 4.0×(1.0+7.0)/2 = 16.0"
-      ],
-      "metodo": "algoritmo_matematico",
-      "estado": "resuelto",
-      "ejercicios_practica": [
-        {
-          "problema": "Resuelve: 2x + 5 = 15",
-          "dificultad": "básica",
-          "nivel": "ESO General",
-          "uid": "17773977b912239d2683008634fc5dd8"
-        },
-        {
-          "problema": "Calcula el área de un triángulo de base 6 y altura 4",
-          "dificultad": "básica",
-          "nivel": "ESO General",
-          "uid": "32628d9dfcf43a2345bd51810d2c9f68"
-        }
-      ],
-      "nivel_eso": "3º-4º ESO"
-    },
-    "timestamp": 1761515502.502317,
-    "problema": "Hallar la pendiente de la recta que pasa por (1,2) y (4,8)",
-    "tipo": "progresion_aritmetica"
-  },
   "f0adf4a45e922cd54f29139e9cdc2934": {
     "respuesta": {
       "problema": "Calcular la suma de los primeros 4 términos de: 1, 3, 5, 7, ...",
@@ -957,5 +922,37 @@
     "timestamp": 1761602294.5291753,
     "problema": "Encontrar el punto medio entre (1,2) y (5,8)",
     "tipo": "punto_medio"
+  },
+  "784e4909d2115327ac386580973f2513": {
+    "respuesta": {
+      "problema": "Hallar la pendiente de la recta que pasa por (1,2) y (4,8)",
+      "solucion": "16",
+      "tipo_problema": "progresion_geometrica",
+      "pasos_detallados": [
+        "1. Términos conocidos: 1, 2, 4, 8",
+        "2. Razón (r) = 2.0",
+        "3. Siguiente término = 8.0 × 2.0 = 16.0"
+      ],
+      "metodo": "algoritmo_matematico",
+      "estado": "resuelto",
+      "ejercicios_practica": [
+        {
+          "problema": "Resuelve: 2x + 5 = 15",
+          "dificultad": "básica",
+          "nivel": "ESO General",
+          "uid": "8f37a925e6e655dfea7554fabdfdc461"
+        },
+        {
+          "problema": "Calcula el área de un triángulo de base 6 y altura 4",
+          "dificultad": "básica",
+          "nivel": "ESO General",
+          "uid": "702cd9dee5ccf5e859ba6e715e611020"
+        }
+      ],
+      "nivel_eso": "3º-4º ESO"
+    },
+    "timestamp": 1761602481.4864821,
+    "problema": "Hallar la pendiente de la recta que pasa por (1,2) y (4,8)",
+    "tipo": "progresion_geometrica"
   }
 }
